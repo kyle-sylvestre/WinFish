@@ -16,7 +16,7 @@ DataReader::~DataReader()
     Close();
 }
 
-void DataReader::OpenMemory(const void* theMemory, ulong theLength, bool deallocate)
+void DataReader::OpenMemory(const void* theMemory, uint32_t theLength, bool deallocate)
 {
     Close();
 
@@ -52,7 +52,7 @@ void DataReader::Close()
     mDeallocate = false;
 }
 
-void DataReader::ReadBytes(void* theBuffer, ulong theLength)
+void DataReader::ReadBytes(void* theBuffer, uint32_t theLength)
 {
     if (mMemoryHandle)
     {
@@ -71,9 +71,9 @@ void DataReader::ReadBytes(void* theBuffer, ulong theLength)
     throw DataReaderException();
 }
 
-ulong DataReader::ReadLong()
+uint32_t DataReader::ReadLong()
 {
-    ulong result;
+    uint32_t result;
     ReadBytes(&result, sizeof(result));
     //return LONG_LITTLEE_TO_NATIVE(result);
     return result;
@@ -101,7 +101,7 @@ bool DataReader::ReadBool()
 
 float DataReader::ReadFloat()
 {
-    ulong result;
+    uint32_t result;
     ReadBytes(&result, sizeof(result));
     //result = LONG_LITTLEE_TO_NATIVE(result);
     return reinterpret_cast<float&>(result);
@@ -116,12 +116,12 @@ double Sexy::DataReader::ReadDouble()
 
 void DataReader::ReadString(std::string& theString)
 {
-    ulong length = ReadShort();
+    uint32_t length = ReadShort();
     theString.resize(length, 0);
     ReadBytes(&theString[0], length);
 }
 
-void DataReader::RollbackBytes(ulong theLength)
+void DataReader::RollbackBytes(uint32_t theLength)
 {
     if (mMemoryPosition < theLength)
         throw DataReaderException();
@@ -140,7 +140,7 @@ DataWriter::~DataWriter()
     Close();
 }
 
-void DataWriter::OpenMemory(ulong theLength) {
+void DataWriter::OpenMemory(uint32_t theLength) {
     Close();
 
     if (theLength < 32)
@@ -168,11 +168,11 @@ void DataWriter::Close()
     mMemoryPosition = 0;
 }
 
-void DataWriter::EnsureCapacity(ulong theLength)
+void DataWriter::EnsureCapacity(uint32_t theLength)
 {
     if (mMemoryLength < theLength)
     {
-        ulong newLength = mMemoryLength;
+        uint32_t newLength = mMemoryLength;
         do
         {
             newLength *= 2;
@@ -187,7 +187,7 @@ void DataWriter::EnsureCapacity(ulong theLength)
     }
 }
 
-void DataWriter::WriteBytes(const void* theBuffer, ulong theLength)
+void DataWriter::WriteBytes(const void* theBuffer, uint32_t theLength)
 {
     if (mMemoryHandle)
     {
@@ -201,7 +201,7 @@ void DataWriter::WriteBytes(const void* theBuffer, ulong theLength)
     }
 }
 
-void DataWriter::WriteLong(ulong theValue)
+void DataWriter::WriteLong(uint32_t theValue)
 {
     //theValue = LONG_NATIVE_TO_LITTLEE(theValue);
     WriteBytes(&theValue, sizeof(theValue));
@@ -225,7 +225,7 @@ void DataWriter::WriteBool(bool theValue)
 
 void DataWriter::WriteFloat(float theValue)
 {
-    ulong result = reinterpret_cast<ulong&>(theValue);
+    uint32_t result = reinterpret_cast<uint32_t&>(theValue);
     //result = LONG_NATIVE_TO_LITTLEE(result);
     WriteBytes(&result, sizeof(result));
 }
@@ -260,7 +260,7 @@ DataSync::DataSync(DataWriter& writer)
     mWriter = &writer;
 }
 
-void DataSync::SyncBytes(void* theValue, ulong theSize)
+void DataSync::SyncBytes(void* theValue, uint32_t theSize)
 {
     if (mReader)
     {
@@ -296,7 +296,7 @@ void DataSync::SyncLong(unsigned int& theValue)
     }
 }
 
-//void DataSync::SyncLong(ulong& theValue)
+//void DataSync::SyncLong(uint32_t& theValue)
 //{
 //    if (mReader)
 //    {

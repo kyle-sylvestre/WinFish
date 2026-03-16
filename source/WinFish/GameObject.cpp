@@ -721,24 +721,24 @@ void Sexy::GameObject::DrawInvisibleEffectHelper(Graphics* g, MemoryImage* theBG
 		if (aSampleY < 0 || aSampleY >= theBGImage->mHeight) // 49 No nesting.
 			continue;
 
-		ulong* aBGBits = theBGImage->GetBits();
-		ulong* aBGBitForEffect = aBGBits + theBGImage->mWidth * aSampleY + theX;
+		uint32_t* aBGBits = theBGImage->GetBits();
+		uint32_t* aBGBitForEffect = aBGBits + theBGImage->mWidth * aSampleY + theX;
 
-		ulong* anInvisBits = anInvisImg.GetBits();
-		ulong* anInvisBitForEffect = anInvisBits + y * anInvisImg.mWidth;
+		uint32_t* anInvisBits = anInvisImg.GetBits();
+		uint32_t* anInvisBitForEffect = anInvisBits + y * anInvisImg.mWidth;
 
-		ulong* anObjBits = theObjImage->GetBits();
-		ulong anObjBitPos = (theSrcRect.mY + y) * theObjImage->mWidth + theSrcRect.mX;
+		uint32_t* anObjBits = theObjImage->GetBits();
+		uint32_t anObjBitPos = (theSrcRect.mY + y) * theObjImage->mWidth + theSrcRect.mX;
 
 		if (!mirror) // 56
 		{
-			ulong* anObjBitForEffect = anObjBits + anObjBitPos;
+			uint32_t* anObjBitForEffect = anObjBits + anObjBitPos;
 			int aCnt2 = theX;
 			for (int x = 0; x < anInvisImg.mWidth; ++x)
 			{
 				if (aCnt2 >= 0 && aCnt2 < theBGImage->mWidth)
 				{
-					ulong anBitAlpha = *anObjBitForEffect & 0xFF000000;
+					uint32_t anBitAlpha = *anObjBitForEffect & 0xFF000000;
 					anObjBitForEffect++;
 					if (anBitAlpha != 0)
 					{
@@ -753,13 +753,13 @@ void Sexy::GameObject::DrawInvisibleEffectHelper(Graphics* g, MemoryImage* theBG
 		}
 		else // 77
 		{
-			ulong* anObjBitForEffect = anObjBits - 4 + anObjBitPos + theSrcRect.mWidth;
+			uint32_t* anObjBitForEffect = anObjBits - 4 + anObjBitPos + theSrcRect.mWidth;
 			int aCnt2 = theX;
 			for (int x = 0; x < anInvisImg.mWidth; ++x)
 			{
 				if (aCnt2 >= 0 && aCnt2 < theBGImage->mWidth)
 				{
-					ulong anBitAlpha = *anObjBitForEffect & 0xFF000000;
+					uint32_t anBitAlpha = *anObjBitForEffect & 0xFF000000;
 					anObjBitForEffect--;
 					if (anBitAlpha != 0)
 					{

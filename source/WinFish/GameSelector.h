@@ -70,7 +70,7 @@ namespace Sexy
 		virtual void			MouseDown(int x, int y, int theClickCount);
 
 		void					DrawMerylSpeak(Graphics* g, int theHoverId, int theAlphaValue, bool theDrawSpeechBubble);
-		ulong					GetBonusAwardUnk(MemoryImage* theImage, int theUnk1, int theUnk2);
+		uint32_t					GetBonusAwardUnk(MemoryImage* theImage, int theUnk1, int theUnk2);
 		void					UpdateHover(int theHover);
 		void					UpdateAdventureButton();
 		void					SandboxActivated();

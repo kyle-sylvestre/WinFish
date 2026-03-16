@@ -2350,8 +2350,8 @@ bool Sexy::Board::SyncGameData(DataSync& theSync)
 
 	if (aDW)
 	{
-		ulong aNumOfObjects = 0;
-		ulong aPos = aDW->mMemoryPosition;
+		uint32_t aNumOfObjects = 0;
+		uint32_t aPos = aDW->mMemoryPosition;
 		aDW->WriteLong(0);
 
 		for (GameObjectSet::iterator it = mGameObjectSet.begin(); it != mGameObjectSet.end(); ++it)
@@ -2370,8 +2370,8 @@ bool Sexy::Board::SyncGameData(DataSync& theSync)
 	else
 	{
 		ResetLevel(mWidgetManager);
-		ulong aNumOfObjects = aDR->ReadLong();
-		for (ulong i = 0; i < aNumOfObjects; i++)
+		uint32_t aNumOfObjects = aDR->ReadLong();
+		for (uint32_t i = 0; i < aNumOfObjects; i++)
 		{
 			int aType = aDR->ReadLong();
 			aDR->RollbackBytes(4);

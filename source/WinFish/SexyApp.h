@@ -15,9 +15,9 @@ namespace Sexy
         BetaSupport*                mBetaSupport;
         SexyString                  mSexyAppReferId; 
         SexyString                  mVariation;
-        ulong                       mDownloadId;
+        uint32_t                       mDownloadId;
         SexyString                  mRegSource;
-        ulong                       mLastVerCheckQueryTime;
+        uint32_t                       mLastVerCheckQueryTime;
         bool                        mSkipAd;
         bool                        mDontUpdate;
         int                         mBuildNum;

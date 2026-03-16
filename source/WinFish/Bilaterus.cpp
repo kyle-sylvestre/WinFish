@@ -210,7 +210,7 @@ void Sexy::Bilaterus::Sync(DataSync* theSync)
 			mApp->mWidgetManager->AddWidget(mPassiveHead);
 		}
 
-		ulong aNumOfBones = aReader->ReadLong();
+		uint32_t aNumOfBones = aReader->ReadLong();
 		for (int i = 0; i < aNumOfBones; i++)
 		{
 			BilaterusBone* aBone = new BilaterusBone(this, mX, mY, i);

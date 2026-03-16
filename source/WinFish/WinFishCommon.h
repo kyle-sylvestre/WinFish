@@ -19,7 +19,7 @@ namespace Sexy
 	Checkbox*			MakeCheckbox(int theId, CheckboxListener* theCheckboxListener, bool theChecked);
 	HyperlinkWidget*	MakeHyperlinkWidget(int theId, ButtonListener* theButtonListener, SexyString theLabel);
 
-	void				DrawStringWithOutline(Graphics* g, SexyString theLine, int theX, int theY, Font* theFont, ulong theOutlineColor);
+	void				DrawStringWithOutline(Graphics* g, SexyString theLine, int theX, int theY, Font* theFont, uint32_t theOutlineColor);
 	void				DrawWaves(Graphics* g, int theY, int theUpdateCnt);
 	void				DrawHorzCrease(Graphics* g, Image* theImage,int theX, int theY, int theWidth);
 	void				DrawVertCrease(Graphics* g, Image* theImage,int theX, int theY, int theHeight);

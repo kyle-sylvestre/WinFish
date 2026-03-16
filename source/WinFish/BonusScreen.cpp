@@ -682,8 +682,8 @@ void Sexy::BonusScreen::ConfirmPurchase()
 		}
 
 		int aNumOfPixels = mShellImage->mHeight * mShellImage->mWidth;
-		ulong* aBitsOriginal = ((MemoryImage*)IMAGE_EGGSHARDS)->GetBits();
-		ulong* aBitsMade = mShellImage->GetBits();
+		uint32_t* aBitsOriginal = ((MemoryImage*)IMAGE_EGGSHARDS)->GetBits();
+		uint32_t* aBitsMade = mShellImage->GetBits();
 		for (int i = 0; i < aNumOfPixels; i++)
 		{
 			*aBitsMade = *aBitsMade & 0xffffff | *aBitsOriginal & 0xff000000;

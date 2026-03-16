@@ -109,7 +109,7 @@ HyperlinkWidget* Sexy::MakeHyperlinkWidget(int theId, ButtonListener* theButtonL
     return aWidget;
 }
 
-void Sexy::DrawStringWithOutline(Graphics* g, SexyString theLine, int theX, int theY, Font* theFont, ulong theOutlineColor)
+void Sexy::DrawStringWithOutline(Graphics* g, SexyString theLine, int theX, int theY, Font* theFont, uint32_t theOutlineColor)
 {
 	Color aPrevColor = g->GetColor();
 	Font* aPrevFont = g->GetFont();
@@ -382,20 +382,20 @@ void Sexy::ButtonHoleHelper(MemoryImage* theImage, MemoryImage* theHoleImage, in
     if (anIntersectRect.mWidth <= 0 || anIntersectRect.mHeight <= 0)
         return;
 
-    ulong* aHoleImgBits = theHoleImage->GetBits();
-    ulong* aHolePos = aHoleImgBits + (anIntersectRect.mY - theY) * theHoleImage->mWidth - theX + anIntersectRect.mX;
+    uint32_t* aHoleImgBits = theHoleImage->GetBits();
+    uint32_t* aHolePos = aHoleImgBits + (anIntersectRect.mY - theY) * theHoleImage->mWidth - theX + anIntersectRect.mX;
 
-    ulong* anImgBits = theImage->GetBits();
-    ulong* anImgPos = anImgBits + theImage->mWidth * anIntersectRect.mY + anIntersectRect.mX;
+    uint32_t* anImgBits = theImage->GetBits();
+    uint32_t* anImgPos = anImgBits + theImage->mWidth * anIntersectRect.mY + anIntersectRect.mX;
 
     for (int y = 0; y < anIntersectRect.mHeight; y++)
     {
-        ulong* aTemp1 = anImgPos;
-        ulong* aTemp2 = aHolePos;
+        uint32_t* aTemp1 = anImgPos;
+        uint32_t* aTemp2 = aHolePos;
 
         for (int x = 0; x < anIntersectRect.mWidth; x++)
         {
-            ulong aBitVal = *aTemp2;
+            uint32_t aBitVal = *aTemp2;
             aTemp2++;
             if ((aBitVal & 0xff000000) != 0)
                 *aTemp1 = 0;

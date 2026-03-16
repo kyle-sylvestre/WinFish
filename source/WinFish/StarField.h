@@ -14,7 +14,7 @@ namespace Sexy
 		float mY;
 		float mVX;
 		float mVY;
-		ulong mColorValue;
+		uint32_t mColorValue;
 	};
 
 	typedef std::list<Star> StarList;

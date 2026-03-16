@@ -162,7 +162,7 @@ void Sexy::GameSelector::Update()
 			int aCnt = 0;
 			int aRand1, aRand2;
 			do {
-				ulong aVal = GetBonusAwardUnk((MemoryImage*) IMAGE_BONUSAWARD, (aRand1 = Rand()) % IMAGE_BONUSAWARD->mWidth, (aRand2 = Rand()) % IMAGE_BONUSAWARD->mHeight);
+				uint32_t aVal = GetBonusAwardUnk((MemoryImage*) IMAGE_BONUSAWARD, (aRand1 = Rand()) % IMAGE_BONUSAWARD->mWidth, (aRand2 = Rand()) % IMAGE_BONUSAWARD->mHeight);
 				if ((aVal & 0xff000000) == 0xff000000) break;
 				aCnt++;
 			} while (aCnt < 100);
@@ -536,14 +536,14 @@ void Sexy::GameSelector::DrawMerylSpeak(Graphics* g, int theHoverId, int theAlph
 	}
 }
 
-ulong Sexy::GameSelector::GetBonusAwardUnk(MemoryImage* theImage, int theUnk1, int theUnk2)
+uint32_t Sexy::GameSelector::GetBonusAwardUnk(MemoryImage* theImage, int theUnk1, int theUnk2)
 {
 	if (theUnk1 >= 0 && theUnk2 >= 0 && theUnk1 <= theImage->mWidth && theUnk2 <= theImage->mHeight)
 	{
 		int aVal = theImage->mWidth * theUnk2 + theUnk1;
 		if (theImage->mColorIndices != 0)
 			return theImage->mColorTable[theImage->mColorIndices[aVal]];
-		ulong* bits = theImage->GetBits();
+		uint32_t* bits = theImage->GetBits();
 		return bits[aVal];
 	}
 
