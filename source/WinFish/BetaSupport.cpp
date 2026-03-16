@@ -3,6 +3,7 @@
 
 Sexy::BetaSupport::BetaSupport(WinFishApp* theApp)
 {
+#if 0 // !PORT
 	mApp = theApp;
 
 	m0x14 = 0;
@@ -22,10 +23,12 @@ Sexy::BetaSupport::BetaSupport(WinFishApp* theApp)
 	mTahomaBoldFont = CreateFontA(-height10, 0, 0, 0, FW_BOLD, 0, 0, 0, 0, 0, 0, 0, 0, "Tahoma");
 
 	ReleaseDC(hWnd, hDC);
+#endif
 }
 
 Sexy::BetaSupport::~BetaSupport()
 {
+#if 0 // !PORT
 	if (mHWND1 != 0)
 	{
 		DoMessageLoop();
@@ -36,10 +39,12 @@ Sexy::BetaSupport::~BetaSupport()
 	DeleteObject(mArialFont);
 	DeleteObject(mTahomaBoldFont);
 	DoMessageLoop();
+#endif
 }
 
 void Sexy::BetaSupport::DoMessageLoop()
 {
+#if 0 // !PORT
 	if (m0x129)
 		return;
 
@@ -61,6 +66,7 @@ void Sexy::BetaSupport::DoMessageLoop()
 		if (m0x129)
 			break;
 	}
+#endif
 }
 
 bool Sexy::BetaSupport::Validate()

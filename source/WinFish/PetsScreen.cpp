@@ -344,7 +344,7 @@ void Sexy::PetsScreen::ButtonMouseLeave(int theId)
 
 void Sexy::PetsScreen::DrawPetInfo(Graphics* g, int thePetId, int theAlpha)
 {
-	SexyString& aPetName = GetPetName(thePetId);
+	const SexyString& aPetName = GetPetName(thePetId);
 	SexyString aStr1, aStr2, aStr3;
 	int aXDrawPet = 280;
 	int aYDrawPet = 90;

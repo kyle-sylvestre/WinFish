@@ -296,17 +296,17 @@ void DataSync::SyncLong(unsigned int& theValue)
     }
 }
 
-void DataSync::SyncLong(ulong& theValue)
-{
-    if (mReader)
-    {
-        theValue = mReader->ReadLong();
-    }
-    else
-    {
-        mWriter->WriteLong(theValue);
-    }
-}
+//void DataSync::SyncLong(ulong& theValue)
+//{
+//    if (mReader)
+//    {
+//        theValue = mReader->ReadLong();
+//    }
+//    else
+//    {
+//        mWriter->WriteLong(theValue);
+//    }
+//}
 
 void DataSync::SyncShort(int& theValue)
 {

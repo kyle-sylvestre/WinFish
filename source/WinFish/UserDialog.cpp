@@ -129,7 +129,6 @@ void Sexy::UserDialog::Resize(int theX, int theY, int theWidth, int theHeight)
 	int aWidthCorrect = aWidth - 20 - theHeight;
 	mListWidget->Resize(aXPos + 10, aYPos, aWidthCorrect, 130);
 	mScrollbarWidget->ResizeScrollbar(aWidthCorrect + aXPos + 10, aYPos, theHeight, 130);
-	mRenameButton;
 	mRenameButton->Layout(4355, mYesButton);
 	mDeleteButton->Layout(4355, mNoButton);
 	mEditWidget->Layout(464, mYesButton, aXPos + 180, -10, aWidth - 190, 24);

@@ -7,7 +7,7 @@ namespace Sexy
 {
 	class Image;
 
-	class UpdateCheckDialog : public Dialog, public ButtonListener
+	class UpdateCheckDialog : public Dialog
 	{
 	public:
 		bool mCheckFinished;

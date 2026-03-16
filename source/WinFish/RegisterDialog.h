@@ -10,7 +10,7 @@ namespace Sexy
 	class DialogButton;
 	class EditWidget;
 
-	class RegisterDialog : public MoneyDialog, public ButtonListener, public EditListener
+	class RegisterDialog : public MoneyDialog, public EditListener
 	{
 	public:
 		EditWidget* mNameEditWidget;

@@ -7,7 +7,7 @@ namespace Sexy
 {
 	class WinFishApp;
 
-	class PetDialog : public MoneyDialog, public ButtonListener
+	class PetDialog : public MoneyDialog
 	{
 	public:
 		int m0x158;

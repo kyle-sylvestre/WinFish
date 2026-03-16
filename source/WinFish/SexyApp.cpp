@@ -1,4 +1,4 @@
-#include <SexyAppFramework\SEHCatcher.h>
+#include <SexyAppFramework/SEHCatcher.h>
 
 #include "SexyApp.h"
 #include "InternetManager.h"
@@ -6,7 +6,7 @@
 
 #include <time.h>
 #include <fstream>
-#include <direct.h>
+//#include <direct.h>
 
 using namespace Sexy;
 
@@ -210,20 +210,20 @@ bool SexyApp::OpenHTMLTemplate(const std::string& theTemplateFile, const Defines
 	if (!anInStream.is_open())
 		return false;
 
-	WIN32_FIND_DATA aFindData;
-	HANDLE aHandle = FindFirstFile("temp\\tpl*.html", &aFindData);
-	if (aHandle != NULL)
-	{
-		do
-		{
-			std::string aFilePath = std::string("temp\\") + aFindData.cFileName;
-			DeleteFile(aFilePath.c_str());
-		} while (FindNextFile(aHandle, &aFindData));
+    // !PORT
+	//WIN32_FIND_DATA aFindData;
+	//HANDLE aHandle = FindFirstFile("temp\\tpl*.html", &aFindData);
+	//if (aHandle != NULL)
+	//{
+	//	do
+	//	{
+	//		std::string aFilePath = std::string("temp\\") + aFindData.cFileName;
+	//		DeleteFile(aFilePath.c_str());
+	//	} while (FindNextFile(aHandle, &aFindData));
+	//	FindClose(aHandle);
+	//}
 
-		FindClose(aHandle);
-	}
-
-	mkdir("temp");
+	SDL_CreateDirectory("temp");
 
 	std::string anOutFilename = StrFormat("temp\\tpl%04d.html", rand() % 10000);
 
@@ -426,7 +426,12 @@ void SexyApp::HandleCmdLineParam(const std::string& theParamName, const std::str
 			"Build Num: " + StrFormat("%d", mBuildNum) + "\r\n" +
 			"Build Date: " + mBuildDate;
 
-		MessageBox(NULL, aVersionString.c_str(), "Version Info", MB_ICONINFORMATION | MB_OK);
+        SDL_ShowSimpleMessageBox(
+            SDL_MESSAGEBOX_INFORMATION,
+            "Version Info",
+            aVersionString.c_str(),
+            NULL
+        );
 		DoExit(0);
 	}
 	else

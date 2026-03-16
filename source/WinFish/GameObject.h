@@ -195,7 +195,7 @@ namespace Sexy
 		GameObject*				FindNearestExoticFoodOther(int theX, int theY, int theObjType);
 		void					VoraciousScream(int theNum);
 		bool					IsHungryBlipPointer(int theTreshold);
-		void					SetColorHelper(Graphics* g, Color& theColor);
+		void					SetColorHelper(Graphics* g, const Color& theColor);
 		void					UpdateHungerStateIfWasHungry(bool wasHungry);
 		bool					DrawInvisibleEffect(Graphics* g, Image* theImage, Rect& theSrcRect, bool mirror);
 		void					DrawInvisibleEffectHelper(Graphics* g, MemoryImage* theBGImage, int theX, int theY, MemoryImage* theObjImage, Rect& theSrcRect, bool mirror);

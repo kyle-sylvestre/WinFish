@@ -522,6 +522,7 @@ bool Sexy::StoreScreen::IsSpecialFishInTank(int theSpecialFishId)
 		if (anObj->mPreNamedTypeId == theSpecialFishId)
 			return true;
 	}
+    return false;
 }
 
 void Sexy::StoreScreen::InitFishColors(Fish* theFish, bool canBeRainbow)

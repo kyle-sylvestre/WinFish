@@ -41,7 +41,7 @@ void Sexy::InternetManager::Update()
 			while (aSlashPos != std::string::npos)
 			{
 				SexyString aDirToCreate = aRelPath.substr(0, aSlashPos);
-				CreateDirectoryA(aDirToCreate.c_str(), NULL);
+				SDL_CreateDirectory(aDirToCreate.c_str());
 				aSlashPos = aRelPath.find('/', aSlashPos + 1);
 			}
 

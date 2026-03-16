@@ -330,7 +330,7 @@ void Sexy::HelpScreen::DrawInstructionsPage(Graphics* g)
 	g->DrawImage(IMAGE_BOLT, 530, 406);
 }
 
-void Sexy::HelpScreen::DrawInstrLeftPart(Graphics* g, Rect& theRect)
+void Sexy::HelpScreen::DrawInstrLeftPart(Graphics* g, Rect theRect)
 {
 	g->DrawImageBox(theRect, IMAGE_FISHBOX);
 
@@ -382,7 +382,7 @@ void Sexy::HelpScreen::DrawInstrLeftPart(Graphics* g, Rect& theRect)
 	DrawInstrText(g, theRect, aStrTitle, aStrLines, 3);
 }
 
-void Sexy::HelpScreen::DrawInstrMiddlePart(Graphics* g, Rect& theRect)
+void Sexy::HelpScreen::DrawInstrMiddlePart(Graphics* g, Rect theRect)
 {
 	g->DrawImageBox(theRect, IMAGE_FISHBOX);
 	int aCounter = mUpdateCnt % 40;
@@ -438,7 +438,7 @@ void Sexy::HelpScreen::DrawInstrMiddlePart(Graphics* g, Rect& theRect)
 	DrawInstrText(g, theRect, aTitleStr, aLinesStr, 2);
 }
 
-void Sexy::HelpScreen::DrawInstrRightPart(Graphics* g, Rect& theRect)
+void Sexy::HelpScreen::DrawInstrRightPart(Graphics* g, Rect theRect)
 {
 	g->DrawImageBox(theRect, IMAGE_FISHBOX);
 	g->DrawImage(IMAGE_EGGPIECES, (theRect.mWidth-IMAGE_EGGPIECES->mWidth) / 2 + theRect.mX, theRect.mY + 80);

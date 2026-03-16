@@ -9,7 +9,7 @@ namespace Sexy
 	class WinFishApp;
 	class EditWidget;
 
-	class MoneyDialog : public Dialog, public ButtonListener
+	class MoneyDialog : public Dialog
 	{
 	public:
 		WinFishApp* mApp;

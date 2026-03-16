@@ -12,7 +12,7 @@ namespace Sexy
 	class ListWidget;
 	class ScrollbarWidget;
 
-	class UserDialog : public MoneyDialog, public ButtonListener, public ListListener, public EditListener
+	class UserDialog : public MoneyDialog, public ListListener, public EditListener
 	{
 	public:
 		ListWidget*				mListWidget;

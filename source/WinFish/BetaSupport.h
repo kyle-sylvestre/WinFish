@@ -2,7 +2,6 @@
 #define __BETASUPPORT_H__
 
 #include <SexyAppFramework/HTTPTransfer.h>
-#include <windows.h>
 #include <SexyAppFramework/SexyAppBase.h>
 
 namespace Sexy

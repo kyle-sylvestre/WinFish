@@ -1109,17 +1109,17 @@ int& Sexy::GetSoundRefById(int theId)
 
 static Sexy::ResourceId GetIdByVariable(const void* theVariable)
 {
-	typedef std::map<int, int> MyMap;
+	typedef std::map<intptr_t, int> MyMap;
 	static MyMap aMap;
 	if (gNeedRecalcVariableToIdMap)
 	{
 		gNeedRecalcVariableToIdMap = false;
 		aMap.clear();
 		for (int i = 0; i < RESOURCE_ID_MAX; i++)
-			aMap[*(int*)gResources[i]] = i;
+			aMap[*(intptr_t *)gResources[i]] = i;
 	}
 
-	MyMap::iterator anItr = aMap.find((int)theVariable);
+	MyMap::iterator anItr = aMap.find((intptr_t)theVariable);
 	if (anItr == aMap.end())
 		return RESOURCE_ID_MAX;
 	else
@@ -1138,7 +1138,7 @@ Sexy::ResourceId Sexy::GetIdByFont(Font* theFont)
 
 Sexy::ResourceId Sexy::GetIdBySound(int theSound)
 {
-	return GetIdByVariable((void*)theSound);
+	return GetIdByVariable((void*)(intptr_t)theSound);
 }
 
 const char* Sexy::GetStringIdById(int theId)

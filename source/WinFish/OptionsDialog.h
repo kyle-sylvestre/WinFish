@@ -12,7 +12,7 @@ namespace Sexy
 	class Checkbox;
 	class Slider;
 
-	class OptionsDialog : public MoneyDialog, public ButtonListener, public SliderListener, public CheckboxListener
+	class OptionsDialog : public MoneyDialog, public SliderListener, public CheckboxListener
 	{
 	public:
 		WinFishApp* mApp2;

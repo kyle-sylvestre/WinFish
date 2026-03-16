@@ -1,25 +1,17 @@
 #include "WinFishApp.h"
+#include <SDL3/SDL_main.h>
 
 using namespace Sexy;
 
-#ifdef _WIN32
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int main(int argc, char *argv[])
 {
-#else
-int main() 
-{
-#endif
 	WinFishApp* aTheApp = new WinFishApp();
 
 	aTheApp->Init();
 	aTheApp->Start();
+#if !defined(SDL_PLATFORM_EMSCRIPTEN)
 	aTheApp->Shutdown();
-
 	delete aTheApp;
-	return 0;
-}
-
-LRESULT CALLBACK WndProc(HWND hwnd, unsigned int msg, WPARAM wParam, LPARAM lParam)
-{
+#endif
 	return 0;
 }

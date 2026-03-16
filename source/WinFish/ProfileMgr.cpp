@@ -616,7 +616,7 @@ SexyString Sexy::UserProfile::GetSaveGameFilePath(int theGameMode, int theUserId
 
     char aPathBuffer[256];
 
-    sprintf(aPathBuffer, "userdata\\%s%d.dat", aGameModeString, theUserId);
+    sprintf(aPathBuffer, "userdata/%s%d.dat", aGameModeString, theUserId);
 
     return SexyString(GetAppDataFolder() + aPathBuffer);
 }

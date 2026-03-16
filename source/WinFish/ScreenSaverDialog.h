@@ -9,7 +9,7 @@ namespace Sexy
 	class WinFishApp;
 	class Checkbox;
 
-	class ScreenSaverDialog : public MoneyDialog, public ButtonListener, public CheckboxListener
+	class ScreenSaverDialog : public MoneyDialog, public CheckboxListener
 	{
 	public:
 		Checkbox* mSSEnabledCB;

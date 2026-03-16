@@ -1,7 +1,7 @@
 #include <SexyAppFramework/ButtonWidget.h>
 #include <SexyAppFramework/WidgetManager.h>
 #include <SexyAppFramework/SexyMatrix.h>
-#include <SexyAppFramework/trivertex.h>
+#include <SexyAppFramework/TriVertex.h>
 #include <SexyAppFramework/DialogButton.h>
 #include <SexyAppFramework/ImageFont.h>
 #include <SexyAppFramework/DDImage.h>
@@ -1438,7 +1438,7 @@ void Sexy::Board::KeyChar(SexyChar theChar)
 	}
 	else
 	{
-		for (int i = 0; i < sizeof(mCheatCodes) / 4; i++)
+		for (int i = 0; i < SDL_arraysize(mCheatCodes); i++)
 			if (mCheatCodes[i]->CheckCodeActivated(theChar))
 				if (DoCheatCode(i))
 					return;
@@ -1461,7 +1461,7 @@ void Sexy::Board::KeyChar(SexyChar theChar)
 void Board::KeyDown(KeyCode theKey)
 {
 	if (!mApp->mDebugKeysEnabled)
-		for (int i = 0; i < (sizeof(mCheatCodes) / 4); i++)
+		for (int i = 0; i < SDL_arraysize(mCheatCodes); i++)
 			if (mCheatCodes[i]->CheckCodeActivated(theKey))
 				DoCheatCode(i);
 }
@@ -4728,7 +4728,7 @@ void Sexy::Board::MenuButtonSetupNoVT(int theBtnId, bool flag)
 		}
 		else
 		{
-			if (m0x43c < 1 || m0x43c > 3) { dontConfigure; break; }
+			if (m0x43c < 1 || m0x43c > 3) { break; }
 			aSlotImgCol = m0x43c - 1;
 			aSlotImgRow = 0;
 			aSlotImgY = 3;

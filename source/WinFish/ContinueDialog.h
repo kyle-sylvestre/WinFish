@@ -7,7 +7,7 @@ namespace Sexy
 {
 	class WinFishApp;
 
-	class ContinueDialog : public MoneyDialog, public ButtonListener
+	class ContinueDialog : public MoneyDialog
 	{
 	public:
 		DialogButton*			mContinueButton;

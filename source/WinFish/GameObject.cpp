@@ -660,7 +660,7 @@ bool Sexy::GameObject::IsHungryBlipPointer(int theTreshold)
 	return false;
 }
 
-void Sexy::GameObject::SetColorHelper(Graphics* g, Color& theColor)
+void Sexy::GameObject::SetColorHelper(Graphics* g, const Color& theColor)
 {
 	g->SetColorizeImages(true);
 	if (!mInvisible)

@@ -7,7 +7,7 @@ namespace Sexy
 {
 	class BubbleMgr;
 
-	class VirtualDialog : public MoneyDialog, public ButtonListener
+	class VirtualDialog : public MoneyDialog
 	{
 	public:
 		BubbleMgr*				mBubbleMgr;

@@ -112,22 +112,21 @@ void LoadFishSongs(bool flag)
 	gKilgoreSongDataPtr = nullptr;
 	gTestSongDataPtr = nullptr;
 
-	WIN32_FIND_DATAA aFindFileData;
-	HANDLE hFind = FindFirstFileA("fishsongs\\*.txt", &aFindFileData);
-
-	if (hFind == INVALID_HANDLE_VALUE)
-		return;
+    int nfiles = 0;
+    char **files = SDL_GlobDirectory("fishsongs", "*.txt", 0, &nfiles);
 
 	bool hasOpenedErrorFile = false;
 	FILE* anErrorFile = nullptr;
 
-	do 
+	for (int i = 0; i < nfiles; i++)
 	{
+        char *last_slash = strrchr(files[i], '/');
+        char *filename = (last_slash) ? last_slash + 1 : files[i];
 		FishSongData* aNewSong = new FishSongData();
 		gSongsVector1.push_back(aNewSong);
 
-		SexyString aFilePath = "fishsongs\\";
-		aFilePath.append(aFindFileData.cFileName);
+		SexyString aFilePath = "fishsongs/";
+		aFilePath.append(filename);
 
 		aNewSong->mProperties.clear();
 
@@ -139,27 +138,27 @@ void LoadFishSongs(bool flag)
 				anErrorFile = fopen("fishsongerror.txt", "w");
 			}
 			if (anErrorFile != nullptr)
-				fprintf(anErrorFile, "%s - %s\n", aFindFileData.cFileName, gFishSongParseError.c_str());
+				fprintf(anErrorFile, "%s - %s\n", filename, gFishSongParseError.c_str());
 
 			gSongsVector1.pop_back();
 			delete aNewSong;
 		}
 		else 
 		{
-			char* aProperty = strchr(aFindFileData.cFileName, '_');
+			char* aProperty = strchr(filename, '_');
 			if (aProperty != 0)
 			{
 				*aProperty = '\0';
 				if (stricmp(aProperty + 1, "long.txt") == 0)
-					aNewSong->mProperties["long"] = aFindFileData.cFileName;
+					aNewSong->mProperties["long"] = filename;
 				else if(stricmp(aProperty + 1, "short.txt") == 0)
-					aNewSong->mProperties["short"] = aFindFileData.cFileName;
+					aNewSong->mProperties["short"] = filename;
 			}
 		}
 
-	} while (FindNextFileA(hFind, &aFindFileData) != 0);
+	}
+    SDL_free(files);
 
-	FindClose(hFind);
 	if(anErrorFile != nullptr)
 		fclose(anErrorFile);
 
@@ -235,8 +234,8 @@ WinFishApp::WinFishApp()
 	
 	mTitle = StringToSexyStringFast("Insaniquarium Deluxe " + mProductVersion);
 	
-	mRegKey = "PopCap\\Insaniquarium";
-	mScreenSaverRegKey = "ScreenSaver\\";
+	mRegKey = "PopCap/Insaniquarium";
+	mScreenSaverRegKey = "ScreenSaver/";
 	mScreenSaverRegPath = mScreenSaverRegKey;
 	mYieldMainThread = false;
 	mCurrentProfile = NULL;
@@ -393,14 +392,12 @@ void Sexy::WinFishApp::Init()
 
 	if (!anIsScreenSaver)
 	{
-		char aModuleFileName[260];
-		GetModuleFileNameA(NULL, aModuleFileName, sizeof(aModuleFileName));
-		SexyString aModulePath = aModuleFileName;
+		SexyString aModulePath = GetExeFolder() + "WinFish.exe";
 
 		if (CheckForVista())
 		{
-			std::string aFileName = GetFileName(aModuleFileName);
-			std::string aPath = RemoveTrailingSlash(mChangeDirTo) + "\\" + aFileName;
+			std::string aFileName = GetFileName(aModulePath.c_str());
+			std::string aPath = RemoveTrailingSlash(mChangeDirTo) + "/" + aFileName;
 			aModulePath = aPath;
 		}
 		SexyString aExeDir = GetFileDir(aModulePath);
@@ -424,7 +421,7 @@ void Sexy::WinFishApp::Init()
 			{
 				std::string aDir = GetFileDir(aModulePath);
 
-				std::string aDestPath = aDir + "\\" + aScrExeName;
+				std::string aDestPath = aDir + "/" + aScrExeName;
 
 				//if (!FileExists(aDestPath))
 					//CopyFileA(aModulePath.c_str(), aDestPath.c_str(), FALSE);
@@ -434,8 +431,10 @@ void Sexy::WinFishApp::Init()
 			}
 		}
 	}
-
-	bool aSuccessfulResLoad = mResourceManager->ParseResourcesFile("properties\\resources.xml");
+    
+    // !PORT
+    chdir("/Users/ksylvestre/dev/WinFish/ignore");
+	bool aSuccessfulResLoad = mResourceManager->ParseResourcesFile("properties/resources.xml");
 
 
 	if (aSuccessfulResLoad)
@@ -966,10 +965,10 @@ void Sexy::WinFishApp::InitUserDirectories(const std::string& theSubfolderName)
 
 	std::string aCurrentDir = GetCurDir();
 	aCurrentDir = RemoveTrailingSlash(aCurrentDir);
-	std::string aRelativePath = aCurrentDir + "\\" + theSubfolderName;
+	std::string aRelativePath = aCurrentDir + "/" + theSubfolderName;
 
 	std::string aAppDataPath = GetAppDataFolder();
-	std::string aProperPath = aAppDataPath + "\\" + theSubfolderName;
+	std::string aProperPath = aAppDataPath + "/" + theSubfolderName;
 
 	if (FileExists(aRelativePath) && FileExists(aProperPath))
 		return;
@@ -1207,6 +1206,7 @@ void Sexy::WinFishApp::StartScreenSaver()
 
 void Sexy::WinFishApp::SetScreenSaver(const char* thePath)
 {
+#if 0 // !PORT
 	OSVERSIONINFOA aVersionInfo;
 	ZeroMemory(&aVersionInfo, sizeof(OSVERSIONINFOA));
 	aVersionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
@@ -1223,7 +1223,7 @@ void Sexy::WinFishApp::SetScreenSaver(const char* thePath)
 	else
 	{
 		HKEY aKey;
-		if (RegOpenKeyExA(HKEY_CURRENT_USER, "Control Panel\\Desktop", 0, KEY_WRITE, &aKey) == ERROR_SUCCESS)
+		if (RegOpenKeyExA(HKEY_CURRENT_USER, "Control Panel/Desktop", 0, KEY_WRITE, &aKey) == ERROR_SUCCESS)
 		{
 			if (thePath != NULL && strlen(thePath) > 0)
 			{
@@ -1238,27 +1238,25 @@ void Sexy::WinFishApp::SetScreenSaver(const char* thePath)
 			RegCloseKey(aKey);
 		}
 	}
+#endif
 }
 
 void Sexy::WinFishApp::ReadFromRegistry()
 {
 	SexyApp::ReadFromRegistry();
 
-	bool aScrSound = true;
-	GetBoolean("ScrSound", &aScrSound);
-	mScreenSaverSound = aScrSound;
+	mScreenSaverSound = GetBoolean("ScrSound", true);
 
-	bool aScrPowersave = false;
-	GetBoolean("ScrPowersave", &aScrPowersave);	
-	mScreenSaverPowerSave = aScrPowersave;
+	mScreenSaverPowerSave = GetBoolean("ScrPowersave", false);
 
-	char aUserNameBuffer[1024];
-	DWORD aUserNameSize = sizeof(aUserNameBuffer);
-	if (GetUserNameA(aUserNameBuffer, &aUserNameSize))
-	{
-		mScreenSaverRegPath.append(aUserNameBuffer, strlen(aUserNameBuffer));
-		mScreenSaverRegPath += '\\';
-	}
+    // !PORT
+	//char aUserNameBuffer[1024];
+	//DWORD aUserNameSize = sizeof(aUserNameBuffer);
+	//if (GetUserNameA(aUserNameBuffer, &aUserNameSize))
+	//{
+	//	mScreenSaverRegPath.append(aUserNameBuffer, strlen(aUserNameBuffer));
+	//	mScreenSaverRegPath += '/';
+	//}
 
 	DemoSyncString(&mScreenSaverRegPath);
 
@@ -1347,6 +1345,7 @@ void Sexy::WinFishApp::ReadSSFromRegistry()
 
 SexyString Sexy::WinFishApp::GetScreenSaverFilePath()
 {
+#if 0 // !PORT
 	char aModulePathBuffer[260];
 	GetModuleFileNameA(NULL, aModulePathBuffer, sizeof(aModulePathBuffer));
 	SexyString aModulePath = aModulePathBuffer;
@@ -1356,7 +1355,7 @@ SexyString Sexy::WinFishApp::GetScreenSaverFilePath()
 	{
 		SexyString aFileName = GetFileName(aModulePath, false);
 		SexyString aDir = RemoveTrailingSlash(mChangeDirTo);
-		aModulePath = aDir + "\\" + aFileName;
+		aModulePath = aDir + "/" + aFileName;
 	}
 
 	if (CheckForVista())
@@ -1364,17 +1363,20 @@ SexyString Sexy::WinFishApp::GetScreenSaverFilePath()
 	else
 		aParam1 = GetFileDir(aModulePath, false);
 
-	SexyString aDestPath = aParam1 + "\\Insaniquarium.scr";
+	SexyString aDestPath = aParam1 + "/Insaniquarium.scr";
 
 	char aShortPathBuffer[260];
 	if (GetShortPathNameA(aDestPath.c_str(), aShortPathBuffer, sizeof(aShortPathBuffer)) > 0)
 		aDestPath = aShortPathBuffer;
 
 	return aDestPath;
+#endif
+    return _S("");
 }
 
 void Sexy::WinFishApp::GetSystemScreenSaverPath(SexyString& theDest)
 {
+#if 0 // !PORT
 	OSVERSIONINFOA aVersionInfo;
 	ZeroMemory(&aVersionInfo, sizeof(OSVERSIONINFOA));
 	aVersionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
@@ -1421,6 +1423,7 @@ void Sexy::WinFishApp::GetSystemScreenSaverPath(SexyString& theDest)
 	}
 
 	theDest.assign(aPathBuffer, strlen(aPathBuffer));
+#endif
 }
 
 bool Sexy::WinFishApp::ShouldKillDialog()
@@ -1667,12 +1670,13 @@ void Sexy::WinFishApp::ApplyScreenSaverSettings()
 			}
 			else
 			{
-				PVOID aParam = 0;
-				SystemParametersInfoA(SPI_GETSCREENSAVEACTIVE, 0, &aParam, 0);
-				if(aParam == 0)
-					SystemParametersInfoA(SPI_SETSCREENSAVEACTIVE, 1, &aParam, 1);
-				SetScreenSaver(aSSFilePath.c_str());
-				mScreenSaverEnabled = true;
+                // !PORT
+				//PVOID aParam = 0;
+				//SystemParametersInfoA(SPI_GETSCREENSAVEACTIVE, 0, &aParam, 0);
+				//if(aParam == 0)
+				//	SystemParametersInfoA(SPI_SETSCREENSAVEACTIVE, 1, &aParam, 1);
+				//SetScreenSaver(aSSFilePath.c_str());
+				//mScreenSaverEnabled = true;
 			}
 		}
 		else
@@ -1814,44 +1818,24 @@ bool Sexy::WinFishApp::CanAlienChaseAnyFish()
 	return true;
 }
 
-bool GetFileLastWriteTime(const char* path, FILETIME* outTime)
-{
-	HANDLE hFile = CreateFileA(
-		path,
-		GENERIC_READ,
-		0,
-		nullptr,
-		OPEN_EXISTING,
-		0,
-		nullptr
-	);
-
-	if (hFile == INVALID_HANDLE_VALUE)
-		return false;
-
-	BOOL ok = GetFileTime(hFile, nullptr, nullptr, outTime);
-	CloseHandle(hFile);
-
-	return ok != 0;
-}
-
 bool Sexy::WinFishApp::DoScrCopy(SexyString& theScrSvrPath)
 {
 	SexyString aDatPath = "";
 	if (CheckForVista())
 	{
-		aDatPath = GetAppDataFolder() + "\\screensaver.dat";
+		aDatPath = GetAppDataFolder() + "/screensaver.dat";
 	}
 	else
 	{
-		aDatPath = GetFileDir(theScrSvrPath) + "\\screensaver.dat";
+		aDatPath = GetFileDir(theScrSvrPath) + "/screensaver.dat";
 	}
 
-	FILETIME ft1;
-	FILETIME ft2;
+    // !PORT
+	//FILETIME ft1;
+	//FILETIME ft2;
 
-	bool isOk1 = GetFileLastWriteTime(theScrSvrPath.c_str(), &ft1);
-	bool isOk2 = GetFileLastWriteTime(aDatPath.c_str(), &ft2);
+	//bool isOk1 = GetFileLastWriteTime(theScrSvrPath.c_str(), &ft1);
+	//bool isOk2 = GetFileLastWriteTime(aDatPath.c_str(), &ft2);
 
 	// TODO
 	return false;
@@ -2044,6 +2028,9 @@ void Sexy::WinFishApp::ApplyOptionsSettings()
 	ClearUpdateBacklog(true);
 	if (mBoard)
 		mBoard->ApplyShadowsIf3D();
+
+    // !PORT: registry normally saved at end, won't work for emscripten
+    WriteToRegistry();
 }
 
 void Sexy::WinFishApp::DoTrialVersionExpiredDialog()
@@ -2159,8 +2146,8 @@ void Sexy::WinFishApp::MakeNewUser(bool makeUser)
 					KillDialog(DIALOG_USER_DIALOG);
 					KillDialog(DIALOG_NEW_USER);
 					mWidgetManager->MarkAllDirty();
-					if (mGameSelector != nullptr);
-					return;
+					if (mGameSelector != nullptr)
+                        return;
 				}
 			}
 		}
@@ -2257,17 +2244,17 @@ void Sexy::WinFishApp::SomeMusicPlayFunc(bool flag)
 
 bool Sexy::WinFishApp::ChangeDirHook(const char* theIntendedPath)
 {
-	if (!IsScreenSaver())
-		return false;
+    if (!IsScreenSaver())
+        return false;
 
-	SexyString aRegPath = mScreenSaverRegKey + "Directory";
-	SexyString aDirectoryPath;
+    SexyString aRegPath = mScreenSaverRegKey + "Directory";
+    SexyString aDirectoryPath;
 
-	if (RegistryReadString(aRegPath, &aDirectoryPath))
-		if (SetCurrentDirectoryA(aDirectoryPath.c_str()) != 0)
-			return true;
+    if (RegistryReadString(aRegPath, &aDirectoryPath))
+        if (chdir(aDirectoryPath.c_str()))
+            return true;
 
-	return false;
+    return false;
 }
 
 void Sexy::WinFishApp::LogScreenSaverError(const std::string& theError)

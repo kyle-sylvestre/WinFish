@@ -40,9 +40,9 @@ namespace Sexy
 		void					DrawTabTitle(Graphics* g, SexyString theLine, SexyString theLine2);
 		void					DrawVertTabText(Graphics* g, int theTabIdx, SexyString theLine, SexyString theLine2, int theHeightDrawOffset = 4);
 		void					DrawInstructionsPage(Graphics* g);
-		void					DrawInstrLeftPart(Graphics* g, Rect& theRect);
-		void					DrawInstrMiddlePart(Graphics* g, Rect& theRect);
-		void					DrawInstrRightPart(Graphics* g, Rect& theRect);
+		void					DrawInstrLeftPart(Graphics* g, Rect theRect);
+		void					DrawInstrMiddlePart(Graphics* g, Rect theRect);
+		void					DrawInstrRightPart(Graphics* g, Rect theRect);
 		void					DrawCursor(Graphics* g, int theX, int theY, bool doClick);
 		void					DrawInstrText(Graphics* g, Rect& theRect, SexyString& theTitle, SexyString* theLines, int theNumOfLines);
 		void					DrawTheBasicsPage(Graphics* g);

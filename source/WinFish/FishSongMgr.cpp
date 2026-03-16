@@ -24,7 +24,7 @@ FishSongMgr::~FishSongMgr()
 
 void FishSongMgr::Update()
 {
-    DWORD aCurrentTime = GetTickCount();
+    DWORD aCurrentTime = SDL_GetTicks();
     if (aCurrentTime == mLastUpdateTime)
         return;
     mLastUpdateTime = aCurrentTime;
@@ -111,7 +111,7 @@ bool Sexy::FishSongMgr::IsSongInList(int theSongId)
 
 void Sexy::FishSongMgr::PausedGameDelaySong()
 {
-    DWORD aCurTick = GetTickCount();
+    DWORD aCurTick = SDL_GetTicks();
 
     for (FishSongList::iterator it = mSongList.begin(); it != mSongList.end(); ++it)
     {
@@ -210,7 +210,7 @@ void Sexy::FishSong::Init(float theSpeed, int thePitchShift)
         aTotalDuration += aThisDur;
     }
     mTotalDurationInSamples = (int)round(aTotalDuration);
-    mStartTime = GetTickCount();
+    mStartTime = SDL_GetTicks();
 }
 
 bool Sexy::FishSong::Update(DWORD theCurrentMusicTick, bool theAllowSound)

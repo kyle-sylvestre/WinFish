@@ -93,7 +93,7 @@ namespace Sexy
         void SyncBytes(void* theValue, ulong theSize);
         void SyncLong(int& theValue);
         void SyncLong(unsigned int& theValue);
-        void SyncLong(ulong& theValue);
+        //void SyncLong(ulong& theValue);
         void SyncShort(int& theValue);
         void SyncShort(ushort& theValue);
         void SyncSShort(int& theValue);
