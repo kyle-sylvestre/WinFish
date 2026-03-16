@@ -731,7 +731,7 @@ void Sexy::Fish::OnFoodAte(GameObject* obj)
         {
             mHunger += 700;
             if (mHunger > 1000) mHunger = 1000;
-            if (unkflag02) mFoodAte = mFoodAte + 1 + mApp->mGameMode != GAMEMODE_VIRTUAL_TANK;
+            if (unkflag02) mFoodAte = mFoodAte + 1 + (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK);
         }
         else if (aFood->mFoodType == 3)
         {
@@ -789,7 +789,7 @@ void Sexy::Fish::OnFoodAte(GameObject* obj)
                 if (mHunger > 1400) mHunger = 1400;
             }
             if (unkflag02)
-                mFoodAte = mFoodAte + 2 + mApp->mGameMode != GAMEMODE_VIRTUAL_TANK;
+                mFoodAte = mFoodAte + 2 + (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK);
         }
     }
 
