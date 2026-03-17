@@ -1,8 +1,8 @@
 #include <SexyAppFramework/DialogButton.h>
 #include <SexyAppFramework/WidgetManager.h>
 #include <SexyAppFramework/Font.h>
-#include <SexyAppFramework/D3DInterface.h>
-#include <SexyAppFramework/DDInterface.h>
+#include <SexyAppFramework/SexyMatrix.h>
+#include <SexyAppFramework/GLInterface.h>
 
 #include "HelpScreen.h"
 #include "WinFishCommon.h"
@@ -803,7 +803,7 @@ void Sexy::HelpScreen::DrawCreditsPage(Graphics* g)
 		{"QA", "Eric Harman, Shawn Conard,"},
 		{"", "Brenna Flood, Chad Zoellner"}, };
 	
-	D3DInterface* anInterface = mApp->mDDInterface->mD3DInterface;
+	GLInterface* anInterface = mApp->mGLInterface;
 	int anY = 150;
 	double aRad = 150;
 	float anYOffset = 0;

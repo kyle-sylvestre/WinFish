@@ -13,6 +13,7 @@ namespace Sexy
 
 	// Init Resources
 	bool ExtractInitResources(ResourceManager* theMgr);
+	extern Font* FONT_PICO129;
 	extern Font* FONT_JUNGLEFEVER10OUTLINE;
 	extern Font* FONT_JUNGLEFEVER17OUTLINE;
 	extern Image* IMAGE_BLANK;

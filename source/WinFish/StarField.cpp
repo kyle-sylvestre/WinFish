@@ -1,4 +1,4 @@
-#include <SexyAppFramework/DDImage.h>
+#include <SexyAppFramework/GLImage.h>
 
 #include "StarField.h"
 #include "WinFishApp.h"

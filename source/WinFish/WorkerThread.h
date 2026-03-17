@@ -2,7 +2,7 @@
 #define __SEXY_WORKER_THREAD_H__
 
 #include <SexyAppFramework/SexyAppBase.h>
-#include <SDL3/SDL.h>
+#include <SDL2/SDL.h>
 #include <vector>
 #include <list>
 
@@ -11,6 +11,7 @@ namespace Sexy
 	///////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
+	typedef void SexyThreadCallback(void* param);
 	class WorkerThread
 	{
 	public:

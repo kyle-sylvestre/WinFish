@@ -362,7 +362,7 @@ void Sexy::Missle::DrawHelper(Graphics* g, bool flag)
         int aDiffX = aTargetX - anInterpolatedX;
         int aDiffY = aTargetY - anInterpolatedY;
 
-        float aVec[3] = { aDiffX, aDiffY , 0};
+        float aVec[3] = { (float)aDiffX, (float)aDiffY , 0};
         NormalizeVector3(aVec);
 
         int anOffX = (int)(aVec[1] * 3.0f);

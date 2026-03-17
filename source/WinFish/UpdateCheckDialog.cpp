@@ -22,6 +22,7 @@ Sexy::UpdateCheckDialog::~UpdateCheckDialog()
 
 void Sexy::UpdateCheckDialog::Update()
 {
+#if 0 // !PORT
 	Dialog::Update();
 
 	if (!mCheckFinished && mUpdateCnt % 3 == 0)
@@ -50,6 +51,7 @@ void Sexy::UpdateCheckDialog::Update()
 			gSexyApp->GetString("NEW_VERSION_BODY"), "", BUTTONS_YES_NO);
 
 	aDia->Move(mX + 32, mY - 32);
+#endif
 }
 
 void Sexy::UpdateCheckDialog::Draw(Graphics* g)

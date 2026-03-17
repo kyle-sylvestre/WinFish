@@ -4,8 +4,7 @@
 #include <SexyAppFramework/TriVertex.h>
 #include <SexyAppFramework/DialogButton.h>
 #include <SexyAppFramework/ImageFont.h>
-#include <SexyAppFramework/DDImage.h>
-#include <SexyAppFramework/BassMusicInterface.h>
+#include <SexyAppFramework/GLImage.h>
 #include <SexyAppFramework/SoundManager.h>
 #include <SexyAppFramework/SoundInstance.h>
 #include <SexyAppFramework/Buffer.h>

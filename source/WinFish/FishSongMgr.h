@@ -2,6 +2,7 @@
 #define __FISHSONGMGR_H__
 
 #include "SexyAppFramework/Common.h"
+#include <list>
 
 namespace Sexy
 {

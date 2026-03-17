@@ -1,5 +1,6 @@
-#include "Res.h"
 #include "SexyAppFramework/ResourceManager.h"
+#include "SexyAppFramework/Font.h"
+#include "Res.h"
 
 using namespace Sexy;
 
@@ -33,6 +34,7 @@ Sexy::ResourceId Sexy::GetIdByStringId(const char* theStringId)
 }
 
 // Init Resources
+Font* Sexy::FONT_PICO129;
 Font* Sexy::FONT_JUNGLEFEVER10OUTLINE;
 Font* Sexy::FONT_JUNGLEFEVER17OUTLINE;
 Image* Sexy::IMAGE_BLANK;

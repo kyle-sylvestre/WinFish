@@ -1,4 +1,5 @@
 #include <SexyAppFramework/DialogButton.h>
+#include <SexyAppFramework/Font.h>
 
 #include "VirtualDialog.h"
 #include "WinFishApp.h"

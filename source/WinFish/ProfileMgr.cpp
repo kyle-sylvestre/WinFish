@@ -134,7 +134,7 @@ UserProfile* Sexy::ProfileMgr::InsertProfile(UserProfile* theProfile)
 {
     UserProfilesMap::iterator it = mProfilesMap->lower_bound(theProfile->mUserName);
 
-    if (it != mProfilesMap->end() && _stricmp(it->first.c_str(), theProfile->mUserName.c_str()) == 0)
+    if (it != mProfilesMap->end() && stricmp(it->first.c_str(), theProfile->mUserName.c_str()) == 0)
         return nullptr;
 
     UserProfilesMap::iterator aNewIt = mProfilesMap->insert(it, std::make_pair(theProfile->mUserName, *theProfile));
@@ -162,11 +162,11 @@ UserProfile* Sexy::ProfileMgr::MakeNewUser(SexyString* theUserName)
 bool Sexy::ProfileMgr::RenameUser(SexyString& theOldUserName, SexyString& theNewUserName)
 {
     UserProfilesMap::iterator existingNewIt = mProfilesMap->lower_bound(theNewUserName);
-    if (existingNewIt != mProfilesMap->end() && _stricmp(existingNewIt->first.c_str(), theNewUserName.c_str()) == 0)
+    if (existingNewIt != mProfilesMap->end() && stricmp(existingNewIt->first.c_str(), theNewUserName.c_str()) == 0)
         return false;
 
     UserProfilesMap::iterator oldIt = mProfilesMap->lower_bound(theOldUserName);
-    if (oldIt == mProfilesMap->end() || _stricmp(oldIt->first.c_str(), theOldUserName.c_str()) != 0)
+    if (oldIt == mProfilesMap->end() || stricmp(oldIt->first.c_str(), theOldUserName.c_str()) != 0)
         return false;
 
     UserProfile anOldProf = oldIt->second;
@@ -182,7 +182,7 @@ bool Sexy::ProfileMgr::RenameUser(SexyString& theOldUserName, SexyString& theNew
 bool Sexy::ProfileMgr::DeleteUser(SexyString& theUserName)
 {
     UserProfilesMap::iterator existingNewIt = mProfilesMap->lower_bound(theUserName);
-    if (existingNewIt != mProfilesMap->end() && _stricmp(existingNewIt->first.c_str(), theUserName.c_str()) == 0)
+    if (existingNewIt != mProfilesMap->end() && stricmp(existingNewIt->first.c_str(), theUserName.c_str()) == 0)
     {
         existingNewIt->second.DeleteUserAppData();
         mProfilesMap->erase(existingNewIt);

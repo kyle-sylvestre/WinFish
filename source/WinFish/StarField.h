@@ -5,7 +5,7 @@
 
 namespace Sexy
 {
-	class DDImage;
+	class GLImage;
 	class Graphics;
 
 	struct Star
@@ -24,7 +24,7 @@ namespace Sexy
 	public:
 		StarList mStarList;
 		int mMaxStars;
-		DDImage* mNebulaImage;
+		GLImage* mNebulaImage;
 
 	public:
 		StarField();

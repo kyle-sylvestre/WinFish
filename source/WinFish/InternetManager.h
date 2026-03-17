@@ -1,5 +1,7 @@
 #ifndef __INTERNETMGR_H__
 #define __INTERNETMGR_H__
+#include <list>
+#include <SexyAppFramework/HTTPTransfer.h>
 
 namespace Sexy
 {

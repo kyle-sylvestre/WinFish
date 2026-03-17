@@ -1,6 +1,7 @@
 #ifndef __WINFISHAPPCOMMON_H__
 #define __WINFISHAPPCOMMON_H__
 
+#include "SexyAppFramework/Font.h"
 #include "SexyAppFramework/Dialog.h"
 #include "SexyAppFramework/EditWidget.h"
 #include "SexyAppFramework/Checkbox.h"

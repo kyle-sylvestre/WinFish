@@ -6,8 +6,7 @@
 #include <SexyAppFramework/DialogButton.h>
 #include <SexyAppFramework/SWTri.h>
 #include <SexyAppFramework/Checkbox.h>
-#include <SexyAppFramework/BassMusicInterface.h>
-#include <SexyAppFramework/SoundManager.h>
+#include <SexyAppFramework/SDLMusicInterface.h>
 #include <SexyAppFramework/Buffer.h>
 #include <SexyAppFramework/Color.h>
 #include <SexyAppFramework/ListWidget.h>
@@ -53,6 +52,7 @@
 #include "FoodDialog.h"
 #include "RegisterDialog.h"
 
+#include <filesystem>
 #include <chrono>
 #include <ctime>
 
@@ -112,25 +112,19 @@ void LoadFishSongs(bool flag)
 	gKilgoreSongDataPtr = nullptr;
 	gTestSongDataPtr = nullptr;
 
-    int nfiles = 0;
-    char **files = SDL_GlobDirectory("fishsongs", "*.txt", 0, &nfiles);
-
 	bool hasOpenedErrorFile = false;
 	FILE* anErrorFile = nullptr;
 
-	for (int i = 0; i < nfiles; i++)
+	for (const auto& entry : std::filesystem::directory_iterator("fishsongs"))
 	{
-        char *last_slash = strrchr(files[i], '/');
-        char *filename = (last_slash) ? last_slash + 1 : files[i];
+		std::string filename = entry.path().filename().string();
 		FishSongData* aNewSong = new FishSongData();
 		gSongsVector1.push_back(aNewSong);
 
-		SexyString aFilePath = "fishsongs/";
-		aFilePath.append(filename);
-
 		aNewSong->mProperties.clear();
+        std::string relpath = "fishsongs/" + filename;
 
-		if (!aNewSong->Parse(aFilePath)) // 128
+		if (!aNewSong->Parse(relpath)) // 128
 		{
 			if (!hasOpenedErrorFile)
 			{
@@ -138,26 +132,25 @@ void LoadFishSongs(bool flag)
 				anErrorFile = fopen("fishsongerror.txt", "w");
 			}
 			if (anErrorFile != nullptr)
-				fprintf(anErrorFile, "%s - %s\n", filename, gFishSongParseError.c_str());
+				fprintf(anErrorFile, "%s - %s\n", filename.c_str(), gFishSongParseError.c_str());
 
 			gSongsVector1.pop_back();
 			delete aNewSong;
 		}
 		else 
 		{
-			char* aProperty = strchr(filename, '_');
-			if (aProperty != 0)
+			size_t und = filename.rfind('_');
+			if (und != std::string::npos)
 			{
-				*aProperty = '\0';
-				if (stricmp(aProperty + 1, "long.txt") == 0)
+                std::string len = filename.substr(und + 1);
+				if (stricmp(len.c_str(), "long.txt") == 0)
 					aNewSong->mProperties["long"] = filename;
-				else if(stricmp(aProperty + 1, "short.txt") == 0)
+				else if(stricmp(len.c_str(), "short.txt") == 0)
 					aNewSong->mProperties["short"] = filename;
 			}
 		}
 
 	}
-    SDL_free(files);
 
 	if(anErrorFile != nullptr)
 		fclose(anErrorFile);
@@ -232,7 +225,7 @@ WinFishApp::WinFishApp()
 
 	mProdName = "Insaniquarium";
 	
-	mTitle = StringToSexyStringFast("Insaniquarium Deluxe " + mProductVersion);
+	mTitle = SexyString("Insaniquarium Deluxe " + mProductVersion);
 	
 	mRegKey = "PopCap/Insaniquarium";
 	mScreenSaverRegKey = "ScreenSaver/";
@@ -376,8 +369,6 @@ void Sexy::WinFishApp::Init()
 {
 	DoParseCmdLine();
 	bool anIsScreenSaver = IsScreenSaver();
-	if (anIsScreenSaver)
-		SEHCatcher::mShowUI = false;
 
 	SexyApp::Init();
 
@@ -432,10 +423,7 @@ void Sexy::WinFishApp::Init()
 		}
 	}
     
-    // !PORT
-    chdir("/Users/ksylvestre/dev/WinFish/ignore");
 	bool aSuccessfulResLoad = mResourceManager->ParseResourcesFile("properties/resources.xml");
-
 
 	if (aSuccessfulResLoad)
 	{
@@ -636,12 +624,12 @@ void Sexy::WinFishApp::LoadingThreadCompleted()
 		DoUpdateDialog();
 }
 
-MusicInterface* Sexy::WinFishApp::CreateMusicInterface(HWND theHWnd)
+MusicInterface* Sexy::WinFishApp::CreateMusicInterface()
 {
 	if (!IsScreenSaver())
-		return SexyApp::CreateMusicInterface(theHWnd);
+		return SexyApp::CreateMusicInterface();
 
-	return new MusicInterface;
+	return new SDLMusicInterface;
 }
 
 void Sexy::WinFishApp::URLOpenFailed(const std::string& theURL)
@@ -1329,7 +1317,7 @@ void Sexy::WinFishApp::ReadSSFromRegistry()
 	SexyString aPathToSYSSS;
 	GetSystemScreenSaverPath(aPathToSYSSS);
 
-	bool aPathsAreTheSame = (_stricmp(aPathToSYSSS.c_str(), aPath2.c_str()) == 0);
+	bool aPathsAreTheSame = (stricmp(aPathToSYSSS.c_str(), aPath2.c_str()) == 0);
 
 	if (!mScreenSaverEnabled)
 	{
@@ -2244,6 +2232,9 @@ void Sexy::WinFishApp::SomeMusicPlayFunc(bool flag)
 
 bool Sexy::WinFishApp::ChangeDirHook(const char* theIntendedPath)
 {
+	// prevent changing directories while testing
+	return true;
+
     if (!IsScreenSaver())
         return false;
 
@@ -2251,7 +2242,7 @@ bool Sexy::WinFishApp::ChangeDirHook(const char* theIntendedPath)
     SexyString aDirectoryPath;
 
     if (RegistryReadString(aRegPath, &aDirectoryPath))
-        if (chdir(aDirectoryPath.c_str()))
+        if (ChDir(aDirectoryPath.c_str()))
             return true;
 
     return false;
@@ -2670,7 +2661,7 @@ void Sexy::WinFishApp::DoUpdateCheckDialog()
 	SexyString anUrl = "http://www.popcap.com/win32updatecheck.php?prod=" + mProdName + 
 		"&ver=" + mProductVersion
 		+ "&referid=" + std::to_string(mWinFishReferId);
-	mInternetManager->StartUpdateCheck(anUrl);
+	//mInternetManager->StartUpdateCheck(anUrl);
 }
 
 void Sexy::WinFishApp::DoWhoAreYouDialog()
@@ -2757,7 +2748,7 @@ void Sexy::WinFishApp::DeleteUser(bool deleteUser)
 
 	SexyString aSelUserName = aDia->GetSelectedUserName();
 
-	if (_stricmp(aUserName.c_str(), aSelUserName.c_str()) == 0)
+	if (stricmp(aUserName.c_str(), aSelUserName.c_str()) == 0)
 		mCurrentProfile = nullptr;
 	mProfileMgr->DeleteUser(aSelUserName);
 	int aSelIdx = aDia->mListWidget->mSelectIdx;
@@ -2823,4 +2814,9 @@ int Sexy::WinFishApp::GetCurrentTank()
 	if (mBoard)
 		return mBoard->mTank;
 	return mCurrentProfile->mTank;
+}
+
+void Sexy::WinFishApp::CloseRequestAsync()
+{
+	Shutdown();
 }

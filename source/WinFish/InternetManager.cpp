@@ -1,4 +1,5 @@
 #include <SexyAppFramework/HTTPTransfer.h>
+#include <SDL2/SDL.h>
 
 #include "InternetManager.h"
 #include "WinFishApp.h"
@@ -41,11 +42,11 @@ void Sexy::InternetManager::Update()
 			while (aSlashPos != std::string::npos)
 			{
 				SexyString aDirToCreate = aRelPath.substr(0, aSlashPos);
-				SDL_CreateDirectory(aDirToCreate.c_str());
+				// !PORT SDL_CreateDirectory(aDirToCreate.c_str());
 				aSlashPos = aRelPath.find('/', aSlashPos + 1);
 			}
 
-			OutputDebugStringA(StrFormat("AdFile: %s\r\n", aRelPath.c_str()).c_str());
+			printf(StrFormat("AdFile: %s\r\n", aRelPath.c_str()).c_str());
 
 			FILE* aFile = fopen(aRelPath.c_str(), "wb");
 			if (aFile != nullptr)
@@ -67,7 +68,7 @@ void Sexy::InternetManager::Update()
 			if (aResCode != HTTPTransfer::RESULT_NOT_STARTED)
 			{
 				SexyString anErrorMsg = StrFormat("Error on AdFile: %s\r\n", aCurTransf->mSpecifiedRelURL.c_str());
-				OutputDebugStringA(anErrorMsg.c_str());
+				printf(anErrorMsg.c_str());
 
 				aCurTransf->Reset();
 			}

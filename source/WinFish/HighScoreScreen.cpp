@@ -1,8 +1,7 @@
 #include <SexyAppFramework/DialogButton.h>
 #include <SexyAppFramework/WidgetManager.h>
 #include <SexyAppFramework/Font.h>
-#include <SexyAppFramework/D3DInterface.h>
-#include <SexyAppFramework/DDInterface.h>
+#include <SexyAppFramework/GLInterface.h>
 
 #include "HighScoreScreen.h"
 #include "WinFishApp.h"
@@ -144,7 +143,7 @@ void Sexy::HighScoreScreen::DrawGameModePage(Graphics* g)
 	}
 
 	bool isAccel = mApp->Is3DAccelerated();
-	D3DInterface* anInterface = mApp->mDDInterface->mD3DInterface;
+    GLInterface* anInterface = mApp->mGLInterface;
 	HighScoreMgr* aMgr = mApp->mHighScoreMgr;
 
 	float anYOffset = 0;
@@ -303,7 +302,7 @@ void Sexy::HighScoreScreen::DrawGameModePage(Graphics* g)
 void Sexy::HighScoreScreen::DrawPersonalRecordsPage(Graphics* g)
 {
 	bool isAccel = mApp->Is3DAccelerated();
-	D3DInterface* anInterface = mApp->mDDInterface->mD3DInterface;
+    GLInterface* anInterface = mApp->mGLInterface;
 	g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 	g->SetColor(Color(255, 255, 100));
 	if (isAccel)

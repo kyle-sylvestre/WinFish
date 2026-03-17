@@ -5,6 +5,7 @@
 #include <SexyAppFramework/MTRand.h>
 #include <SexyAppFramework/Color.h>
 #include <SexyAppFramework/KeyCodes.h>
+#include "SDL2/SDL.h"
 
 namespace Sexy
 {
@@ -366,7 +367,7 @@ namespace Sexy
 		virtual void				UpdateFrames();
 		virtual void				LoadingThreadProc();
 		virtual void				LoadingThreadCompleted();
-		virtual MusicInterface*		CreateMusicInterface(HWND theHWnd);
+		virtual MusicInterface*		CreateMusicInterface();
 		virtual void				URLOpenFailed(const std::string& theURL);
 		virtual void				URLOpenSucceeded(const std::string& theURL);
 		virtual bool				OpenURL(const std::string& theURL, bool shutdownOnOpen = false);
@@ -377,6 +378,7 @@ namespace Sexy
 		virtual void				ModalOpen();
 		virtual void				LostFocus();
 		virtual bool				DebugKeyDown(int theKey);
+		virtual void				CloseRequestAsync();
 
 		virtual void				ButtonDepress(int theId);
 
