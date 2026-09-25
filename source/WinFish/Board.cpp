@@ -9,7 +9,7 @@
 #include <SexyAppFramework/SoundInstance.h>
 #include <SexyAppFramework/Buffer.h>
 
-#include <ImageLib/ImageLib.h>
+#include <imagelib/ImageLib.h>
 
 #include "Board.h"
 #include "WinFishApp.h"
