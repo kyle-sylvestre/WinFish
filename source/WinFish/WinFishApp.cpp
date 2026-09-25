@@ -476,9 +476,10 @@ void Sexy::WinFishApp::Init()
 
 				if (!anIsScreenSaver)
 				{
-					mMusicInterface->LoadMusic(4, "music/Insaniq2.mo3");
-					mMusicInterface->LoadMusic(1, "music/Alien.mo3");
-					mMusicInterface->LoadMusic(3, "music/Lullaby.mo3");
+                    std::filesystem::path rsc = Sexy::GetResourceFolder();
+                    mMusicInterface->LoadMusic(4, rsc / "music" / "Insaniq2.mo3");
+					mMusicInterface->LoadMusic(1, rsc / "music" / "Alien.mo3");
+                    mMusicInterface->LoadMusic(3, rsc / "music" / "Lullaby.mo3");
 					PlayMusic(2, 45);
 				}
 				SetCursorImage(CURSOR_POINTER, IMAGE_CURSOR_POINTER);
