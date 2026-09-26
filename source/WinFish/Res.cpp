@@ -48,7 +48,7 @@ Image* Sexy::IMAGE_LOADERBAROVER;
 Image* Sexy::IMAGE_LOADERPLAY;
 Image* Sexy::IMAGE_TITLEPAGE;
 Image* Sexy::IMAGE_TITLEPAGEMASK;
-int Sexy::SOUND_BUTTONCLICK;
+intptr_t Sexy::SOUND_BUTTONCLICK;
 
 bool Sexy::ExtractInitResources(ResourceManager* theManager)
 {
@@ -312,70 +312,70 @@ Image* Sexy::IMAGE_WELCOMEBACK;
 Image* Sexy::IMAGE_WELCOMETO;
 Image* Sexy::IMAGE_ZORF;
 Image* Sexy::IMAGE_ZZZ;
-int Sexy::SOUND_APPLAUSE;
-int Sexy::SOUND_AWOOGA;
-int Sexy::SOUND_BABY;
-int Sexy::SOUND_BONUSCOLLECT;
-int Sexy::SOUND_BONUSCOUNT;
-int Sexy::SOUND_BUBBLES;
-int Sexy::SOUND_BUY;
-int Sexy::SOUND_BUZZER;
-int Sexy::SOUND_CHOMP;
-int Sexy::SOUND_CHOMP2;
-int Sexy::SOUND_CROWNED;
-int Sexy::SOUND_DIAMOND;
-int Sexy::SOUND_DIE;
-int Sexy::SOUND_DROPFOOD;
-int Sexy::SOUND_EEL1;
-int Sexy::SOUND_EEL2;
-int Sexy::SOUND_EEL3;
-int Sexy::SOUND_EVILLAFF;
-int Sexy::SOUND_EXPLODE;
-int Sexy::SOUND_EXPLOSION1;
-int Sexy::SOUND_EXPLOSION4;
-int Sexy::SOUND_FART;
-int Sexy::SOUND_FART2;
-int Sexy::SOUND_GROW;
-int Sexy::SOUND_GUFFAW;
-int Sexy::SOUND_HATCH;
-int Sexy::SOUND_HEAL;
-int Sexy::SOUND_HIT;
-int Sexy::SOUND_INTERFER;
-int Sexy::SOUND_MISSLE;
-int Sexy::SOUND_NIKOCLOSE;
-int Sexy::SOUND_NIKOOPEN;
-int Sexy::SOUND_PEARL;
-int Sexy::SOUND_POINTS;
-int Sexy::SOUND_POINTS2;
-int Sexy::SOUND_POINTS3;
-int Sexy::SOUND_POINTS4;
-int Sexy::SOUND_PRIMALSCREAM;
-int Sexy::SOUND_PUNCH;
-int Sexy::SOUND_RATTLE;
-int Sexy::SOUND_RICOCHET;
-int Sexy::SOUND_ROAR;
-int Sexy::SOUND_ROAR2;
-int Sexy::SOUND_ROAR3;
-int Sexy::SOUND_SFX;
-int Sexy::SOUND_SING;
-int Sexy::SOUND_SLURP;
-int Sexy::SOUND_SLURP2;
-int Sexy::SOUND_SLURP3;
-int Sexy::SOUND_SNEEZE;
-int Sexy::SOUND_SONAR;
-int Sexy::SOUND_SPLASH;
-int Sexy::SOUND_SPLASH2;
-int Sexy::SOUND_SPLASH3;
-int Sexy::SOUND_SPLASHBIG;
-int Sexy::SOUND_TAPGLASS;
-int Sexy::SOUND_TONE;
-int Sexy::SOUND_TONEHI;
-int Sexy::SOUND_TONELO;
-int Sexy::SOUND_TONESUPERHI;
-int Sexy::SOUND_TREASURE;
-int Sexy::SOUND_UNLEASH;
-int Sexy::SOUND_ZAP;
-int Sexy::SOUND_ZZAM;
+intptr_t Sexy::SOUND_APPLAUSE;
+intptr_t Sexy::SOUND_AWOOGA;
+intptr_t Sexy::SOUND_BABY;
+intptr_t Sexy::SOUND_BONUSCOLLECT;
+intptr_t Sexy::SOUND_BONUSCOUNT;
+intptr_t Sexy::SOUND_BUBBLES;
+intptr_t Sexy::SOUND_BUY;
+intptr_t Sexy::SOUND_BUZZER;
+intptr_t Sexy::SOUND_CHOMP;
+intptr_t Sexy::SOUND_CHOMP2;
+intptr_t Sexy::SOUND_CROWNED;
+intptr_t Sexy::SOUND_DIAMOND;
+intptr_t Sexy::SOUND_DIE;
+intptr_t Sexy::SOUND_DROPFOOD;
+intptr_t Sexy::SOUND_EEL1;
+intptr_t Sexy::SOUND_EEL2;
+intptr_t Sexy::SOUND_EEL3;
+intptr_t Sexy::SOUND_EVILLAFF;
+intptr_t Sexy::SOUND_EXPLODE;
+intptr_t Sexy::SOUND_EXPLOSION1;
+intptr_t Sexy::SOUND_EXPLOSION4;
+intptr_t Sexy::SOUND_FART;
+intptr_t Sexy::SOUND_FART2;
+intptr_t Sexy::SOUND_GROW;
+intptr_t Sexy::SOUND_GUFFAW;
+intptr_t Sexy::SOUND_HATCH;
+intptr_t Sexy::SOUND_HEAL;
+intptr_t Sexy::SOUND_HIT;
+intptr_t Sexy::SOUND_INTERFER;
+intptr_t Sexy::SOUND_MISSLE;
+intptr_t Sexy::SOUND_NIKOCLOSE;
+intptr_t Sexy::SOUND_NIKOOPEN;
+intptr_t Sexy::SOUND_PEARL;
+intptr_t Sexy::SOUND_POINTS;
+intptr_t Sexy::SOUND_POINTS2;
+intptr_t Sexy::SOUND_POINTS3;
+intptr_t Sexy::SOUND_POINTS4;
+intptr_t Sexy::SOUND_PRIMALSCREAM;
+intptr_t Sexy::SOUND_PUNCH;
+intptr_t Sexy::SOUND_RATTLE;
+intptr_t Sexy::SOUND_RICOCHET;
+intptr_t Sexy::SOUND_ROAR;
+intptr_t Sexy::SOUND_ROAR2;
+intptr_t Sexy::SOUND_ROAR3;
+intptr_t Sexy::SOUND_SFX;
+intptr_t Sexy::SOUND_SING;
+intptr_t Sexy::SOUND_SLURP;
+intptr_t Sexy::SOUND_SLURP2;
+intptr_t Sexy::SOUND_SLURP3;
+intptr_t Sexy::SOUND_SNEEZE;
+intptr_t Sexy::SOUND_SONAR;
+intptr_t Sexy::SOUND_SPLASH;
+intptr_t Sexy::SOUND_SPLASH2;
+intptr_t Sexy::SOUND_SPLASH3;
+intptr_t Sexy::SOUND_SPLASHBIG;
+intptr_t Sexy::SOUND_TAPGLASS;
+intptr_t Sexy::SOUND_TONE;
+intptr_t Sexy::SOUND_TONEHI;
+intptr_t Sexy::SOUND_TONELO;
+intptr_t Sexy::SOUND_TONESUPERHI;
+intptr_t Sexy::SOUND_TREASURE;
+intptr_t Sexy::SOUND_UNLEASH;
+intptr_t Sexy::SOUND_ZAP;
+intptr_t Sexy::SOUND_ZZAM;
 
 bool Sexy::ExtractLoadingThreadResources(ResourceManager* theManager)
 {
@@ -1089,9 +1089,9 @@ Font* Sexy::GetFontById(int theId)
 	return *(Font**)gResources[theId];
 }
 
-int Sexy::GetSoundById(int theId)
+intptr_t Sexy::GetSoundById(int theId)
 {
-	return *(int*)gResources[theId];
+	return *(intptr_t*)gResources[theId];
 }
 
 Image*& Sexy::GetImageRefById(int theId)
@@ -1104,9 +1104,9 @@ Font*& Sexy::GetFontRefById(int theId)
 	return *(Font**)gResources[theId];
 }
 
-int& Sexy::GetSoundRefById(int theId)
+intptr_t& Sexy::GetSoundRefById(int theId)
 {
-	return *(int*)gResources[theId];
+	return *(intptr_t*)gResources[theId];
 }
 
 static Sexy::ResourceId GetIdByVariable(const void* theVariable)
@@ -1138,9 +1138,9 @@ Sexy::ResourceId Sexy::GetIdByFont(Font* theFont)
 	return GetIdByVariable(theFont);
 }
 
-Sexy::ResourceId Sexy::GetIdBySound(int theSound)
+Sexy::ResourceId Sexy::GetIdBySound(intptr_t theSound)
 {
-	return GetIdByVariable((void*)(intptr_t)theSound);
+	return GetIdByVariable((void*)theSound);
 }
 
 const char* Sexy::GetStringIdById(int theId)
