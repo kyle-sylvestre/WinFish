@@ -220,7 +220,7 @@ void SexyApp::ReadFromRegistry()
 
 	// Override registry values with partner.xml values
 	mRegisterLink = GetString("RegisterLink", mRegisterLink);
-	mDontUpdate = GetBoolean("DontUpdate", mDontUpdate);
+    mDontUpdate = true;// GetBoolean("DontUpdate", mDontUpdate);
 }
 
 void SexyApp::WriteToRegistry()
