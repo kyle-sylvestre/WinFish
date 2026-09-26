@@ -3267,7 +3267,7 @@ void Sexy::Board::HandleBuyEgg()
 	}
 	
 	if (IsTankAndLevelNB(1, 1) && mMessageWidget->mMessageTimer < 1 && m0x43c == 1)
-		ShowText("Collect 2 more egg pieces to finish level!", true, 10);
+		ShowText("Collect 2 more egg pieces to finish level!", false, 10);
 
 	m0x43c++;
 
