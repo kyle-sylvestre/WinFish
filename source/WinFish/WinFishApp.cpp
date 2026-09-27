@@ -1445,6 +1445,8 @@ void Sexy::WinFishApp::DoLostFocusDialog()
 	{
 		if (!IsScreenSaver() && !mBoard->mPause)
 		{
+            mBoard->mShouldSave = true;
+            mBoard->SaveCurrentGame();
 			mBoard->PauseGame(true);
 			CleanDialogs();
 			DoDialog(DIALOG_LOST_FOCUS, true, "GAME PAUSED", "Click to resume game", "Resume game", Dialog::BUTTONS_FOOTER);

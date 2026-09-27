@@ -187,7 +187,7 @@ namespace Sexy
 	class WinFishApp : public SexyApp
 	{
 	public:
-		Board*							mBoard;
+        Board*							mBoard;
 		TitleScreen*					mTitleScreen;
 		GameSelector*					mGameSelector;
 		PrestoMenuData*					mPrestoMenuData;
