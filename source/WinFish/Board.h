@@ -224,8 +224,8 @@ namespace Sexy
 		bool								mMessageShown[54];
 		bool								m0x4e6;
 		int									m0x4e8;
-		bool								m0x4ec;
-		bool								m0x4ed;
+		bool								mRepeatFood;
+		bool								mRepeatGun;
 		bool								mShouldSave;
 		int									m0x4f0;
 		bool								m0x4f4;

@@ -169,8 +169,8 @@ Board::Board(WinFishApp* theApp)
 	mBackButton = NULL;
 	mMoneyLabel = NULL;
 
-	m0x4ec = false;
-	m0x4ed = false;
+	mRepeatFood = false;
+	mRepeatGun = false;
 	m0x4f0 = 0;
 
 	mDropFoodDelay = 0;
@@ -603,9 +603,6 @@ void Board::Update()
 {
 	Widget::Update();
 
-	int aLastMX = mApp->mWidgetManager->mLastMouseX;
-	int aLastMY = mApp->mWidgetManager->mLastMouseY;
-
 	if (mDropFoodDelay != 0)
 		mDropFoodDelay--;
 	if (mPause || (gUnkBool02 = true, mFishSongMgr->mSongList.size() < 1))
@@ -799,14 +796,14 @@ void Board::Update()
 	if (mApp->mGameMode == GAMEMODE_VIRTUAL_TANK && mApp->mCurrentProfile->mShells == 0 && mGameUpdateCnt == 150) // 286
 		ShowText("Here you\'ll be able to build your own custom fish tank!", false, 44);
 
-	if (m0x4ec)
+	if (mRepeatFood)
 	{
 		bool isLeftBtnDown = mWidgetManager->IsLeftButtonDown();
 		int aVal = Unk01();
 		int aLastMouseX = mWidgetManager->mLastMouseX;
 		int aLastMouseY = mWidgetManager->mLastMouseY;
 		if (!isLeftBtnDown)
-			m0x4ec = false;
+			mRepeatFood = false;
 		else if ((mGameUpdateCnt % (16 - gFoodLimit) == 0) && (m0x3c0 + 200 < aVal) && 
 			(aLastMouseX >= 31 && aLastMouseX <= 586) && (aLastMouseY >= 61 && aLastMouseY <= 399) && Buy(m0x4ac, false))
 		{ // 301
@@ -814,14 +811,17 @@ void Board::Update()
 		}
 	}
 
-	if (m0x4ed) // 305
+	if (mRepeatGun) // 305
 	{
 		bool isLeftBtnDown = mWidgetManager->IsLeftButtonDown();
 		int aVal = Unk01();
 		if (!isLeftBtnDown)
-			m0x4ed = false;
+			mRepeatGun = false;
 		else if(m0x3e4 > 11 && mGameUpdateCnt%(11 - m0x3e4 / 2) == 0 && m0x3c4 + 100 < aVal && mWidgetManager->mLastMouseY > 40)
 		{ // 311
+            int aLastMX = mApp->mWidgetManager->mLastMouseX;
+            int aLastMY = mApp->mWidgetManager->mLastMouseY;
+            
 			for (int i = 0; i < mBilaterusList->size(); i++)
 			{
 				Bilaterus* aBil = mBilaterusList->at(i);
@@ -1007,8 +1007,8 @@ void Board::Update()
 			else if (mAlienTimer < 1)
 			{
 				m0x2c4 = 35;
-				m0x4ed = false;
-				m0x4ec = false;
+				mRepeatGun = false;
+				mRepeatFood = false;
 				SpawnAlien(mAlienExpect, mCrosshair1X, mCrosshair1Y, true);
 				if (mApp->mGameMode == GAMEMODE_CHALLENGE)
 				{
@@ -1524,7 +1524,7 @@ void Board::MouseDown(int x, int y, int theClickCount)
 			}
 			playZapSound = true;
 			SpawnLaserShot(x - 40, y - 40);
-			m0x4ed = true;
+			mRepeatGun = true;
 			m0x3c4 = Unk01();
 		}
 
@@ -1538,7 +1538,7 @@ void Board::MouseDown(int x, int y, int theClickCount)
 					if (mAlienList->at(0)->FoodDroppedAtAlien(x, y))
 						aEatDelay = 20;
 					DropFood(x - 10, y - 10, 0, false, aEatDelay, -1);
-					m0x4ec = true;
+					mRepeatFood = true;
 					m0x3c0 = Unk01();
 				}
 			}
@@ -1558,7 +1558,7 @@ void Board::MouseDown(int x, int y, int theClickCount)
 					}
 
 					SpawnLaserShot(x - 40, y - 40);
-					m0x4ed = true;
+					mRepeatGun = true;
 					m0x3c4 = Unk01();
 					PlayZapSound();
 					return;
@@ -1577,7 +1577,7 @@ void Board::MouseDown(int x, int y, int theClickCount)
 			}
 
 			SpawnLaserShot(x - 40, y - 40);
-			m0x4ed = true;
+			mRepeatGun = true;
 			m0x3c4 = Unk01();
 			playZapSound = true;
 		}
@@ -1590,7 +1590,7 @@ void Board::MouseDown(int x, int y, int theClickCount)
 				if (m0x440 || Buy(m0x4ac, true))
 				{
 					DropFood(x - 10, y - 10, 0, false, 0, -1);
-					m0x4ec = true;
+					mRepeatFood = true;
 					m0x3c0 = Unk01();
 				}
 			}
@@ -1604,8 +1604,8 @@ void Board::MouseDown(int x, int y, int theClickCount)
 void Board::MouseUp(int x, int y, int theClickCount)
 {
 	Widget::MouseUp(x, y, theClickCount);
-	m0x4ec = false;
-	m0x4ed = false;
+	mRepeatFood = false;
+	mRepeatGun = false;
 }
 
 void Sexy::Board::ButtonPress(int theId)
@@ -2148,8 +2148,8 @@ void Sexy::Board::PauseGame(bool shouldPause)
 		}
 		else
 		{
-			m0x4ec = false;
-			m0x4ed = false;
+			mRepeatFood = false;
+			mRepeatGun = false;
 			UpdateMoneyLabelText();
 			WidgetSetupVT();
 			Unk13();
@@ -3107,8 +3107,8 @@ void Sexy::Board::Unk12()
 {
 	if (mMissleList1->empty() && mAlienList->empty() && mBilaterusList->empty())
 	{
-		m0x4ed = false;
-		m0x4ec = false;
+		mRepeatGun = false;
+		mRepeatFood = false;
 		mDropFoodDelay = 36;
 		if (mCyraxPtr == nullptr)
 			mApp->SomeMusicPlayFunc(true);

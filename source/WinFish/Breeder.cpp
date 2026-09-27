@@ -488,7 +488,7 @@ void Sexy::Breeder::MouseDown(int x, int y, int theClickCount)
 					unk1 = 0;
 
 				aBoard->DropFood(theXVal, theYVal, 0, false, unk1, -1);
-				aBoard->m0x4ec = true;
+				aBoard->mRepeatFood = true;
 				aBoard->m0x3c0 = aBoard->Unk01();
 			}
 		}
@@ -498,8 +498,8 @@ void Sexy::Breeder::MouseDown(int x, int y, int theClickCount)
 void Sexy::Breeder::MouseUp(int x, int y, int theClickCount)
 {
 	GameObject::MouseUp(x, y, theClickCount);
-	mApp->mBoard->m0x4ec = false;
-	mApp->mBoard->m0x4ed = false;
+	mApp->mBoard->mRepeatFood = false;
+	mApp->mBoard->mRepeatGun = false;
 }
 
 int Sexy::Breeder::GetShellPrice()
