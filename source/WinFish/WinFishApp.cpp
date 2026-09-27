@@ -477,10 +477,13 @@ void Sexy::WinFishApp::Init()
 
 				if (!anIsScreenSaver)
 				{
-                    std::filesystem::path rsc = Sexy::GetResourceFolder();
-                    mMusicInterface->LoadMusic(4, rsc / "music" / "Insaniq2.mo3");
-					mMusicInterface->LoadMusic(1, rsc / "music" / "Alien.mo3");
-                    mMusicInterface->LoadMusic(3, rsc / "music" / "Lullaby.mo3");
+					std::filesystem::path rsc = Sexy::GetResourceFolder();
+					std::filesystem::path rsc1 = rsc / "music" / "Insaniq2.mo3";
+					std::filesystem::path rsc2 = rsc / "music" / "Alien.mo3";
+					std::filesystem::path rsc3 = rsc / "music" / "Lullaby.mo3";
+					mMusicInterface->LoadMusic(4, rsc1.string());
+					mMusicInterface->LoadMusic(1, rsc2.string());
+					mMusicInterface->LoadMusic(3, rsc3.string());
 					PlayMusic(2, 45);
 				}
 				SetCursorImage(CURSOR_POINTER, IMAGE_CURSOR_POINTER);
@@ -1112,9 +1115,9 @@ Image* Sexy::WinFishApp::LoadMaskImage(Image* theImage, Image* theImageMask, int
 	g.DrawImage(theImage, -aFinalClipRect.mX, -aFinalClipRect.mY);
 
 
-	DWORD* aNewBits = aNewImage->GetBits();
+	uint32_t* aNewBits = aNewImage->GetBits();
 	MemoryImage* aMemoryMask = dynamic_cast<MemoryImage*>(theImageMask);
-	DWORD* aMaskBits = aMemoryMask->GetBits();
+	uint32_t* aMaskBits = aMemoryMask->GetBits();
 
 	if (aNewBits == NULL || aMaskBits == NULL)
 	{
