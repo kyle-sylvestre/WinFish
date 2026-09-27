@@ -795,13 +795,13 @@ Sexy::SimFishScreen::SimFishScreen(WinFishApp* theApp)
 
 	memset(mObjectButtons, 0, 20);
 
-	std::multimap<time_t, GameObject*> aFishMap;
+	std::multimap<Time, GameObject*> aFishMap;
 
 	for (GameObjectSet::iterator it = mApp->mBoard->mGameObjectSet.begin(); it != mApp->mBoard->mGameObjectSet.end(); ++it)
 	{
 		GameObject* anObj = *it;
 		if (anObj->mVirtualTankId > -1 && anObj->mVirtualTankId < 20)
-			aFishMap.insert(std::pair<time_t, GameObject*>(anObj->mTimeBought, anObj));
+			aFishMap.insert(std::pair<Time, GameObject*>(anObj->mTimeBought, anObj));
 	}
 
 	int aFishBtnId = 0;
@@ -1003,10 +1003,10 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 				aPurchaseDateStr = "Date of Birth";
 			WriteCenteredLine(g, aCurHght, aPurchaseDateStr);
 
-			time_t aTime = anObj->mTimeBought;
+			Time aTime = anObj->mTimeBought;
 			if (anObj->mTimeBought < 0)
 				aTime = 0;
-			tm* aTM = localtime(&aTime);
+			tm* aTM = LocalTime(&aTime);
 			char aTimeString[1000];
 			if (aTM == nullptr)
 				strcpy(aTimeString, "Unknown");

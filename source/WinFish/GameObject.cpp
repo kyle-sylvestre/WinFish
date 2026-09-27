@@ -98,9 +98,9 @@ int Sexy::GameObject::GetShellPrice()
 {
 	if (mTodayBought && gUnkInt01 < 1)
 	{
-		__time64_t currentTime = time(NULL);
+		Time currentTime = GetTime(NULL);
 
-		const __time64_t LIFESPAN_SECONDS = 86400;
+		const Time LIFESPAN_SECONDS = 86400;
 
 		if (currentTime >= mTimeBought + LIFESPAN_SECONDS)
 			return -1;
@@ -482,14 +482,14 @@ void Sexy::GameObject::Unk02(bool flag)
 	}
 }
 
-void Sexy::GameObject::Unk03(long long theTodayInSec, __time64_t theCurTime)
+void Sexy::GameObject::Unk03(long long theTodayInSec, Time theCurTime)
 {
 	if (mVirtualTankId < 0)
 		return;
 
 	if (mTodayBought)
 	{
-		const time_t ONE_DAY_IN_SECONDS = 86400;
+		const Time ONE_DAY_IN_SECONDS = 86400;
 		if (mTimeBought + ONE_DAY_IN_SECONDS <= theCurTime)
 			mTodayBought = false;
 	}
@@ -513,7 +513,7 @@ void Sexy::GameObject::Unk03(long long theTodayInSec, __time64_t theCurTime)
 
 bool Sexy::GameObject::UpdateMentalState()
 {
-	__time64_t aCurTime = _time64(NULL);
+	Time aCurTime = GetTime(NULL);
 	long long aTime = GetTodayStartSeconds();
 
 	Unk03(aTime, aCurTime);

@@ -205,8 +205,8 @@ void SexyApp::ReadFromRegistry()
 	}
 	else
 	{
-		time_t aTimeNow;
-		time(&aTimeNow);
+		Time aTimeNow;
+		GetTime(&aTimeNow);
 
 		mLastVerCheckQueryTime = aTimeNow;
 	}
@@ -397,8 +397,8 @@ bool SexyApp::ShouldCheckForUpdate()
 #ifdef ZYLOM
 	return ZylomUpdateCheckNeeded();
 #else
-	time_t aTimeNow;
-	time(&aTimeNow);
+	Time aTimeNow;
+	GetTime(&aTimeNow);
 
 	// It is set to 0 if we crash, otherwise ask every week
 	return ((mLastVerCheckQueryTime == 0) || 
@@ -410,8 +410,8 @@ bool SexyApp::ShouldCheckForUpdate()
 
 void SexyApp::UpdateCheckQueried()
 {
-	time_t aTimeNow;
-	time(&aTimeNow);
+	Time aTimeNow;
+	GetTime(&aTimeNow);
 
 	mLastVerCheckQueryTime = aTimeNow;
 }

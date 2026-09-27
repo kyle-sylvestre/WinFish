@@ -191,8 +191,8 @@ namespace Sexy
 		TitleScreen*					mTitleScreen;
 		GameSelector*					mGameSelector;
 		PrestoMenuData*					mPrestoMenuData;
-		time_t							mDaysSinceFirstRun;
-		time_t							mDaysSinceLastRun;
+		Time							mDaysSinceFirstRun;
+		Time							mDaysSinceLastRun;
 		int								mLDAccum;
 		std::list<void*>				m0x754;
 		std::list<void*>				m0x760;

@@ -2312,7 +2312,7 @@ void Sexy::Board::SaveGame(const SexyString& theSavePath)
 	aDW.WriteLong((int)aVersion); // Game Save File Version
 	aDS.mVersion = aVersion;
 	SyncGameData(aDS);
-	aDW.WriteLong(_time64(NULL));
+	aDW.WriteLong(GetTime(NULL) & UINT32_MAX);
 	aDS.SyncPointers();
 	mApp->WriteBytesToFile(theSavePath, aDW.mMemoryHandle, aDW.mMemoryPosition);
 	mApp->ClearUpdateBacklog();
@@ -2631,9 +2631,9 @@ bool Sexy::Board::LoadGame(SexyString theSavePath)
 
 			if(mApp->mGameMode == GAMEMODE_VIRTUAL_TANK)
 			{
-				__time64_t currentTime = _time64(nullptr);
-				__time64_t timeOfSave = aVal;
-				if (currentTime - timeOfSave > 120) 
+                Time currentTime = (GetTime(nullptr) & UINT32_MAX);
+				Time timeOfSave = aVal;
+				if (currentTime < timeOfSave || currentTime - timeOfSave > 120)
 					Unk15();
 			}
 			StartMusic();
@@ -3119,7 +3119,7 @@ void Sexy::Board::Unk12()
 void Sexy::Board::Unk13()
 {
 	long long aTodaySecs = GetTodayStartSeconds();
-	long long aCurrentTime = time(NULL);
+	long long aCurrentTime = GetTime(NULL);
 
 	for (GameObjectSet::iterator it = mGameObjectSet.begin(); it != mGameObjectSet.end(); ++it)
 	{

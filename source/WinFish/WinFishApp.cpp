@@ -276,7 +276,7 @@ WinFishApp::WinFishApp()
 
 	m0x878 = false;
 
-	time_t aTodayTimeSec = GetTodayStartSeconds();
+	Time aTodayTimeSec = GetTodayStartSeconds();
 	mDaysSinceFirstRun = aTodayTimeSec;
 	mDaysSinceLastRun = aTodayTimeSec;
 	mLDAccum = 0;
@@ -1171,7 +1171,7 @@ void Sexy::WinFishApp::Shutdown()
 	}
 	UpdatePlayData();
 
-	time_t aTodaysDate = GetTodayStartSeconds();
+	Time aTodaysDate = GetTodayStartSeconds();
 	int aSecondsPlayed = mUpdateCount / 36;
 	mLDAccum += aSecondsPlayed;
 
@@ -1275,7 +1275,7 @@ void Sexy::WinFishApp::ReadFromRegistry()
 
 	int aTempLDInfo;
 	bool aSuccessRead = RegistryReadInteger("ldinfo", &aTempLDInfo);
-	time_t aDaysLDInfo;
+	Time aDaysLDInfo;
 	if (aSuccessRead)
 		aDaysLDInfo = (unsigned int)aTempLDInfo;
 

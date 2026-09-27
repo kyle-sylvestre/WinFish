@@ -21,7 +21,7 @@ public:
 	std::string				mVariation;
 	ulong					mDownloadId;
 	std::string				mRegSource;
-	ulong					mLastVerCheckQueryTime;
+	Time					mLastVerCheckQueryTime;
 	bool					mSkipAd;
 	bool					mDontUpdate;	
 

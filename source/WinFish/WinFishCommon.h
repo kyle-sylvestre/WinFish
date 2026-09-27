@@ -37,7 +37,7 @@ namespace Sexy
 	void				KnuthShuffleFishSongs(FishSongData** first, FishSongData** last);
 	FishSongData*		GetSongData(int theSpecId);
 
-	long long			GetTodayStartSeconds();
+	Time    			GetTodayStartSeconds();
 
 	void				ButtonHoleHelper(MemoryImage* theImage, MemoryImage* theHoleImage, int theX, int theY);
 	SexyString			GetPetName(int thePetId);

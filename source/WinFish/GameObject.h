@@ -120,7 +120,7 @@ namespace Sexy
 		bool				mHungerShown;
 		int					mVirtualTankId;
 		SexyString			mName;
-		__time64_t			mTimeBought;
+		Time			    mTimeBought;
 		int					m0xd8;
 		int					mHometownIdx;
 		int					mShellPrice;
@@ -186,7 +186,7 @@ namespace Sexy
 		void					RemoveHelper02(bool safeDelete);
 		void					UpdateFishSongMgr();
 		void					Unk02(bool flag);
-		void					Unk03(long long theTodayInSec, __time64_t theCurTime);
+		void					Unk03(long long theTodayInSec, Time theCurTime);
 		bool					UpdateMentalState();
 		void					DrawName(Graphics* g, bool flag);
 		void					DrawCrosshair(Graphics* g, int theX, int theY);

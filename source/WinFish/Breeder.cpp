@@ -1068,7 +1068,7 @@ bool Sexy::Breeder::GiveBirth()
 	aGuppy->BoughtSetup();
 	aGuppy->CopyBreederDataVT(this);
 	aGuppy->mVirtualTankId = aNextVirtId;
-	aGuppy->mTimeBought = time(NULL);
+	aGuppy->mTimeBought = GetTime(NULL);
 	aGuppy->mName += " JR.";
 	aGuppy->mHometownIdx = 0;
 	aGuppy->mVirtualFish = true;

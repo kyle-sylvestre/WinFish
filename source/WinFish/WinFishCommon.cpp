@@ -354,20 +354,20 @@ FishSongData* Sexy::GetSongData(int theSpecId)
     return aChosenSong;
 }
 
-long long Sexy::GetTodayStartSeconds() // Returns the start of todays day in sec from 1970 to today
+Time Sexy::GetTodayStartSeconds() // Returns the start of todays day in sec from 1970 to today
 {
-    __time64_t currentTime_t = _time64(nullptr);
+    Time currentTime_t = GetTime(nullptr);
 
     if (currentTime_t < 0)
         currentTime_t = 0;
 
-    tm* localTimeInfo = _localtime64(&currentTime_t);
+    tm* localTimeInfo = LocalTime(&currentTime_t);
 
-    __time64_t secondsIntoDay = localTimeInfo->tm_hour * 3600 +
+    Time secondsIntoDay = localTimeInfo->tm_hour * 3600 +
         localTimeInfo->tm_min * 60 +
         localTimeInfo->tm_sec;
 
-    __time64_t midnightTime_t = currentTime_t - secondsIntoDay;
+    Time midnightTime_t = currentTime_t - secondsIntoDay;
 
     long long total_days = midnightTime_t / 86400;
 
