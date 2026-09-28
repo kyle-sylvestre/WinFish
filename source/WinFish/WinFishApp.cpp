@@ -369,6 +369,7 @@ void Sexy::WinFishApp::Init()
 {
 	DoParseCmdLine();
 	bool anIsScreenSaver = IsScreenSaver();
+	mMuteOnLostFocus = true;
 
 	SexyApp::Init();
 
