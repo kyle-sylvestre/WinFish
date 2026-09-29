@@ -1882,8 +1882,10 @@ void Sexy::WinFishApp::SwitchToBoard(bool theFlag1, bool theFlag2)
 
 void Sexy::WinFishApp::DoQuitDialog()
 {
+#if !defined(__ANDROID__)
 	Dialog* aDia = DoDialog(DIALOG_QUIT_GAME, true, "Quit", "Stop the insanity?", "", Dialog::BUTTONS_OK_CANCEL);
 	aDia->mYesButton->mLabel = "Quit";
+#endif
 }
 
 void Sexy::WinFishApp::SwitchToGameSelector()
