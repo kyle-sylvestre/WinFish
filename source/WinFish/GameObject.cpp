@@ -60,6 +60,8 @@ GameObject::GameObject()
 	mCanBeEatenDelay = 0;
 	mBoughtTimeDaySecs = 0;
 	mLastMentalStateUpdateTime = 0;
+    mTimeBought = 0;
+    mShellPrice = 0;
 	mTimesFedToday = 0;
 	mRandomHappiestMentalId = 0;
 	mPreNamedTypeId = -1;
