@@ -278,12 +278,22 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 	int local20 = m0xac + 150;
 	if (gPetsDiedOnBossLevel == 0)
 	{
+        // repeat full width question mark
+        std::string line = lz("How did you do that?");
+        std::string line2 = line;
+        const char *aFullWidthQuestion = "\xEF\xBC\x9F";
+        int aFullWidthQuestionWidth = FONT_LIDDIE15->StringWidth(aFullWidthQuestion);
+		if (line.back() != '?' && aFullWidthQuestionWidth != 0)
+		{
+			line2 += aFullWidthQuestion;
+		}
+        
 		DrawStringHelper(g, lz("Wait a minute!"), 0, 1, 0);
 		DrawStringHelper(g, lz("You didn\'t lose any pets!!"), 1, 1, 0);
-		DrawStringHelper(g, lz("How did you do that?"), 1, 1, 0);
+		DrawStringHelper(g, line, 1, 1, 0);
 		DrawStringHelper(g, lz("That\'s really amazing!"), 1, 1, 0);
 		DrawStringHelper(g, lz("Seriously, though..."), 3, 1, 0);
-		DrawStringHelper(g, "How did you do that??", 1, 1, 0);
+		DrawStringHelper(g, line2, 1, 1, 0);
 		DrawStringHelper(g, lz("Fine, keep it to yourself."), 3, 1, 0);
 	}
 	else if(gPetsDiedOnBossLevel == 1)
