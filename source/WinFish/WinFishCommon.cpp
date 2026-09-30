@@ -215,7 +215,7 @@ void Sexy::SetVaryingBlueColorGraphics(Graphics* g, int theUpdateCnt,int theY)
 SexyString Sexy::GetCyraxEndGameString(int theCyraxCnt)
 {
     if (theCyraxCnt < 2)
-        return SexyString("FINAL BOSS");
+        return SexyString(lz("FINAL BOSS"));
 
     int aCyraxDefeatNum = theCyraxCnt;
     SexyString aNumOrderStr = "th";
@@ -229,7 +229,7 @@ SexyString Sexy::GetCyraxEndGameString(int theCyraxCnt)
             aNumOrderStr = "rd";
     }
 
-    return SexyString(StrFormat("%d%s FINAL BOSS", aCyraxDefeatNum, aNumOrderStr.c_str()));
+    return SexyString(StrFormat(lzcstr("%d%s FINAL BOSS"), aCyraxDefeatNum, aNumOrderStr.c_str()));
 }
 
 SexyString Sexy::GetPlayTimeString(int theTimeInSec)
@@ -247,30 +247,30 @@ SexyString Sexy::GetMentalStateString(GameObject* theObject)
     switch (theObject->mMentalState)
     {
     case 0:
-        return "Horribly Depressed";
+        return lz("Horribly Depressed");
     case 1:
-        return "Feeling Neglected";
+        return lz("Feeling Neglected");
     case 2:
-        return "Quite Hungry";
+        return lz("Quite Hungry");
     case 3:
-        return "Contented";
+        return lz("Contented");
     case 4:
-        return "Happy";
+        return lz("Happy");
     case 5:
-        return "Chipper";
+        return lz("Chipper");
     case 6:
     {
         SexyString aPossibleStrs[] = {
-        "Super Pumped" ,
-        "Lovin\' It!",
-        "High on Life" ,
-        "Totally Stoked",
-        "Fish-tastic!" 
+        lz("Super Pumped") ,
+        lz("Lovin\' It!"),
+        lz("High on Life") ,
+        lz("Totally Stoked"),
+        lz("Fish-tastic!") 
         };
         return aPossibleStrs[theObject->mRandomHappiestMentalId % 5];
     }
     default:
-        return "Unknown";
+        return lz("Unknown");
     }
 }
 
@@ -412,53 +412,53 @@ SexyString Sexy::GetPetName(int thePetId)
     switch (thePetId)
     {
     case PET_STINKY:
-        return "Stinky";
+        return lz("Stinky");
     case PET_NIKO:
-        return "Niko";
+        return lz("Niko");
     case PET_ITCHY:
-        return "Itchy";
+        return lz("Itchy");
     case PET_PREGO:
-        return "Prego";
+        return lz("Prego");
     case PET_ZORF:
-        return "Zorf";
+        return lz("Zorf");
     case PET_CLYDE:
-        return "Clyde";
+        return lz("Clyde");
     case PET_VERT:
-        return "Vert";
+        return lz("Vert");
     case PET_RUFUS:
-        return "Rufus";
+        return lz("Rufus");
     case PET_MERYL:
-        return "Meryl";
+        return lz("Meryl");
     case PET_WADSWORTH:
-        return "Wadsworth";
+        return lz("Wadsworth");
     case PET_SEYMOUR:
-        return "Seymour";
+        return lz("Seymour");
     case PET_SHRAPNEL:
-        return "Shrapnel";
+        return lz("Shrapnel");
     case PET_GUMBO:
-        return "Gumbo";
+        return lz("Gumbo");
     case PET_BLIP:
-        return "Blip";
+        return lz("Blip");
     case PET_RHUBARB:
-        return "Rhubarb";
+        return lz("Rhubarb");
     case PET_NIMBUS:
-        return "Nimbus";
+        return lz("Nimbus");
     case PET_AMP:
-        return "Amp";
+        return lz("Amp");
     case PET_GASH:
-        return "Gash";
+        return lz("Gash");
     case PET_ANGIE:
-        return "Angie";
+        return lz("Angie");
     case PET_PRESTO:
-        return "Presto";
+        return lz("Presto");
     case PET_BRINKLEY:
-        return "Brinkley";
+        return lz("Brinkley");
     case PET_NOSTRADAMUS:
-        return "Nostradamus";
+        return lz("Nostradamus");
     case PET_STANLEY:
-        return "Stanley";
+        return lz("Stanley");
     case PET_WALTER:
-        return "Walter";
+        return lz("Walter");
     default:
         return "";
     }

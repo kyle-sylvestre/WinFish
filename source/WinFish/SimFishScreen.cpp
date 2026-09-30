@@ -749,28 +749,28 @@ Sexy::SimFishScreen::SimFishScreen(WinFishApp* theApp)
 	mWidth = mApp->mWidth;
 	mHeight = mApp->mHeight;
 
-	mHideAllButton = MakeDialogButton2(105, this, "Hide All", IMAGE_MAINBUTTON);
+	mHideAllButton = MakeDialogButton2(105, this, lz("Hide All"), IMAGE_MAINBUTTON);
 	mHideAllButton->Resize(500, 4, 100, mHideAllButton->mHeight);
 
-	mShowAllButton = MakeDialogButton2(106, this, "Show All", IMAGE_MAINBUTTON);
+	mShowAllButton = MakeDialogButton2(106, this, lz("Show All"), IMAGE_MAINBUTTON);
 	mShowAllButton->Resize(500, 4, 100, mShowAllButton->mHeight);
 	mShowAllButton->mVisible = false;
 
-	mReturnButton = MakeDialogButton(100, this, "Return to Tank", FONT_JUNGLEFEVER10OUTLINE);
+	mReturnButton = MakeDialogButton(100, this, lz("Return to Tank"), FONT_JUNGLEFEVER10OUTLINE);
 	mReturnButton->Resize(218, 428, 206, mReturnButton->mHeight);
 
-	mMenuButton = MakeDialogButton2(101, this, "Menu", IMAGE_MAINBUTTON);
+	mMenuButton = MakeDialogButton2(101, this, lz("Menu"), IMAGE_MAINBUTTON);
 	mMenuButton->Resize(525, 4, 80, mMenuButton->mHeight);
 
 	mHideShowButton = MakeDialogButton2(102, this, "", IMAGE_LEFTBUTTON);
 	mHideShowButton->Resize(225, 390, 58, mHideShowButton->mHeight);
 	mHideShowButton->mTextOffsetX = 0;
 
-	mSellButton = MakeDialogButton2(103, this, "Sell", IMAGE_RIGHTBUTTON);
+	mSellButton = MakeDialogButton2(103, this, lz("Sell"), IMAGE_RIGHTBUTTON);
 	mSellButton->Layout(0x4403, mHideShowButton, 72);
 	mSellButton->mTextOffsetX = 0;
 
-	mRenameButton = MakeDialogButton2(104, this, "Rename", IMAGE_CENTERBUTTON);
+	mRenameButton = MakeDialogButton2(104, this, lz("Rename"), IMAGE_CENTERBUTTON);
 	mRenameButton->Layout(0x4402, mHideShowButton, -2);
 	mRenameButton->Layout(0x20000, mSellButton, 0,0,3);
 
@@ -928,7 +928,7 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 	mBubbleMgr->Draw(g);
 	g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 	g->SetColor(Color(255, 200, 0));
-	WriteCenteredLine(g, 25, "Fish Setup");
+	WriteCenteredLine(g, 25, lz("Fish Setup"));
 
 	for (int i = 0;i < 20;i++)
 	{
@@ -940,7 +940,7 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 			{
 				g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 				g->SetColor(Color(0xff6060));
-				g->DrawString("HIDDEN", mObjectButtons[i]->mX + 13, mObjectButtons[i]->mY + 50);
+				g->DrawString(lz("HIDDEN"), mObjectButtons[i]->mX + 13, mObjectButtons[i]->mY + 50);
 			}
 		}
 	}
@@ -949,7 +949,7 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 	{
 		g->SetFont(FONT_JUNGLEFEVER15OUTLINE);
 		g->SetColor(Color(255, 200, 0));
-		WriteWordWrapped(g, Rect(230, 180, 180, 100), "Select\na\nFish", -1, 0);
+		WriteWordWrapped(g, Rect(230, 180, 180, 100), lz("Select\na\nFish"), -1, 0);
 	}
 	else
 	{
@@ -998,9 +998,9 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 				aCol3.mAlpha = aCol1.mAlpha;
 			}
 			g->SetColor(aCol1);
-			SexyString aPurchaseDateStr = "Purchase Date";
+			SexyString aPurchaseDateStr = lz("Purchase Date");
 			if (anObj->mType == TYPE_GUPPY && ((Fish*)anObj)->mVirtualFish)
-				aPurchaseDateStr = "Date of Birth";
+				aPurchaseDateStr = lz("Date of Birth");
 			WriteCenteredLine(g, aCurHght, aPurchaseDateStr);
 
 			Time aTime = anObj->mTimeBought;
@@ -1009,7 +1009,7 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 			tm* aTM = LocalTime(&aTime);
 			char aTimeString[1000];
 			if (aTM == nullptr)
-				strcpy(aTimeString, "Unknown");
+				strcpy(aTimeString, lzcstr("Unknown"));
 			else
 				strftime(aTimeString, 1000, "%b %d %Y", aTM);
 
@@ -1019,25 +1019,25 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 
 			g->SetColor(aCol1);
 			aCurHght += aHeightSeparator;
-			WriteCenteredLine(g, aCurHght, "Hometown");
+			WriteCenteredLine(g, aCurHght, lz("Hometown"));
 
 			g->SetColor(aCol3);
 			SexyString aHometownStr = "";
 			if (gUnkInt09 >= 0 && gUnkInt09 <= 374)
-				aHometownStr = StrFormat("%s", HOMETOWNS[gUnkInt09].c_str());
+                aHometownStr = lz(HOMETOWNS[gUnkInt09]);
 			else if (anObj->mPreNamedTypeId >= ROCKY && anObj->mPreNamedTypeId <= SANTA)
-				aHometownStr = StrFormat("%s", SPECIALHOMETOWNS[anObj->mPreNamedTypeId].c_str());
+                aHometownStr = lz(SPECIALHOMETOWNS[anObj->mPreNamedTypeId]);
 			else if(anObj->mHometownIdx >= 0 && anObj->mHometownIdx <= 374)
-				aHometownStr = StrFormat("%s", HOMETOWNS[anObj->mHometownIdx].c_str());
+                aHometownStr = lz(HOMETOWNS[anObj->mHometownIdx]);
 			else
-				aHometownStr = "Unknown";
+				aHometownStr = lz("Unknown");
 
 			aCurHght += aFntHght;
 			WriteCenteredLine(g, aCurHght, aHometownStr);
 
 			g->SetColor(aCol1);
 			aCurHght += aHeightSeparator;
-			WriteCenteredLine(g, aCurHght, "Mental State");
+			WriteCenteredLine(g, aCurHght, lz("Mental State"));
 
 			g->SetColor(aCol3);
 			aCurHght += aFntHght;
@@ -1045,12 +1045,12 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 
 			g->SetColor(aCol1);
 			aCurHght += aHeightSeparator;
-			WriteCenteredLine(g, aCurHght, "Additional Notes");
+			WriteCenteredLine(g, aCurHght, lz("Additional Notes"));
 
 			g->SetColor(aCol3);
 			SexyString aLikesStr = "";
 			if (gUnkInt10 >= 0 && gUnkInt10 <= 330)
-				aLikesStr = StrFormat("Likes %s, %s, and %s.", LIKES[gUnkInt10].c_str(),LIKES[gUnkInt10].c_str(),LIKES[gUnkInt10].c_str());
+				aLikesStr = StrFormat(lzcstr("Likes %s, %s, and %s."), LIKES[gUnkInt10].c_str(),LIKES[gUnkInt10].c_str(),LIKES[gUnkInt10].c_str());
 			else
 				aLikesStr = GetAdditionalNotes(anObj);
 
@@ -1067,20 +1067,20 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 				aCol3.mAlpha = aCol2.mAlpha;
 			}
 			g->SetColor(aCol2);
-			WriteCenteredLine(g, 190, "Purchase Price");
+			WriteCenteredLine(g, 190, lz("Purchase Price"));
 
 			g->SetColor(aCol3);
-			SexyString aPriceStr = StrFormat("%d Shells", anObj->mShellPrice);
+			SexyString aPriceStr = StrFormat(lzcstr("%d Shells"), anObj->mShellPrice);
 			if (anObj->mType == TYPE_GUPPY && ((Fish*)anObj)->mVirtualFish)
 				aPriceStr = "N/A";
 			WriteCenteredLine(g, 190 + aFntHght, aPriceStr);
 
 			int aRefundValue = anObj->GetShellPrice();
-			SexyString aRefundStr = "Full Refund";
+			SexyString aRefundStr = lz("Full Refund");
 			if (aRefundValue != -1)
-				aRefundStr = StrFormat("%d Shells", aRefundValue);
+				aRefundStr = StrFormat(lzcstr("%d Shells"), aRefundValue);
 			g->SetColor(aCol2);
-			WriteCenteredLine(g, 190 + aFntHght*2, "Resale Value");
+			WriteCenteredLine(g, 190 + aFntHght*2, lz("Resale Value"));
 			g->SetColor(aCol3);
 			WriteCenteredLine(g, 190 + aFntHght * 3, aRefundStr);
 		}
@@ -1132,12 +1132,12 @@ void Sexy::SimFishScreen::ButtonDepress(int theId)
 			m0x119 = true;
 			m0x118 = true;
 			m0x114 = 0;
-			SexyString aStr = "Are you sure you want to sell your fish?";
+			SexyString aStr = lz("Are you sure you want to sell your fish?");
 			if (mSelectedFishButton->mObject->mType == TYPE_BREEDER)
 			{
 				GameObject* anObj = mApp->mBoard->GetGameObjectByVirtualId(mSelectedFishButton->mObject->mVirtualTankId + 100);
 				if (anObj)
-					aStr += "\n\nNote that selling the mama fish will not sell her baby fish.";
+					aStr += lz("\n\nNote that selling the mama fish will not sell her baby fish.");
 			}
 
 			mApp->DoAreYouSureSellDialog(aStr);
@@ -1158,7 +1158,7 @@ void Sexy::SimFishScreen::ButtonDepress(int theId)
 		if (mSelectedFishButton != nullptr && mSelectedFishButton->mObject != nullptr)
 		{
 			m0x11a = true;
-			mApp->DoFishNamingDialog("Please choose a name for your fish", 
+			mApp->DoFishNamingDialog(lz("Please choose a name for your fish"), 
 				mSelectedFishButton->mObject->mName, 
 				mSelectedFishButton->mObject->mType == TYPE_BREEDER);
 		}
@@ -1199,21 +1199,21 @@ SexyString Sexy::SimFishScreen::GetAdditionalNotes(GameObject* theObject)
 	switch (theObject->mPreNamedTypeId)
 	{
 	case ROCKY:
-		return "By doctor\'s orders, is on a special low-carb high-Ultravore diet.";
+		return lz("By doctor\'s orders, is on a special low-carb high-Ultravore diet.");
 	case LUDWIG:
-		return "Likes monster truck rallies, Thai kick-boxing, and Beethoven.";
+		return lz("Likes monster truck rallies, Thai kick-boxing, and Beethoven.");
 	case COOKIE:
-		return "A fishy philanthropist who likes to feed food to famished fish? That\'s Fish-tastic!";
+		return lz("A fishy philanthropist who likes to feed food to famished fish? That\'s Fish-tastic!");
 	case JOHNNYV:
-		return "Has been trying to stop eating fast food and pizza.";
+		return lz("Has been trying to stop eating fast food and pizza.");
 	case KILGORE:
-		return "Likes to intimidate other fish by playing the music of Wagner.";
+		return lz("Likes to intimidate other fish by playing the music of Wagner.");
 	case SANTA:
-		return "Likes giving lots of toys to all the good girls and boys.";
+		return lz("Likes giving lots of toys to all the good girls and boys.");
 	default:
 	{
 		SexyString aLastLike = GetLastSpecialLike(theObject);
-		return StrFormat("Likes %s, %s, and %s.", 
+		return StrFormat(lzcstr("Likes %s, %s, and %s."), 
 			LIKES[theObject->mLikes[0]].c_str(),
 			LIKES[theObject->mLikes[1]].c_str(),
 			aLastLike.empty() ? LIKES[theObject->mLikes[2]].c_str() : aLastLike.c_str()
@@ -1230,33 +1230,33 @@ SexyString Sexy::SimFishScreen::GetLastSpecialLike(GameObject* theObject)
 		switch (anAttrib)
 		{
 		case 0:
-			return "stealth";
+			return lz("stealth");
 		case 1:
-			return "eating";
+			return lz("eating");
 		case 2:
-			return "quickness";
+			return lz("quickness");
 		case 3:
-			return "singing";
+			return lz("singing");
 		case 4:
-			return "swimming backwards";
+			return lz("swimming backwards");
 		case 5:
 			if (theObject->mExoticDietFoodType == EXO_FOOD_PIZZA)
-				return "pizza";
+				return lz("pizza");
 			else if (theObject->mExoticDietFoodType == EXO_FOOD_ICE_CREAM)
-				return "ice cream";
+				return lz("ice cream");
 			else if (theObject->mExoticDietFoodType == EXO_FOOD_CHICKEN)
-				return "chicken";
+				return lz("chicken");
 			break;
 		case 6:
 			if (theObject->mExoticDietFoodType == EXO_FOOD_GUPPY)
-				return "eating guppies";
+				return lz("eating guppies");
 			else if (theObject->mExoticDietFoodType == EXO_FOOD_OSCAR)
-				return "eating carnivores";
+				return lz("eating carnivores");
 			else if (theObject->mExoticDietFoodType == EXO_FOOD_ULTRA)
-				return "eating ultravores";
+				return lz("eating ultravores");
 			break;
 		default:
-			return "being different";
+			return lz("being different");
 		}
 	return "";
 }
@@ -1295,18 +1295,18 @@ void Sexy::SimFishScreen::DetermineShowHideForButtons()
 
 	if (anyHidden)
 	{
-		mHideAllButton->mLabel = "Hide All";
+		mHideAllButton->mLabel = lz("Hide All");
 		mHideAllButton->mId = 105;
 	}
 	else
 	{
-		mHideAllButton->mLabel = "Show All";
+		mHideAllButton->mLabel = lz("Show All");
 		mHideAllButton->mId = 106;
 	}
 
-	mHideShowButton->mLabel = "Hide";
+	mHideShowButton->mLabel = lz("Hide");
 	if (mSelectedFishButton != nullptr && mSelectedFishButton->mObject != nullptr && !mSelectedFishButton->mObject->mShown)
-		mHideShowButton->mLabel = "Show";
+		mHideShowButton->mLabel = lz("Show");
 }
 
 void Sexy::SimFishScreen::RenameSelectedFish(SexyString theName)

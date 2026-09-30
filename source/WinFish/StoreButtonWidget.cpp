@@ -192,7 +192,7 @@ void Sexy::StoreButtonWidget::Bought()
 	SetUpButton(nullptr, 0);
 	HandleMouseEvent(false);
 	mMouseVisible = false;
-	m0x12c = "SOLD";
+	m0x12c = lz("SOLD");
 }
 
 void Sexy::StoreButtonWidget::SetProductType(int theType, int theImageCel, int thePrice)

@@ -403,17 +403,17 @@ void Sexy::Penta::Remove(bool removeShadow)
 	if (mApp->mRelaxMode)
 	{
 		if (ShouldDie())
-			mApp->mBoard->ShowText("The purple guys eat coins!", false, 34);
+			mApp->mBoard->ShowText(lz("The purple guys eat coins!"), false, 34);
 	}
 	else
 	{
 		if (mApp->mBoard->IsTankAndLevelNB(2, 2) && ShouldDie())
 		{
 			if(mApp->mBoard->mMessageShown[35])
-				mApp->mBoard->ShowText("Hint: Star potions allow guppies to produce stars!", false, 36);
+				mApp->mBoard->ShowText(lz("Hint: Star potions allow guppies to produce stars!"), false, 36);
 			if(mApp->mBoard->mMessageShown[34])
-				mApp->mBoard->ShowText("Hint: Starcatchers need stars to stay alive!", false, 35);
-			mApp->mBoard->ShowText("Warning! Your starcatcher has died!", false, 34);
+				mApp->mBoard->ShowText(lz("Hint: Starcatchers need stars to stay alive!"), false, 35);
+			mApp->mBoard->ShowText(lz("Warning! Your starcatcher has died!"), false, 34);
 		}
 	}
 }

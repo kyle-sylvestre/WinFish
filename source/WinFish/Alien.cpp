@@ -532,7 +532,7 @@ bool Sexy::Alien::Shot(int x, int y)
 		if (mApp->mBoard->mCyraxPtr == nullptr)
 		{
 			mHealth += mApp->mBoard->m0x3e4 * 3;
-			mApp->mBoard->ShowText("Stop shooting! Alien regains health!", true, -1);
+			mApp->mBoard->ShowText(lz("Stop shooting! Alien regains health!"), true, -1);
 		}
 	}
 	else if (mAlienType == ALIEN_DESTRUCTOR || mAlienType == ALIEN_ULYSEES)

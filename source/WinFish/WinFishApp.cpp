@@ -225,7 +225,7 @@ WinFishApp::WinFishApp()
 
 	mProdName = "Insaniquarium";
 	
-	mTitle = SexyString("Insaniquarium Deluxe " + mProductVersion);
+	//mTitle = SexyString(lz("Insaniquarium Deluxe ") + mProductVersion);
 	
 	mRegKey = "PopCap/Insaniquarium";
 	mScreenSaverRegKey = "ScreenSaver/";
@@ -372,6 +372,12 @@ void Sexy::WinFishApp::Init()
 	mMuteOnLostFocus = true;
 
 	SexyApp::Init();
+    
+    mTitle = SexyString(lz("Insaniquarium Deluxe ") + mProductVersion);
+    
+#if !defined(__SWITCH__)
+    SDL_SetWindowTitle((SDL_Window *)mWindow, mTitle.c_str());
+#endif
 
 	if (CheckForVista())
 	{
@@ -643,7 +649,7 @@ void Sexy::WinFishApp::URLOpenFailed(const std::string& theURL)
 	KillDialog(DIALOG_URL_INFO);
 	CopyToClipboard(theURL);
 
-	DoDialog(DIALOG_URL_INFO, true, "Open Browser", "Please open the following URL in your browser\n\n\n\nFor your convenience, this URL has already been copied to your clipboard.", "OK", Dialog::BUTTONS_FOOTER);
+	DoDialog(DIALOG_URL_INFO, true, lz("Open Browser"), "Please open the following URL in your browser\n\n\n\nFor your convenience, this URL has already been copied to your clipboard.", lz("OK"), Dialog::BUTTONS_FOOTER);
 }
 
 void Sexy::WinFishApp::URLOpenSucceeded(const std::string& theURL)
@@ -654,7 +660,7 @@ void Sexy::WinFishApp::URLOpenSucceeded(const std::string& theURL)
 
 bool Sexy::WinFishApp::OpenURL(const std::string& theURL, bool shutdownOnOpen)
 {
-	DoDialog(DIALOG_URL_INFO, true, "Opening Browser", "Opening Browser", "", Dialog::BUTTONS_NONE);
+	DoDialog(DIALOG_URL_INFO, true, lz("Opening Browser"), lz("Opening Browser"), "", Dialog::BUTTONS_NONE);
 	DrawDirtyStuff();
 	return SexyApp::OpenURL(theURL, shutdownOnOpen);
 }
@@ -832,7 +838,7 @@ void Sexy::WinFishApp::ButtonDepress(int theId)
 					mIsRegistered = true;
 					mWidgetManager->MarkAllDirty();
 					if (mTitleScreen == nullptr)
-						DoDialog(DIALOG_THANKS_FOR_REGISTER, true, "Thanks!", "Thank you for registering Insaniquarium!", "Ok", Dialog::BUTTONS_FOOTER);
+						DoDialog(DIALOG_THANKS_FOR_REGISTER, true, lz("Thanks!"), lz("Thank you for registering Insaniquarium!"), lz("Ok"), Dialog::BUTTONS_FOOTER);
 					else
 						mTitleScreen->RegisterSuccessful();
 				}
@@ -1438,9 +1444,9 @@ bool Sexy::WinFishApp::ShouldKillDialog()
 
 void Sexy::WinFishApp::DoLeaveGameDialog()
 {
-	Dialog* aDia = DoDialog(DIALOG_LEAVE_GAME, true, "Leave Game?", "Do you want to return to the\nmain menu?\n\nYour game will be saved.", "", Dialog::BUTTONS_YES_NO);
-	aDia->mYesButton->mLabel = "LEAVE";
-	aDia->mNoButton->mLabel = "CANCEL";
+	Dialog* aDia = DoDialog(DIALOG_LEAVE_GAME, true, lz("Leave Game?"), lz("Do you want to return to the\nmain menu?\n\nYour game will be saved."), "", Dialog::BUTTONS_YES_NO);
+	aDia->mYesButton->mLabel = lz("LEAVE");
+	aDia->mNoButton->mLabel = lz("CANCEL");
 }
 
 void Sexy::WinFishApp::DoLostFocusDialog()
@@ -1453,7 +1459,7 @@ void Sexy::WinFishApp::DoLostFocusDialog()
             mBoard->SaveCurrentGame();
 			mBoard->PauseGame(true);
 			CleanDialogs();
-			DoDialog(DIALOG_LOST_FOCUS, true, "GAME PAUSED", "Click to resume game", "Resume game", Dialog::BUTTONS_FOOTER);
+			DoDialog(DIALOG_LOST_FOCUS, true, lz("GAME PAUSED"), lz("Click to resume game"), lz("Resume Game"), Dialog::BUTTONS_FOOTER);
 		}
 	}
 }
@@ -1479,8 +1485,8 @@ void Sexy::WinFishApp::DoScreenSaverDialog()
 
 void Sexy::WinFishApp::DoAreYouSureSellDialog(const SexyString& theLine)
 {
-	Dialog* aDia = DoDialog(DIALOG_SELL_DIALOG, true, "ARE YOU SURE?", theLine, "", Dialog::BUTTONS_OK_CANCEL);
-	aDia->mYesButton->mLabel = "Sell";
+	Dialog* aDia = DoDialog(DIALOG_SELL_DIALOG, true, lz("ARE YOU SURE?"), theLine, "", Dialog::BUTTONS_OK_CANCEL);
+	aDia->mYesButton->mLabel = lz("Sell");
 	int aDiaY = 250;
 	if (mSimFishScreen == nullptr)
 		aDiaY = 60;
@@ -1497,9 +1503,9 @@ void Sexy::WinFishApp::OpenPrestoDialog(GameObject* thePet)
 
 void Sexy::WinFishApp::DoConfirmPurchaseDialog(const SexyString& theLine)
 {
-	Dialog* aDia = DoDialog(DIALOG_CONFIRM_PURCHASE, true, "Confirm Purchase", theLine, "", Dialog::BUTTONS_OK_CANCEL);
+	Dialog* aDia = DoDialog(DIALOG_CONFIRM_PURCHASE, true, lz("Confirm Purchase"), theLine, "", Dialog::BUTTONS_OK_CANCEL);
 
-	aDia->mYesButton->mLabel = "BUY";
+	aDia->mYesButton->mLabel = lz("BUY");
 	int aPrefHght = aDia->GetPreferredHeight(350);
 	aDia->Resize(aDia->mX, aDia->mY, 350, aPrefHght);
 }
@@ -1529,7 +1535,7 @@ void Sexy::WinFishApp::DoFoodDialog()
 void Sexy::WinFishApp::DoTimesUpDialog()
 {
 	CleanDialogs();
-	DoDialogUnkF(DIALOG_TIMES_UP, true, "TIME\'S UP!", StrFormat("Your %d minutes are up!", mBoard->m0x3bc / 60), "Click for Results", Dialog::BUTTONS_FOOTER);
+	DoDialogUnkF(DIALOG_TIMES_UP, true, lz("TIME\'S UP!"), StrFormat(lzcstr("Your %d minutes are up!"), mBoard->m0x3bc / 60), lz("Click for Results"), Dialog::BUTTONS_FOOTER);
 }
 
 void Sexy::WinFishApp::DoRegisterDialog()
@@ -1546,15 +1552,15 @@ void Sexy::WinFishApp::DoRegisterDialog()
 	}
 	else
 	{
-		DoDialog(DIALOG_INFO, true, "Already Registered", "You have already registered Insaniquarium.", "OK", Dialog::BUTTONS_FOOTER);
+		DoDialog(DIALOG_INFO, true, lz("Already Registered"), lz("You have already registered Insaniquarium."), lz("OK"), Dialog::BUTTONS_FOOTER);
 	}
 }
 
 void Sexy::WinFishApp::DoInvalidCodeDialog()
 {
-	DoDialog(DIALOG_INVALID_CODE, true, "Invalid Code", 
-		"The license code you entered is not valid for that name.\n\nMake sure the name and registration number are entered correctly.", 
-		"OK", Dialog::BUTTONS_FOOTER);
+	DoDialog(DIALOG_INVALID_CODE, true, lz("Invalid Code"), 
+		lz("The license code you entered is not valid for that name.\n\nMake sure the name and registration number are entered correctly."), 
+		lz("OK"), Dialog::BUTTONS_FOOTER);
 }
 
 void Sexy::WinFishApp::DoDialogUnkF(int theId, bool isModal, const SexyString& theDiaHeader, const SexyString& theDiaLines, const SexyString& theDiaFooter, int theBtnMode)
@@ -1608,7 +1614,7 @@ void Sexy::WinFishApp::ApplyGiveShells(bool doApply)
 
 		if (mCurrentProfile->mShells < aShells)
 		{
-			DoDialog(DIALOG_INFO, true, "Not Enough Shells", "You don\'t have that many shells to transfer.", "OK", Dialog::BUTTONS_FOOTER);
+			DoDialog(DIALOG_INFO, true, lz("Not Enough Shells"), lz("You don\'t have that many shells to transfer."), lz("OK"), Dialog::BUTTONS_FOOTER);
 			return;
 		}
 
@@ -1616,7 +1622,7 @@ void Sexy::WinFishApp::ApplyGiveShells(bool doApply)
 		UserProfile* aProf = mProfileMgr->GetUserProfile(aSelUserName);
 		if (!aProf)
 		{
-			DoDialog(DIALOG_INFO, true, "Choose User", "Please choose a user from the list.", "OK", Dialog::BUTTONS_FOOTER);
+			DoDialog(DIALOG_INFO, true, lz("Choose User"), lz("Please choose a user from the list."), lz("OK"), Dialog::BUTTONS_FOOTER);
 			return;
 		}
 		if (aProf != mCurrentProfile)
@@ -1708,7 +1714,7 @@ void Sexy::WinFishApp::ApplyFishNameDialog()
 	inlineTrim(aFishName);
 	if (aFishName.length() == 0)
 	{
-		DoDialog(DIALOG_INFO, true, "Invalid Name", "Names must be one or more letters in length", "OK", Dialog::BUTTONS_FOOTER);
+		DoDialog(DIALOG_INFO, true, lz("Invalid Name"), lz("Names must be one or more letters in length"), lz("OK"), Dialog::BUTTONS_FOOTER);
 	}
 	else
 	{
@@ -1883,8 +1889,8 @@ void Sexy::WinFishApp::SwitchToBoard(bool theFlag1, bool theFlag2)
 void Sexy::WinFishApp::DoQuitDialog()
 {
 #if !defined(__ANDROID__)
-	Dialog* aDia = DoDialog(DIALOG_QUIT_GAME, true, "Quit", "Stop the insanity?", "", Dialog::BUTTONS_OK_CANCEL);
-	aDia->mYesButton->mLabel = "Quit";
+	Dialog* aDia = DoDialog(DIALOG_QUIT_GAME, true, lz("Quit"), lz("Stop the insanity?"), "", Dialog::BUTTONS_OK_CANCEL);
+	aDia->mYesButton->mLabel = lz("Quit");
 #endif
 }
 
@@ -2032,14 +2038,14 @@ void Sexy::WinFishApp::ApplyOptionsSettings()
 
 void Sexy::WinFishApp::DoTrialVersionExpiredDialog()
 {
-	Dialog* aDia = DoDialog(3, true, "PLEASE REGISTER!", "Your trial version of Insaniquarium has expired!\n\nYou must register your copy\nto continue playing.", "", Dialog::BUTTONS_OK_CANCEL);
-	aDia->mYesButton->mLabel = "Register";
-	aDia->mNoButton->mLabel = "Quit";
+	Dialog* aDia = DoDialog(3, true, lz("PLEASE REGISTER!"), lz("Your trial version of Insaniquarium has expired!\n\nYou must register your copy\nto continue playing."), "", Dialog::BUTTONS_OK_CANCEL);
+	aDia->mYesButton->mLabel = lz("Register");
+	aDia->mNoButton->mLabel = lz("Quit");
 }
 
 void Sexy::WinFishApp::DoUpdateDialog()
 {
-	Dialog* aDia = DoDialog(DIALOG_UPDATE_ASK, true, "Updates", "Do you want to check for updates to Insaniquarium? New versions may offer new features and bug fixes.  This requires an active Internet connection.", "", Dialog::BUTTONS_YES_NO);
+	Dialog* aDia = DoDialog(DIALOG_UPDATE_ASK, true, lz("Updates"), "Do you want to check for updates to Insaniquarium? New versions may offer new features and bug fixes.  This requires an active Internet connection.", "", Dialog::BUTTONS_YES_NO);
 	int aPrefHeight = aDia->GetPreferredHeight(348);
 	aDia->Resize(146, 50, 348, aPrefHeight);
 }
@@ -2114,7 +2120,7 @@ void Sexy::WinFishApp::MakeNewUser(bool makeUser)
 
 	if (makeUser && aNewUserName.size() == 0)
 	{
-		DoDialog(DIALOG_INFO_NEW_USER, true, "Enter Your Name", "Please enter your name to create a new user profile for storing high score data and game progress.", "OK", Dialog::BUTTONS_FOOTER);
+		DoDialog(DIALOG_INFO_NEW_USER, true, lz("Enter Your Name"), lz("Please enter your name to create a new user profile for storing high score data and game progress."), lz("OK"), Dialog::BUTTONS_FOOTER);
 		return;
 	}
 	else
@@ -2131,9 +2137,9 @@ void Sexy::WinFishApp::MakeNewUser(bool makeUser)
 				UserProfile* aProf = mProfileMgr->MakeNewUser(&aNewUserName);
 				if (!aProf)
 				{
-					DoDialog(DIALOG_INFO_NEW_USER, true, "Name Conflict",
-						"The name you entered is already being used.  Please enter a unique player name.", 
-						"OK", Dialog::BUTTONS_FOOTER);
+					DoDialog(DIALOG_INFO_NEW_USER, true, lz("Name Conflict"),
+						lz("The name you entered is already being used.  Please enter a unique player name."), 
+						lz("OK"), Dialog::BUTTONS_FOOTER);
 					return;
 				}
 				else
@@ -2149,9 +2155,9 @@ void Sexy::WinFishApp::MakeNewUser(bool makeUser)
 			}
 		}
 
-		DoDialog(DIALOG_INFO_NEW_USER, true, "Enter Your Name",
-			"Please enter your name to create a new user profile for storing high score data and game progress.", 
-			"OK", Dialog::BUTTONS_FOOTER);
+		DoDialog(DIALOG_INFO_NEW_USER, true, lz("Enter Your Name"),
+			lz("Please enter your name to create a new user profile for storing high score data and game progress."), 
+			lz("OK"), Dialog::BUTTONS_FOOTER);
 		return;
 	}
 }
@@ -2694,13 +2700,13 @@ void Sexy::WinFishApp::DoGiveDialog()
 		return;
 	}
 
-	DoDialog(DIALOG_INFO, true, "Not Allowed", "You need to beat the first tank before you can transfer shells.", "OK", Dialog::BUTTONS_FOOTER);
+	DoDialog(DIALOG_INFO, true, lz("Not Allowed"), lz("You need to beat the first tank before you can transfer shells."), lz("OK"), Dialog::BUTTONS_FOOTER);
 }
 
 void Sexy::WinFishApp::DoDeleteWarningDialog(SexyString& theName)
 {
 	KillDialog(DIALOG_ARE_YOU_SURE_DELETE);
-	DoDialog(DIALOG_ARE_YOU_SURE_DELETE, true, "Are You Sure?", StrFormat("This will permanently remove \'%s\' from the player roster!", theName.c_str()), "", Dialog::BUTTONS_YES_NO);
+	DoDialog(DIALOG_ARE_YOU_SURE_DELETE, true, lz("Are You Sure?"), StrFormat(lzcstr("This will permanently remove \'%s\' from the player roster!"), theName.c_str()), "", Dialog::BUTTONS_YES_NO);
 }
 
 void Sexy::WinFishApp::RenameUser(bool makeUser)
@@ -2727,7 +2733,7 @@ void Sexy::WinFishApp::RenameUser(bool makeUser)
 		bool aSuccess = mProfileMgr->RenameUser(anOldName, aNewName);
 		if (!aSuccess)
 		{
-			DoDialog(DIALOG_NAME_CONFLICT, true, "Name Conflict", "The name you entered is already being used.  Please enter a unique player name.", "OK", Dialog::BUTTONS_FOOTER);
+			DoDialog(DIALOG_NAME_CONFLICT, true, lz("Name Conflict"), lz("The name you entered is already being used.  Please enter a unique player name."), lz("OK"), Dialog::BUTTONS_FOOTER);
 			return;
 		}
 

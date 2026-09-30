@@ -27,19 +27,19 @@ Sexy::BonusScreen::BonusScreen(WinFishApp* theApp)
 	mBubbleMgr->SetBubbleConfig(10, 3);
 	mBubbleMgr->UpdateALot();
 
-	mMenuButton = MakeDialogButton2(1, this, "Menu", IMAGE_MAINBUTTON);
+	mMenuButton = MakeDialogButton2(1, this, lz("Menu"), IMAGE_MAINBUTTON);
 	mMenuButton->Resize(525, 4, 80, mMenuButton->mHeight);
 	UserProfile* aCurProf = mApp->mCurrentProfile;
 	if (aCurProf->mTank == 5 && aCurProf->mLevel == 2)
 		mMenuButton->mVisible = false;
 
-	mContinueButton = MakeDialogButton2(0, this, "Click Here To Continue", IMAGE_MAINBUTTON);
+	mContinueButton = MakeDialogButton2(0, this, lz("Click Here To Continue"), IMAGE_MAINBUTTON);
 	mContinueButton->Resize(186, 445, 264, mContinueButton->mHeight);
 	mContinueButton->SetColor(0, Color(255, 240, 0));
 	mContinueButton->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 	if (mApp->mGameMode == GAMEMODE_CHALLENGE && mApp->mBoard)
 	{
-		mContinueButton->mLabel = "Click for Story Time";
+		mContinueButton->mLabel = lz("Click for Story Time");
 		mMenuButton->mVisible = false;
 	}
 
@@ -194,11 +194,11 @@ void Sexy::BonusScreen::Draw(Graphics* g)
 	g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 	g->SetColor(Color(255, 200, 0, 255));
 
-	SexyString aTitleStr = "BONUS RESULTS";
+	SexyString aTitleStr = lz("BONUS RESULTS");
 	if (mApp->mGameMode == GAMEMODE_CHALLENGE)
-		aTitleStr = "CHALLENGE RESULTS";
+		aTitleStr = lz("CHALLENGE RESULTS");
 	else if (mApp->mGameMode == GAMEMODE_TIME_TRIAL)
-		aTitleStr = "TIME TRIAL RESULTS";
+		aTitleStr = lz("TIME TRIAL RESULTS");
 
 	WriteCenteredLine(g, 25, aTitleStr);
 
@@ -220,15 +220,15 @@ void Sexy::BonusScreen::DrawOverlay(Graphics* g)
 		SexyString aStr = "";
 		if (aVal < 4)
 		{
-			aStr = StrFormat("Buy Bonus Pet #%d", aVal+1);
+			aStr = StrFormat(lzcstr("Buy Bonus Pet #%d"), aVal+1);
 		}
 		else if (aVal == 4)
 		{
-			aStr = StrFormat("Buy 4 Pet Limit");
+			aStr = StrFormat(lzcstr("Buy 4 Pet Limit"));
 		}
 		else if (aVal == 5)
 		{
-			aStr = StrFormat("Buy 7 Pet Virtual Tank Limit");
+			aStr = StrFormat(lzcstr("Buy 7 Pet Virtual Tank Limit"));
 			g->SetFont(FONT_CONTINUUMBOLD12OUTLINE);
 		}
 
@@ -251,7 +251,7 @@ void Sexy::BonusScreen::DrawOverlay(Graphics* g)
 
 		g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 		g->SetColor(Color(0xffffff));
-		SexyString aStr2 = StrFormat("for %s Shells", CommaSeperate(m0xd0).c_str());
+		SexyString aStr2 = StrFormat(lzcstr("for %s Shells"), CommaSeperate(m0xd0).c_str());
 		WriteWordWrapped(g, aRect, aStr2, -1, 0);
 	}
 
@@ -307,18 +307,18 @@ void Sexy::BonusScreen::ButtonDepress(int theId)
 	{
 		if (mApp->mCurrentProfile->mShells < m0xd0)
 		{
-			mApp->DoDialog(DIALOG_INFO, true, "Not Enough Shells", 
-				StrFormat("Sorry, but you need more Shells to purchase %s.  Keep playing to earn more!", 
-					mApp->mCurrentProfile->mBonusItemId < 4 ? "this Bonus Pet" : "this Bonus Upgrade"),
-				"OK", Dialog::BUTTONS_FOOTER);
+			mApp->DoDialog(DIALOG_INFO, true, lz("Not Enough Shells"), 
+				StrFormat(lzcstr("Sorry, but you need more Shells to purchase %s.  Keep playing to earn more!"),
+					mApp->mCurrentProfile->mBonusItemId < 4 ? lzcstr("this Bonus Pet") : lzcstr("this Bonus Upgrade")),
+				lz("OK"), Dialog::BUTTONS_FOOTER);
 		}
 		else if (mApp->mCurrentProfile->mBonusItemId < 4)
 		{
-			mApp->DoConfirmPurchaseDialog("Would you like to\nbuy this Bonus Pet?");
+			mApp->DoConfirmPurchaseDialog(lz("Would you like to\nbuy this Bonus Pet?"));
 		}
 		else
 		{
-			mApp->DoConfirmPurchaseDialog("Would you like to\nbuy this Bonus Upgrade?");
+			mApp->DoConfirmPurchaseDialog(lz("Would you like to\nbuy this Bonus Upgrade?"));
 		}
 	}
 }
@@ -385,24 +385,24 @@ void Sexy::BonusScreen::DrawMisc2(Graphics* g)
 		switch (aWhat)
 		{
 		case 0:
-			aTitleStr = "BRINKLEY the Scuba Diving Elephant!";
-			anInfoStr = "Likes: Peach muffins, all\nthings brown and sticky\nDislikes: Arugula";
+			aTitleStr = lz("BRINKLEY the Scuba Diving Elephant!");
+			anInfoStr = lz("Likes: Peach muffins, all\nthings brown and sticky\nDislikes: Arugula");
 			anImg = IMAGE_BRINKLEY;
 			aSpeed = 4;
 			break;
 		case 1:
-			aTitleStr = "NOSTRADAMUS the Nose!";
-			anInfoStr = "Little known fact:  NOSTRADAMUS\nis the long lost nose of ex-president\nRutherford B. Hayes.";
+			aTitleStr = lz("NOSTRADAMUS the Nose!");
+			anInfoStr = lz("Little known fact:  NOSTRADAMUS\nis the long lost nose of ex-president\nRutherford B. Hayes.");
 			anImg = IMAGE_NOSTRADAMUS;
 			break;
 		case 2:
-			aTitleStr = "STANLEY the Startlingly Small Sea Serpent!";
-			anInfoStr = "STANLEY knows no fear.. except\nthat of badgers, aprons,\nand badgers wearing aprons.";
+			aTitleStr = lz("STANLEY the Startlingly Small Sea Serpent!");
+			anInfoStr = lz("STANLEY knows no fear.. except\nthat of badgers, aprons,\nand badgers wearing aprons.");
 			anImg = IMAGE_STANLEY;
 			break;
 		case 3:
-			aTitleStr = "WALTER the Penguin!";
-			anInfoStr = "All shells used to purchase\nWALTER are donated to\nthe Falafel Foundation.\nFree the falafels!";
+			aTitleStr = lz("WALTER the Penguin!");
+			anInfoStr = lz("All shells used to purchase\nWALTER are donated to\nthe Falafel Foundation.\nFree the falafels!");
 			anImg = IMAGE_WALTER;
 			break;
 		default:
@@ -412,7 +412,7 @@ void Sexy::BonusScreen::DrawMisc2(Graphics* g)
 		g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 		g->SetColor(Color(0xffffff));
 
-		WriteWordWrapped(g, aDestWrap, "You Have Bought", -1, 0);
+		WriteWordWrapped(g, aDestWrap, lz("You Have Bought"), -1, 0);
 
 		if (m0xd4 >= 141)
 		{
@@ -435,12 +435,12 @@ void Sexy::BonusScreen::DrawMisc2(Graphics* g)
 
 		g->SetColor(Color(0xffc800));
 		g->SetFont(FONT_JUNGLEFEVER15OUTLINE);
-		WriteWordWrapped(g, aDestWrap, "Congratulations!", -1, 0);
+		WriteWordWrapped(g, aDestWrap, lz("Congratulations!"), -1, 0);
 
 		aDestWrap.mY += 35;
 		g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 		g->SetColor(Color(0xffffff));
-		WriteWordWrapped(g, aDestWrap, "You can now use", -1, 0);
+		WriteWordWrapped(g, aDestWrap, lz("You can now use"), -1, 0);
 
 		aDestWrap.mY += 20;
 		g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
@@ -449,19 +449,19 @@ void Sexy::BonusScreen::DrawMisc2(Graphics* g)
 		SexyString anIdkStr = "";
 		if (aWhat + 1 == 5)
 		{
-			aPetStr = "FOUR";
-			anIdkStr = "Four pets?!!!\nThat\'s INSANE!";
+			aPetStr = lz("FOUR");
+			anIdkStr = lz("Four pets?!!!\nThat\'s INSANE!");
 		}
 		else if (aWhat == 5)
 		{
-			aPetStr = "SEVEN";
+			aPetStr = lz("SEVEN");
 		}
 		WriteWordWrapped(g, aDestWrap, aPetStr, -1, 0);
 
 		aDestWrap.mY += 30;
 		g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 		g->SetColor(Color(0xffffff));
-		WriteWordWrapped(g, aDestWrap, "pets at the same time!", -1, 0);
+		WriteWordWrapped(g, aDestWrap, lz("pets at the same time!"), -1, 0);
 
 		if (aWhat == 5)
 		{
@@ -470,7 +470,7 @@ void Sexy::BonusScreen::DrawMisc2(Graphics* g)
 			g->DrawString("*", aDestWrap.mX + 223, aDestWrap.mY + 5);
 			aDestWrap.mY += 55;
 			g->DrawString("*", aDestWrap.mX + 60, aDestWrap.mY + 6);
-			WriteWordWrapped(g, aDestWrap, "Only applies to Virtual Tank.\nVoid where prohibited.", -1, 0);
+			WriteWordWrapped(g, aDestWrap, lz("Only applies to Virtual Tank.\nVoid where prohibited."), -1, 0);
 			aDestWrap.mY -= 35;
 			g->SetFont(aPrevFont);
 		}
@@ -515,7 +515,7 @@ void Sexy::BonusScreen::DrawMisc3(Graphics* g)
 	aDest1.mY = aYOff;
 	g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 	g->SetColor(Color(0xffc800));
-	aYOff += WriteWordWrapped(g, aDest1, "Shells", -1, 0);
+	aYOff += WriteWordWrapped(g, aDest1, lz("Shells"), -1, 0);
 	g->SetColor(Color(0xffffff));
 	g->FillRect(aXUnk3, aYOff, aWidthUnk1, 1);
 	g->SetColor(Color(0));
@@ -530,7 +530,7 @@ void Sexy::BonusScreen::DrawMisc3(Graphics* g)
 	g->DrawString(aRewardStr, aWidthUnk2 - g->GetFont()->StringWidth(aRewardStr), aYIdk);
 
 	g->SetColor(Color(0xffffff));
-	g->DrawString("New Balance", aXUnk3, aYOff + 40);
+	g->DrawString(lz("New Balance"), aXUnk3, aYOff + 40);
 
 	SexyString aUnkStr = CommaSeperate(m0xc4);
 	g->SetColor(Color(0xffff00));
@@ -541,14 +541,14 @@ void Sexy::BonusScreen::DrawMisc3(Graphics* g)
 		aDest1.mY = 360;
 		g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 		g->SetColor(Color(0xffffaa));
-		WriteWordWrapped(g, aDest1, "Keep playing to earn\nmore shells!", -1, 0);
+		WriteWordWrapped(g, aDest1, lz("Keep playing to earn\nmore shells!"), -1, 0);
 	}
 }
 
 void Sexy::BonusScreen::Init()
 {
-	mTitle = "Level Info";
-	mRewardString = "Bonus Reward";
+	mTitle = lz("Level Info");
+	mRewardString = lz("Bonus Reward");
 
 	if (mApp->mBoard == nullptr)
 	{
@@ -557,20 +557,20 @@ void Sexy::BonusScreen::Init()
 		switch (sBonusScreenType % 4)
 		{
 		case 0:
-			mCurScore1 = "Level Time";
+			mCurScore1 = lz("Level Time");
 			mCurScore2 = "23:10";
-			mBestScore1 = "Your Best Time";
+			mBestScore1 = lz("Your Best Time");
 			mBestScore2 = "15:23";
 		case 1:
-			mTitle = "Surviving Pets";
-			mCurScore1 = "Your Score";
+			mTitle = lz("Surviving Pets");
+			mCurScore1 = lz("Your Score");
 			mCurScore2 = "3";
-			mBestScore1 = "Your Best Score";
+			mBestScore1 = lz("Your Best Score");
 			mBestScore2 = "8";
 		case 2:
-			mCurScore1 = "Your Score";
+			mCurScore1 = lz("Your Score");
 			mCurScore2 = "25,000";
-			mBestScore1 = "Your Best Score";
+			mBestScore1 = lz("Your Best Score");
 			mBestScore2 = "32,125";
 		case 3:
 			mTitle = "";
@@ -586,8 +586,8 @@ void Sexy::BonusScreen::Init()
 			mBonusReward = mApp->mBoard->m0x3f4;
 			if (mApp->mBoard->mLevel > 5)
 				mTitle = "";
-			mCurScore1 = "Level Time";
-			mBestScore1 = "Your Best Time";
+			mCurScore1 = lz("Level Time");
+			mBestScore1 = lz("Your Best Time");
 			mCurScore2 = GetPlayTimeString(mApp->mBoard->m0x3fc);
 			mBestScore2 = GetPlayTimeString(mApp->mCurrentProfile->GetAdventureScore(mApp->mBoard->mTank, mApp->mBoard->mLevel));
 		}
@@ -599,9 +599,9 @@ void Sexy::BonusScreen::Init()
 			mBonusReward = aVal * 5000;
 			if (mBonusReward > 25000)
 				mBonusReward = 25000;
-			mTitle = "Surviving Pets";
-			mCurScore1 = "Your Score";
-			mBestScore1 = "Your Best Score";
+			mTitle = lz("Surviving Pets");
+			mCurScore1 = lz("Your Score");
+			mBestScore1 = lz("Your Best Score");
 			mCurScore2 = StrFormat("%d", mApp->mBoard->mFishTypePetList->size() + mApp->mBoard->mOtherTypePetList->size());
 			mBestScore2 = StrFormat("%d", mApp->mCurrentProfile->GetAdventureScore(5, 1));
 		}
@@ -609,9 +609,9 @@ void Sexy::BonusScreen::Init()
 	else if (mApp->mGameMode == GAMEMODE_TIME_TRIAL)
 	{
 		mBonusReward = mApp->mBoard->mMoney * 5 / 100;
-		mRewardString = StrFormat("%d%% Bonus Award", mBonusReward);
-		mCurScore1 = "Your Score";
-		mBestScore1 = "Your Best Score";
+		mRewardString = StrFormat(lzcstr("%d%% Bonus Award"), mBonusReward);
+		mCurScore1 = lz("Your Score");
+		mBestScore1 = lz("Your Best Score");
 		mCurScore2 = CommaSeperate(mApp->mBoard->mMoney);
 		mBestScore2 = CommaSeperate(mApp->mCurrentProfile->GetTimeTrialScore(mApp->mBoard->mTank));
 	}
@@ -632,8 +632,8 @@ void Sexy::BonusScreen::Init()
 			mBonusReward = 20000;
 			break;
 		}
-		mCurScore1 = "Level Time";
-		mBestScore1 = "Your Best Time";
+		mCurScore1 = lz("Level Time");
+		mBestScore1 = lz("Your Best Time");
 		mCurScore2 = GetPlayTimeString(mApp->mBoard->m0x3fc);
 		mBestScore2 = GetPlayTimeString(mApp->mCurrentProfile->GetChallengeScore(mApp->mBoard->mTank));
 	}

@@ -7,14 +7,14 @@
 #include "Res.h"
 
 Sexy::RegisterDialog::RegisterDialog(WinFishApp* theApp) :
-	MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_REGISTER, true, "Register Insaniquarium",
-		"You must obtain a registration code online and enter it below.", "", BUTTONS_OK_CANCEL)
+	MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_REGISTER, true, lz("Register Insaniquarium"),
+		lz("You must obtain a registration code online and enter it below."), "", BUTTONS_OK_CANCEL)
 {
 	mApp = theApp;
-	mYesButton->mLabel = "Register";
-	mNoButton->mLabel = "Cancel";
+	mYesButton->mLabel = lz("Register");
+	mNoButton->mLabel = lz("Cancel");
 
-	mGetCodeButton = MakeDialogButton(0, this, "CLICK HERE TO GET REGISTRATION CODE", nullptr);
+	mGetCodeButton = MakeDialogButton(0, this, lz("CLICK HERE TO GET REGISTRATION CODE"), nullptr);
 	mNameEditWidget = MakeEditWidget(0, this);
 	mNameEditWidget->SetColor(EditWidget::COLOR_TEXT, Color::White);
 
@@ -60,8 +60,8 @@ void Sexy::RegisterDialog::Draw(Graphics* g)
 	MoneyDialog::Draw(g);
 	g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 	g->SetColor(Color(0xffff00));
-	g->DrawString("YOUR NAME", mNameEditWidget->mX - mX, mNameEditWidget->mY - mY - 10);
-	g->DrawString("YOUR REGISTRATION CODE", mCodeEditWidget->mX - mX, mCodeEditWidget->mY - mY - 10);
+	g->DrawString(lz("YOUR NAME"), mNameEditWidget->mX - mX, mNameEditWidget->mY - mY - 10);
+	g->DrawString(lz("YOUR REGISTRATION CODE"), mCodeEditWidget->mX - mX, mCodeEditWidget->mY - mY - 10);
 	DrawEditWidgetBox(g, mNameEditWidget);
 	DrawEditWidgetBox(g, mCodeEditWidget);
 }

@@ -19,17 +19,17 @@ Sexy::HelpScreen::HelpScreen(WinFishApp* theApp, bool instructions)
 {
 	mApp = theApp;
 	mBubbleMgr = new BubbleMgr();
-	mContinueButton = MakeDialogButton(0, this, "Click Here To Continue", nullptr);
+	mContinueButton = MakeDialogButton(0, this, lz("Click Here To Continue"), nullptr);
 	mContinueButton->Resize(210, 415, 220, mContinueButton->mHeight);
 	mContinueButton->SetColor(DialogButton::COLOR_LABEL, Color(255, 240, 0));
 
-	mMenuButton = MakeDialogButton2(1, this, "Menu", IMAGE_MAINBUTTON);
+	mMenuButton = MakeDialogButton2(1, this, lz("Menu"), IMAGE_MAINBUTTON);
 	mMenuButton->Resize(525, 4, 80, mMenuButton->mHeight);
 
-	mPreviousButton = MakeDialogButton2(3, this, "Previous", IMAGE_MAINBUTTON);
+	mPreviousButton = MakeDialogButton2(3, this, lz("Previous"), IMAGE_MAINBUTTON);
 	mPreviousButton->Resize(190, 430, 120, mPreviousButton->mHeight);
 
-	mNextButton = MakeDialogButton2(2, this, "Next", IMAGE_MAINBUTTON);
+	mNextButton = MakeDialogButton2(2, this, lz("Next"), IMAGE_MAINBUTTON);
 	mNextButton->Layout(LAY_SameBottom | LAY_Right | LAY_SameHeight | LAY_SameWidth, mPreviousButton, 20);
 
 	if (!instructions)
@@ -39,7 +39,7 @@ Sexy::HelpScreen::HelpScreen(WinFishApp* theApp, bool instructions)
 		if (mApp->mBoard)
 		{
 			mMenuButton->Resize(480, 4, 125, mMenuButton->mHeight);
-			mMenuButton->mLabel = "Back to Game";
+			mMenuButton->mLabel = lz("Back to Game");
 		}
 		mBubbleMgr->mBubbleBounds = Rect(0, 80, 640, 400);
 		mBubbleMgr->mBubbleFishBounds = Rect(0, 80, 640, 350);
@@ -204,28 +204,28 @@ void Sexy::HelpScreen::Draw(Graphics* g)
 	switch (mPageIdx)
 	{
 	case 1:
-		aTabName = "THE BASICS";
+		aTabName = lz("THE BASICS");
 		break;
 	case 2:
-		aTabName = "UPGRADES";
+		aTabName = lz("UPGRADES");
 		break;
 	case 3:
-		aTabName = "PETS";
+		aTabName = lz("PETS");
 		break;
 	case 4:
-		aTabName = "GAME MODES";
+		aTabName = lz("GAME MODES");
 		break;
 	case 5:
-		aTabName = "VIRTUAL TANK";
+		aTabName = lz("VIRTUAL TANK");
 		break;
 	case 6:
-		aTabName = "VIRTUAL TANK FISH";
+		aTabName = lz("VIRTUAL TANK FISH");
 		break;
 	case 7:
-		aTabName = "CONFIGURING VIRTUAL TANK";
+		aTabName = lz("CONFIGURING VIRTUAL TANK");
 		break;
 	case 8:
-		aTabName = "CREDITS";
+		aTabName = lz("CREDITS");
 		break;
 	}
 
@@ -236,7 +236,7 @@ void Sexy::HelpScreen::Draw(Graphics* g)
 		DrawStringWithOutline(g, aTabName, 320 - FONT_CONTINUUMBOLD14->StringWidth(aTabName) / 2, 60, FONT_CONTINUUMBOLD14OUTLINE, 0);
 
 		g->SetColor(Color::White);
-		SexyString aTabPage = StrFormat("Page %d of 8", mPageIdx);
+		SexyString aTabPage = StrFormat(lzcstr("Page %d of 8"), mPageIdx);
 		DrawStringWithOutline(g, aTabPage, 320 - FONT_CONTINUUMBOLD14->StringWidth(aTabPage) / 2, 80,
 			FONT_CONTINUUMBOLD14OUTLINE, 0);
 	}
@@ -246,9 +246,9 @@ void Sexy::HelpScreen::Draw(Graphics* g)
 
 	g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 	g->SetColor(Color(0xff, 200, 0, 0xff));
-	SexyString aTitleString = "Instructions";
+	SexyString aTitleString = lz("Instructions");
 	if (mPageIdx != 0)
-		aTitleString = "Insaniquarium Help";
+		aTitleString = lz("Insaniquarium Help");
 
 	WriteCenteredLine(g, 25, aTitleString);
 }
@@ -377,8 +377,8 @@ void Sexy::HelpScreen::DrawInstrLeftPart(Graphics* g, Rect theRect)
 
 	DrawCursor(g, aFoodX, theRect.mY + 30, doMirror);
 
-	SexyString aStrLines[3] = { "Click on the tank" , "to drop food" , "for your fish." };
-	SexyString aStrTitle = "FEED ME";
+	SexyString aStrLines[3] = { lz("Click on the tank") , lz("to drop food") , lz("for your fish.") };
+	SexyString aStrTitle = lz("FEED ME");
 	DrawInstrText(g, theRect, aStrTitle, aStrLines, 3);
 }
 
@@ -433,8 +433,8 @@ void Sexy::HelpScreen::DrawInstrMiddlePart(Graphics* g, Rect theRect)
 
 	DrawCursor(g, aAroundCAlX, aAroundCAlY, false);
 
-	SexyString aTitleStr = "FEAR ME";
-	SexyString aLinesStr[2] = { "Use the mouse to" , "zap Aliens!" };
+	SexyString aTitleStr = lz("FEAR ME");
+	SexyString aLinesStr[2] = { lz("Use the mouse to") , lz("zap Aliens!") };
 	DrawInstrText(g, theRect, aTitleStr, aLinesStr, 2);
 }
 
@@ -442,8 +442,8 @@ void Sexy::HelpScreen::DrawInstrRightPart(Graphics* g, Rect theRect)
 {
 	g->DrawImageBox(theRect, IMAGE_FISHBOX);
 	g->DrawImage(IMAGE_EGGPIECES, (theRect.mWidth-IMAGE_EGGPIECES->mWidth) / 2 + theRect.mX, theRect.mY + 80);
-	SexyString aTitleStr = "FIND ME";
-	SexyString aLines[4] = { "Collect all 3 pieces" ,"of the egg to" ,"advance a level and" ,"gain a new pet!" };
+	SexyString aTitleStr = lz("FIND ME");
+	SexyString aLines[4] = { lz("Collect all 3 pieces") ,lz("of the egg to") ,lz("advance a level and") ,lz("gain a new pet!") };
 	DrawInstrText(g, theRect, aTitleStr, aLines, 4);
 }
 
@@ -487,16 +487,16 @@ void Sexy::HelpScreen::DrawInstrText(Graphics* g, Rect& theRect, SexyString& the
 
 void Sexy::HelpScreen::DrawTheBasicsPage(Graphics* g)
 {
-	DrawTabTitle(g, "Drop food for your fish to make them grow, then defend them from evil aliens!", 
-		"Collect coins to buy upgrades and Egg pieces.  Complete an Egg to level up!");
-	DrawVertTabText(g, 0, "Fish turn green when hungry!  Click on the tank to drop food.",
-		"Well fed fish grow larger, but unfed fish may starve!");
-	DrawVertTabText(g, 1, "Fish will drop coins for you.  Click on the coins to earn",
-		"money!  Bigger fish will drop more valuable coins.");
-	DrawVertTabText(g, 2, "Aliens will attack your fish!  Click on them to shoot.  Clicking",
-		"on the right side of the alien will make it move left, and so on.");
-	DrawVertTabText(g, 3, "Click buttons at the top to buy new upgrades.  Buy 3 Egg"
-	, "Pieces to finish the level and earn a new pet!");
+	DrawTabTitle(g, lz("Drop food for your fish to make them grow, then defend them from evil aliens!"), 
+		lz("Collect coins to buy upgrades and Egg pieces.  Complete an Egg to level up!"));
+	DrawVertTabText(g, 0, lz("Fish turn green when hungry!  Click on the tank to drop food."),
+		lz("Well fed fish grow larger, but unfed fish may starve!"));
+	DrawVertTabText(g, 1, lz("Fish will drop coins for you.  Click on the coins to earn"),
+		lz("money!  Bigger fish will drop more valuable coins."));
+	DrawVertTabText(g, 2, lz("Aliens will attack your fish!  Click on them to shoot.  Clicking"),
+		lz("on the right side of the alien will make it move left, and so on."));
+	DrawVertTabText(g, 3, lz("Click buttons at the top to buy new upgrades.  Buy 3 Egg")
+	, lz("Pieces to finish the level and earn a new pet!"));
 
 	Rect aRect = GetLeftRectVertTab(0, 4);
 	g->DrawImageCel(IMAGE_HUNGRYSWIM, aRect.mWidth / 2 - 40 + aRect.mX, aRect.mHeight / 2 - 40 + aRect.mY, mUpdateCnt/3%10, 0);
@@ -522,16 +522,16 @@ void Sexy::HelpScreen::DrawTheBasicsPage(Graphics* g)
 
 void Sexy::HelpScreen::DrawUpgradesPage(Graphics* g)
 {
-	DrawTabTitle(g, "There are several upgrades you can purchase if you have enough money.",
-		"Click on the buttons at the top of the screen to buy the ones you want.");
-	DrawVertTabText(g, 0, "You can buy new fish for your tank!  Click on the appropriate",
-		"button to buy a new Guppy or Carnivore, if you can afford it.");
-	DrawVertTabText(g, 1, "You can upgrade the quality of your food pellets.  Better food",
-		"will feed fish for a longer time and make them grow faster.");
-	DrawVertTabText(g, 2, "You can also increase the number of food pellets you can",
-		"drop at once by upgrading your food quantity.");
-	DrawVertTabText(g, 3, "You can also increase the power of your anti-alien weapon."
-		, "More powerful weapons kill aliens in fewer clicks!");
+	DrawTabTitle(g, lz("There are several upgrades you can purchase if you have enough money."),
+		lz("Click on the buttons at the top of the screen to buy the ones you want."));
+	DrawVertTabText(g, 0, lz("You can buy new fish for your tank!  Click on the appropriate"),
+		lz("button to buy a new Guppy or Carnivore, if you can afford it."));
+	DrawVertTabText(g, 1, lz("You can upgrade the quality of your food pellets.  Better food"),
+		lz("will feed fish for a longer time and make them grow faster."));
+	DrawVertTabText(g, 2, lz("You can also increase the number of food pellets you can"),
+		lz("drop at once by upgrading your food quantity."));
+	DrawVertTabText(g, 3, lz("You can also increase the power of your anti-alien weapon.")
+		, lz("More powerful weapons kill aliens in fewer clicks!"));
 
 	Rect aRect = GetLeftRectVertTab(0, 4);
 	g->DrawImageCel(IMAGE_SMALLSWIM, aRect.mWidth / 2 - 40 + aRect.mX, aRect.mHeight / 2 - 40 + aRect.mY, mUpdateCnt / 3 % 10, 0);
@@ -571,16 +571,16 @@ void Sexy::HelpScreen::DrawUpgradesPage(Graphics* g)
 
 void Sexy::HelpScreen::DrawPetsPage(Graphics* g)
 {
-	DrawTabTitle(g, "You can finish a level by collecting all three pieces of an Egg.  Click on the",
-		"Egg Piece button in the control bar to buy an Egg Piece.");
-	DrawVertTabText(g, 0, "Advancing to the next level makes your egg hatch.  This gives you",
-		"a new pet!  Each pet has different powers to help you out.");
-	DrawVertTabText(g, 1, "ITCHY the Swordfish is one of the pets that you can get.",
-		"He will attack aliens that infiltrate your tank!");
-	DrawVertTabText(g, 2, "STINKY the Snail is another pet that you can get.",
-		"He roams the ground picking up stray coins for you!");
-	DrawVertTabText(g, 3, "You can only bring 3 pets into a level. If you have more than 3"
-		, "pets, you\'ll have to choose which 3 you want to have in the tank.");
+	DrawTabTitle(g, lz("You can finish a level by collecting all three pieces of an Egg.  Click on the"),
+		lz("Egg Piece button in the control bar to buy an Egg Piece."));
+	DrawVertTabText(g, 0, lz("Advancing to the next level makes your egg hatch.  This gives you"),
+		lz("a new pet!  Each pet has different powers to help you out."));
+	DrawVertTabText(g, 1, lz("ITCHY the Swordfish is one of the pets that you can get."),
+		lz("He will attack aliens that infiltrate your tank!"));
+	DrawVertTabText(g, 2, lz("STINKY the Snail is another pet that you can get."),
+		lz("He roams the ground picking up stray coins for you!"));
+	DrawVertTabText(g, 3, lz("You can only bring 3 pets into a level. If you have more than 3")
+		, lz("pets, you\'ll have to choose which 3 you want to have in the tank."));
 
 	Rect aRect = GetLeftRectVertTab(0, 4);
 	g->DrawImageCel(IMAGE_EGGPIECES, aRect.mWidth / 2 - 23 + aRect.mX, aRect.mHeight / 2 -18 + aRect.mY, 2);
@@ -597,32 +597,32 @@ void Sexy::HelpScreen::DrawPetsPage(Graphics* g)
 
 void Sexy::HelpScreen::DrawGameModesPage(Graphics* g)
 {
-	DrawTabTitle(g, "Insaniquarium has four different game modes that you can play!",
-		"They are Adventure, Time Trial, Challenge, and Virtual Tank.");
-	DrawVertTabText(g, 0, "Adventure is the main game mode.  In this mode, you",
-		"progress through multiple tanks and accumulate pets.");
-	DrawVertTabText(g, 1, "The goal of Time Trial mode is to collect as much",
-		"money as you can before the time runs out.");
-	DrawVertTabText(g, 2, "Challenge mode is for experts.  In this mode, you must",
-		"deal with price inflation and increasingly difficult aliens.");
-	DrawVertTabText(g, 3, "Virtual Tank is a Virtual Aquarium.  Use Shells earned in"
-		, "other modes to purchase items and fish for your tank!");
+	DrawTabTitle(g, lz("Insaniquarium has four different game modes that you can play!"),
+		lz("They are Adventure, Time Trial, Challenge, and Virtual Tank."));
+	DrawVertTabText(g, 0, lz("Adventure is the main game mode.  In this mode, you"),
+		lz("progress through multiple tanks and accumulate pets."));
+	DrawVertTabText(g, 1, lz("The goal of Time Trial mode is to collect as much"),
+		lz("money as you can before the time runs out."));
+	DrawVertTabText(g, 2, lz("Challenge mode is for experts.  In this mode, you must"),
+		lz("deal with price inflation and increasingly difficult aliens."));
+	DrawVertTabText(g, 3, lz("Virtual Tank is a Virtual Aquarium.  Use Shells earned in")
+		, lz("other modes to purchase items and fish for your tank!"));
 
 	g->SetColor(Color(0xbbffbb));
 	g->SetFont(FONT_CONTINUUMBOLD12);
 
 	Rect aRect = GetLeftRectVertTab(0, 4);
-	DrawGameModesPageText(g, "Adventure", (aRect.mWidth - g->GetFont()->StringWidth("Adventure")) / 2 + aRect.mX, aRect.mY + 30);
+	DrawGameModesPageText(g, lz("Adventure"), (aRect.mWidth - g->GetFont()->StringWidth(lz("Adventure"))) / 2 + aRect.mX, aRect.mY + 30);
 
 	aRect = GetLeftRectVertTab(1, 4);
-	DrawGameModesPageText(g, "Time Trial", (aRect.mWidth - g->GetFont()->StringWidth("Time Trial")) / 2 + aRect.mX, aRect.mY + 30);
+	DrawGameModesPageText(g, lz("Time Trial"), (aRect.mWidth - g->GetFont()->StringWidth(lz("Time Trial"))) / 2 + aRect.mX, aRect.mY + 30);
 
 	aRect = GetLeftRectVertTab(2, 4);
-	DrawGameModesPageText(g, "Challenge", (aRect.mWidth - g->GetFont()->StringWidth("Challenge")) / 2 + aRect.mX, aRect.mY + 30);
+	DrawGameModesPageText(g, lz("Challenge"), (aRect.mWidth - g->GetFont()->StringWidth(lz("Challenge"))) / 2 + aRect.mX, aRect.mY + 30);
 
 	aRect = GetLeftRectVertTab(3, 4);
-	DrawGameModesPageText(g, "Virtual", (aRect.mWidth - g->GetFont()->StringWidth("Virtual")) / 2 + aRect.mX, aRect.mY + 18);
-	DrawGameModesPageText(g, "Tank", (aRect.mWidth - g->GetFont()->StringWidth("Tank")) / 2 + aRect.mX, aRect.mY + 37);
+	DrawGameModesPageText(g, lz("Virtual"), (aRect.mWidth - g->GetFont()->StringWidth(lz("Virtual"))) / 2 + aRect.mX, aRect.mY + 18);
+	DrawGameModesPageText(g, lz("Tank"), (aRect.mWidth - g->GetFont()->StringWidth(lz("Tank"))) / 2 + aRect.mX, aRect.mY + 37);
 }
 
 void Sexy::HelpScreen::DrawGameModesPageText(Graphics* g, SexyString theString, int theX, int theY)
@@ -636,16 +636,16 @@ void Sexy::HelpScreen::DrawGameModesPageText(Graphics* g, SexyString theString, 
 
 void Sexy::HelpScreen::DrawVirtualTankPage(Graphics* g)
 {
-	DrawTabTitle(g, "Virtual Tank is a Virtual Aquarium.  In it, you can buy, name,",
-		"take care of, and play with your own unique fish.");
-	DrawVertTabText(g, 0, "Access the Virtual Tank store from within Virtual Tank.",
-		"You must use Shells to buy items in the store.");
-	DrawVertTabText(g, 1, "You can earn Shells at certain times in all four",
-		"game modes.  Shells are the currency of Virtual Tank.");
-	DrawVertTabText(g, 2, "Items in the Virtual Tank store change daily with the real",
-		"world date so check back every day to see what\'s new!");
-	DrawVertTabText(g, 3, "Some items in the store are quite rare so make sure to"
-		, "check the store every day so you don\'t miss a rare item!");
+	DrawTabTitle(g, lz("Virtual Tank is a Virtual Aquarium.  In it, you can buy, name,"),
+		lz("take care of, and play with your own unique fish."));
+	DrawVertTabText(g, 0, lz("Access the Virtual Tank store from within Virtual Tank."),
+		lz("You must use Shells to buy items in the store."));
+	DrawVertTabText(g, 1, lz("You can earn Shells at certain times in all four"),
+		lz("game modes.  Shells are the currency of Virtual Tank."));
+	DrawVertTabText(g, 2, lz("Items in the Virtual Tank store change daily with the real"),
+		lz("world date so check back every day to see what\'s new!"));
+	DrawVertTabText(g, 3, lz("Some items in the store are quite rare so make sure to")
+		, lz("check the store every day so you don\'t miss a rare item!"));
 
 	g->SetColor(Color(0xbbffbb));
 	g->SetFont(FONT_CONTINUUMBOLD12);
@@ -678,16 +678,16 @@ void Sexy::HelpScreen::DrawVirtualTankPage(Graphics* g)
 
 void Sexy::HelpScreen::DrawVirtualTankFishPage(Graphics* g)
 {
-	DrawTabTitle(g, "Virtual Tank fish behave differently than fish in other game modes.",
-		"Here is a list of differences.");
-	DrawVertTabText(g, 0, "Virtual Tank fish want to eat three times a day.  They will",
-		"become unhappy if you don\'t feed them three times every day.");
-	DrawVertTabText(g, 1, "Fish in Virtual Tank will grow eventually.  The time",
-		"to grow is about one real world week if fed every day.", 0);
-	DrawVertTabText(g, 2, "To feed fish which don\'t eat the normal food that you drop by",
-		"clicking, press the \"Feed\" button on the Virtual Tank menu.");
-	DrawVertTabText(g, 3, "Virtual Tank fish can not die or be killed.  That\'s not"
-		, "to say that you shouldn\'t take care of them, though!");
+	DrawTabTitle(g, lz("Virtual Tank fish behave differently than fish in other game modes."),
+		lz("Here is a list of differences."));
+	DrawVertTabText(g, 0, lz("Virtual Tank fish want to eat three times a day.  They will"),
+		lz("become unhappy if you don\'t feed them three times every day."));
+	DrawVertTabText(g, 1, lz("Fish in Virtual Tank will grow eventually.  The time"),
+		lz("to grow is about one real world week if fed every day."), 0);
+	DrawVertTabText(g, 2, lz("To feed fish which don\'t eat the normal food that you drop by"),
+		lz("clicking, press the \"Feed\" button on the Virtual Tank menu."));
+	DrawVertTabText(g, 3, lz("Virtual Tank fish can not die or be killed.  That\'s not")
+		, lz("to say that you shouldn\'t take care of them, though!"));
 
 	g->SetColor(Color(0xbbffbb));
 	g->SetFont(FONT_CONTINUUMBOLD12);
@@ -758,16 +758,16 @@ void Sexy::HelpScreen::DrawVirtualTankFishPage(Graphics* g)
 
 void Sexy::HelpScreen::DrawConfigVirtualTankPage(Graphics* g)
 {
-	DrawTabTitle(g, "You can configure the Virtual Tank in several ways.",
-		"Here is a list of the options.");
-	DrawVertTabText(g, 0, "Press the \"Fish\" button to go to a screen where you can see",
-		"information about your fish as well as hide, show, and sell them.");
-	DrawVertTabText(g, 1, "Press the \"Pets\" button to select which pets you would like",
-		"to display in your Virtual Tank.");
-	DrawVertTabText(g, 2, "Press the \"Tank\" button to select which tank backdrop to display",
-		"and whether or not to show various items in your tank.");
-	DrawVertTabText(g, 3, "You can set Virtual Tank as your computer\'s Screensaver by"
-		, "pressing the \"Screensaver\" button on the \"Tank\" screen.", 0);
+	DrawTabTitle(g, lz("You can configure the Virtual Tank in several ways."),
+		lz("Here is a list of the options."));
+	DrawVertTabText(g, 0, lz("Press the \"Fish\" button to go to a screen where you can see"),
+		lz("information about your fish as well as hide, show, and sell them."));
+	DrawVertTabText(g, 1, lz("Press the \"Pets\" button to select which pets you would like"),
+		lz("to display in your Virtual Tank."));
+	DrawVertTabText(g, 2, lz("Press the \"Tank\" button to select which tank backdrop to display"),
+		lz("and whether or not to show various items in your tank."));
+	DrawVertTabText(g, 3, lz("You can set Virtual Tank as your computer\'s Screensaver by")
+		, lz("pressing the \"Screensaver\" button on the \"Tank\" screen."), 0);
 
 	g->SetColor(Color(0xbbffbb));
 	g->SetFont(FONT_CONTINUUMBOLD12);
@@ -791,16 +791,16 @@ void Sexy::HelpScreen::DrawCreditsPage(Graphics* g)
 	bool is3DAccel = mApp->Is3DAccelerated();
 	#define CREDITS_ROWS 11
 	SexyString aCreditsMatrix[CREDITS_ROWS][2] = {
-		{"Game Design", "George Fan"},
-		{"Producer", "Jason Kapalka, Sukhbir Sidhu"},
-		{"Programming", "George Fan, Thien Tran, Brian Rothstein"},
-		{"Technical Assistance", "David Parton"},
-		{"Art", "Josh Langley, Walter Wilson"},
-		{"Character Design", "George Fan"},
-		{"Music", "Jonne Valtonen, George Fan"},
-		{"PopCap Framework", "Brian Fiete, David Parton"},
-		{"Biz Dev","Don Walters"},
-		{"QA", "Eric Harman, Shawn Conard,"},
+		{lz("Game Design"), "George Fan"},
+		{lz("Producer"), "Jason Kapalka, Sukhbir Sidhu"},
+		{lz("Programming"), "George Fan, Thien Tran, Brian Rothstein"},
+		{lz("Technical Assistance"), "David Parton"},
+		{lz("Art"), "Josh Langley, Walter Wilson"},
+		{lz("Character Design"), "George Fan"},
+		{lz("Music"), "Jonne Valtonen, George Fan"},
+		{lz("PopCap Framework"), "Brian Fiete, David Parton"},
+		{lz("Biz Dev"),"Don Walters"},
+		{lz("QA"), "Eric Harman, Shawn Conard,"},
 		{"", "Brenna Flood, Chad Zoellner"}, };
 	
 	GLInterface* anInterface = mApp->mGLInterface;

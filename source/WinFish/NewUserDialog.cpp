@@ -8,8 +8,8 @@
 using namespace Sexy;
 
 Sexy::NewUserDialog::NewUserDialog(WinFishApp* theApp, bool theRename)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, theRename * 2 + DIALOG_NEW_USER, true, theRename ? "RENAME USER" : "NEW USER",
-		"\nPlease enter your name.", "", BUTTONS_OK_CANCEL)
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, theRename * 2 + DIALOG_NEW_USER, true, theRename ? lz("RENAME USER") : lz("NEW USER"),
+		lz("\nPlease enter your name."), "", BUTTONS_OK_CANCEL)
 {
 	SetButtonFont(FONT_JUNGLEFEVER12OUTLINE);
 	SetHeaderFont(FONT_JUNGLEFEVER15OUTLINE);

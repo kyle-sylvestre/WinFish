@@ -41,7 +41,7 @@ Sexy::StoreScreen::StoreScreen(WinFishApp* theApp)
 	mBoughtItemTimer = 0;
 	mSaveData = false;
 
-	mBackButton = MakeDialogButton(99, this, "Back", FONT_JUNGLEFEVER10OUTLINE);
+	mBackButton = MakeDialogButton(99, this, lz("Back"), FONT_JUNGLEFEVER10OUTLINE);
 	mBackButton->mColors[0] = Color(255, 240, 0);
 	mBackButton->Resize(6, 440, 113, mBackButton->mHeight);
 
@@ -179,27 +179,27 @@ void Sexy::StoreScreen::DrawOverlay(Graphics* g)
 			switch (mStoreButtons[mOverButtonId]->m0x14c)
 			{
 			case PRODUCT_SOLD:
-				aStr = "Sorry, this is sold out.\nCheck back tomorrow!";
+				aStr = lz("Sorry, this is sold out.\nCheck back tomorrow!");
 				break;
 			case PRODUCT_FISH:
 				aStr = mStoreButtons[mOverButtonId]->GetProduct(false)->GetStoreDescription();
 				break;
 			case PRODUCT_BUBBULATOR:
-				aStr = "Want to keep more fish\nin your tank?  Buy\nThe Bubbulator!";
+				aStr = lz("Want to keep more fish\nin your tank?  Buy\nThe Bubbulator!");
 				break;
 			case PRODUCT_BACKDROP:
-				aStr = "Keep your fish happy\nwith this beautiful\nnew backdrop!";
+				aStr = lz("Keep your fish happy\nwith this beautiful\nnew backdrop!");
 				break;
 			case PRODUCT_ALIEN_ATTRACTOR:
-				aStr = "Need more excitement\nin your tank?  Buy\nthe alien attractor!\nTrust me.  It\'s safe!";
+				aStr = lz("Need more excitement\nin your tank?  Buy\nthe alien attractor!\nTrust me.  It\'s safe!");
 				break;
 			case PRODUCT_UPGRADE:
-				aStr = "Your fish will\ngrow faster with\nthis food upgrade!";
+				aStr = lz("Your fish will\ngrow faster with\nthis food upgrade!");
 				break;
 			}
 		}
 		else
-			aStr = "Thanks for shopping at\nthe Fish Emporium!";
+			aStr = lz("Thanks for shopping at\nthe Fish Emporium!");
 
 		const char* newLineChar = strchr(aStr.c_str(), '\n');
 		int aNewLineCnt = 0;
@@ -277,27 +277,27 @@ void Sexy::StoreScreen::ButtonDepress(int theId)
 		StoreButtonWidget* aBtn = mStoreButtons[theId];
 		if (mApp->mCurrentProfile->mShells < aBtn->m0x128)
 		{
-			SexyString aStrExtension = "item";
+			SexyString aStrExtension = lz("item");
 			switch (aBtn->m0x14c)
 			{
 			case PRODUCT_FISH:
-				aStrExtension = "this fish";
+				aStrExtension = lz("this fish");
 				break;
 			case PRODUCT_BUBBULATOR:
-				aStrExtension = "the Bubbulator";
+				aStrExtension = lz("the Bubbulator");
 				break;
 			case PRODUCT_BACKDROP:
-				aStrExtension = "this backdrop";
+				aStrExtension = lz("this backdrop");
 				break;
 			case PRODUCT_ALIEN_ATTRACTOR:
-				aStrExtension = "the Alien Attractor";
+				aStrExtension = lz("the Alien Attractor");
 				break;
 			case PRODUCT_UPGRADE:
-				aStrExtension = "this upgrade";
+				aStrExtension = lz("this upgrade");
 				break;
 			}
 
-			mApp->DoDialog(DIALOG_INFO, true, "Not Enough Shells", StrFormat("Sorry, but you need more Shells to purchase %s.\n\nKeep playing to earn more!", aStrExtension.c_str()), "OK", Dialog::BUTTONS_FOOTER);
+			mApp->DoDialog(DIALOG_INFO, true, lz("Not Enough Shells"), StrFormat(lzcstr("Sorry, but you need more Shells to purchase %s.\n\nKeep playing to earn more!"), aStrExtension.c_str()), lz("OK"), Dialog::BUTTONS_FOOTER);
 		}
 		else
 		{
@@ -310,16 +310,16 @@ void Sexy::StoreScreen::ButtonDepress(int theId)
 				switch (mStoreButtonLast->m0x14c)
 				{
 				case PRODUCT_BUBBULATOR:
-					mApp->DoConfirmPurchaseDialog("Would you like to\nbuy The Bubbulator?");
+					mApp->DoConfirmPurchaseDialog(lz("Would you like to\nbuy The Bubbulator?"));
 					break;
 				case PRODUCT_BACKDROP:
-					mApp->DoConfirmPurchaseDialog("Would you like to\nbuy this backdrop?");
+					mApp->DoConfirmPurchaseDialog(lz("Would you like to\nbuy this backdrop?"));
 					break;
 				case PRODUCT_ALIEN_ATTRACTOR:
-					mApp->DoConfirmPurchaseDialog("Would you like to\nbuy the Alien Attractor?");
+					mApp->DoConfirmPurchaseDialog(lz("Would you like to\nbuy the Alien Attractor?"));
 					break;
 				case PRODUCT_UPGRADE:
-					mApp->DoConfirmPurchaseDialog("Would you like to\nupgrade your fish food?");
+					mApp->DoConfirmPurchaseDialog(lz("Would you like to\nupgrade your fish food?"));
 					break;
 				default:
 					break;
@@ -331,18 +331,18 @@ void Sexy::StoreScreen::ButtonDepress(int theId)
 				if (aNextId < 0)
 				{
 					if (mApp->mCurrentProfile->mBubbulatorBought == 0)
-						mApp->DoDialog(DIALOG_INFO, true, "Fishtank is Full", 
-							"You\'ll need to free up some room in your tank before you can buy another fish.  You can either buy a bubbulator or sell a fish back to us.", 
-							"OK", Dialog::BUTTONS_FOOTER);
+						mApp->DoDialog(DIALOG_INFO, true, lz("Fishtank is Full"), 
+							lz("You\'ll need to free up some room in your tank before you can buy another fish.  You can either buy a bubbulator or sell a fish back to us."), 
+							lz("OK"), Dialog::BUTTONS_FOOTER);
 					else
-						mApp->DoDialog(DIALOG_INFO, true, "Fishtank is Full", 
-							"You\'ll need to free up some room in your tank before you can buy another fish.", 
-							"OK", Dialog::BUTTONS_FOOTER);
+						mApp->DoDialog(DIALOG_INFO, true, lz("Fishtank is Full"), 
+							lz("You\'ll need to free up some room in your tank before you can buy another fish."), 
+							lz("OK"), Dialog::BUTTONS_FOOTER);
 				}
 				else
 				{
 					aProduct->mVirtualTankId = aNextId;
-					mApp->DoFishNamingDialog("Please choose a name for your fish.", aProduct->mName, true);
+					mApp->DoFishNamingDialog(lz("Please choose a name for your fish."), aProduct->mName, true);
 				}
 			}
 		}
@@ -766,14 +766,14 @@ Sexy::Fish* Sexy::StoreScreen::MakeSpecialFish(int theId)
 		aFish->mColors[1] = Color(0xffffff);
 		aFish->mVoracious = true;
 		aFish->mExoticDietFoodType = EXO_FOOD_ULTRA;
-		aFish->mName = "Rocky";
+		aFish->mName = lz("Rocky");
 		break;
 	}
 	case LUDWIG:
 	{
 		aFish = new Oscar(0, 0);
 		aFish->mSinging = true;
-		aFish->mName = "Ludwig";
+		aFish->mName = lz("Ludwig");
 		aFish->mHasSpecialColors = true;
 		aFish->mColors[0] = Color(0);
 		aFish->mColors[1] = Color(0x8df5be);
@@ -783,7 +783,7 @@ Sexy::Fish* Sexy::StoreScreen::MakeSpecialFish(int theId)
 	case COOKIE:
 	{
 		aFish = new Gekko(0, 0);
-		aFish->mName = "Cookie";
+		aFish->mName = lz("Cookie");
 		aFish->mExoticDietFoodType = 6;
 		break;
 	}
@@ -791,14 +791,14 @@ Sexy::Fish* Sexy::StoreScreen::MakeSpecialFish(int theId)
 	{
 		aFish = new Oscar(0, 0);
 		aFish->SetFishColors(mRand.Next() % 1000, true);
-		aFish->mName = "Johnny V.";
+		aFish->mName = lz("Johnny V.");
 		aFish->mExoticDietFoodType = EXO_FOOD_PIZZA;
 		break;
 	}
 	case KILGORE:
 	{
 		aFish = new Ultra(0, 0);
-		aFish->mName = "Kilgore";
+		aFish->mName = lz("Kilgore");
 		aFish->mVoracious = true;
 		aFish->mSinging = true;
 		break;

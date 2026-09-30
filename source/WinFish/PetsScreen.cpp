@@ -27,17 +27,17 @@ Sexy::PetsScreen::PetsScreen(WinFishApp* theApp)
 	m0x12c = -1;
 	m0x120 = 0;
 
-	mReturnButton = MakeDialogButton2(99, this, "Click Here To Continue", IMAGE_MAINBUTTON);
+	mReturnButton = MakeDialogButton2(99, this, lz("Click Here To Continue"), IMAGE_MAINBUTTON);
 
 	if (theApp->mGameMode == GAMEMODE_VIRTUAL_TANK)
 	{
-		mReturnButton->mLabel = "Return to Tank";
+		mReturnButton->mLabel = lz("Return to Tank");
 		mApp->StopMusic();
 		mApp->PlayMusic(2, 0);
 	}
 	mReturnButton->Resize(225, 250, 186, mReturnButton->mHeight);
 
-	mMenuButton = MakeDialogButton2(100, this, "Menu", IMAGE_MAINBUTTON);
+	mMenuButton = MakeDialogButton2(100, this, lz("Menu"), IMAGE_MAINBUTTON);
 
 	mMenuButton->Resize(525, 4, 80, mMenuButton->mHeight);
 
@@ -197,9 +197,9 @@ void Sexy::PetsScreen::DrawOverlay(Graphics* g)
 	g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 	g->SetColor(Color(0xff, 200, 0));
 	if (mApp->mGameMode == GAMEMODE_VIRTUAL_TANK)
-		g->DrawString("Add/Remove Pets", 215, 25);
+		g->DrawString(lz("Add/Remove Pets"), 215, 25);
 	else
-		g->DrawString("Choose Your Pets", 215, 25);
+		g->DrawString(lz("Choose Your Pets"), 215, 25);
 
 	if (m0x134 < 1 || m0x134 > 4)
 	{
@@ -214,16 +214,16 @@ void Sexy::PetsScreen::DrawOverlay(Graphics* g)
 
 	SexyString aStr1 = "";
 	if (mApp->mGameMode == GAMEMODE_VIRTUAL_TANK)
-		aStr1 = "to display in your tank";
+		aStr1 = lz("to display in your tank");
 	else
-		aStr1 = "to take to the next level";
+		aStr1 = lz("to take to the next level");
 
 	int aFreeSlots = m0x130 - m0x124;
 	SexyString aStr2 = "";
 	if (aFreeSlots > 1)
-		aStr2 = StrFormat("Choose %d more pets", aFreeSlots);
+		aStr2 = StrFormat(lzcstr("Choose %d more pets"), aFreeSlots);
 	else if (aFreeSlots == 1)
-		aStr2 = "Choose 1 more pet";
+		aStr2 = lz("Choose 1 more pet");
 	else
 		aStr1 = "";
 
@@ -308,14 +308,14 @@ void Sexy::PetsScreen::ButtonDepress(int theId)
 			}
 			else if(m0x130 < 4)
 			{
-				mApp->DoDialog(20, true, "Select More Pets?", 
-					"Are you sure you want to continue to the next level without selecting 3 pets?", 
+				mApp->DoDialog(20, true, lz("Select More Pets?"), 
+					lz("Are you sure you want to continue to the next level without selecting 3 pets?"), 
 					"", Dialog::BUTTONS_YES_NO);
 			}
 			else
 			{
-				mApp->DoDialog(20, true, "Select More Pets?", 
-					"Are you sure you want to continue to the next level without selecting at least 3 pets?", 
+				mApp->DoDialog(20, true, lz("Select More Pets?"), 
+					lz("Are you sure you want to continue to the next level without selecting at least 3 pets?"), 
 					"", Dialog::BUTTONS_YES_NO);
 			}
 		}
@@ -351,126 +351,126 @@ void Sexy::PetsScreen::DrawPetInfo(Graphics* g, int thePetId, int theAlpha)
 	switch (thePetId)
 	{
 	case PET_STINKY:
-		aStr1 = "STINKY roams around the";
-		aStr2 = "bottom of your tank, catching";
-		aStr3 = "any coins you may have missed.";
+		aStr1 = lz("STINKY roams around the");
+		aStr2 = lz("bottom of your tank, catching");
+		aStr3 = lz("any coins you may have missed.");
 		break;
 	case PET_NIKO:
-		aStr1 = "NIKO produces pearls that";
-		aStr2 = "you can click on for a";
-		aStr3 = "hefty sum of money.";
+		aStr1 = lz("NIKO produces pearls that");
+		aStr2 = lz("you can click on for a");
+		aStr3 = lz("hefty sum of money.");
 		aYDrawPet = 85;
 		break;
 	case PET_ITCHY:
-		aStr1 = "ITCHY helps you by attacking";
-		aStr2 = "aliens when they appear.";
+		aStr1 = lz("ITCHY helps you by attacking");
+		aStr2 = lz("aliens when they appear.");
 		aStr3 = "";
 		break;
 	case PET_PREGO:
-		aStr1 = "PREGO helps populate your";
-		aStr2 = "tank by giving birth to a new";
-		aStr3 = "baby guppy every so often.";
+		aStr1 = lz("PREGO helps populate your");
+		aStr2 = lz("tank by giving birth to a new");
+		aStr3 = lz("baby guppy every so often.");
 		break;
 	case PET_ZORF:
-		aStr1 = "ZORF gives you a hand in";
-		aStr2 = "keeping your fish fed.";
+		aStr1 = lz("ZORF gives you a hand in");
+		aStr2 = lz("keeping your fish fed.");
 		aStr3 = "";
 		break;
 	case PET_CLYDE:
-		aStr1 = "CLYDE drifts slowly through";
-		aStr2 = "your tank, collecting any";
-		aStr3 = "coins it passes by.";
+		aStr1 = lz("CLYDE drifts slowly through");
+		aStr2 = lz("your tank, collecting any");
+		aStr3 = lz("coins it passes by.");
 		break;
 	case PET_VERT:
-		aStr1 = "VERT drops gold coins just like";
-		aStr2 = "a large guppy, but doesn't need";
-		aStr3 = "fish food to survive.";
+		aStr1 = lz("VERT drops gold coins just like");
+		aStr2 = lz("a large guppy, but doesn\'t need");
+		aStr3 = lz("fish food to survive.");
 		break;
 	case PET_RUFUS:
-		aStr1 = "RUFUS does heavy damage to";
-		aStr2 = "enemies you've lured to the";
-		aStr3 = "bottom of the tank.";
+		aStr1 = lz("RUFUS does heavy damage to");
+		aStr2 = lz("enemies you\'ve lured to the");
+		aStr3 = lz("bottom of the tank.");
 		break;
 	case PET_MERYL:
-		aStr1 = "MERYL's song cheers up all the";
-		aStr2 = "guppies in the tank, making";
-		aStr3 = "them drop coins faster.";
+		aStr1 = lz("MERYL\'s song cheers up all the");
+		aStr2 = lz("guppies in the tank, making");
+		aStr3 = lz("them drop coins faster.");
 		break;
 	case PET_WADSWORTH:
-		aStr1 = "WADSWORTH helps by sheltering";
-		aStr2 = "your baby and medium guppies";
-		aStr3 = "from hungry aliens.";
+		aStr1 = lz("WADSWORTH helps by sheltering");
+		aStr2 = lz("your baby and medium guppies");
+		aStr3 = lz("from hungry aliens.");
 		break;
 	case PET_SEYMOUR:
-		aStr1 = "SEYMOUR's presence makes all";
-		aStr2 = "coins and diamonds drift";
-		aStr3 = "at a slower rate.";
+		aStr1 = lz("SEYMOUR\'s presence makes all");
+		aStr2 = lz("coins and diamonds drift");
+		aStr3 = lz("at a slower rate.");
 		break;
 	case PET_SHRAPNEL:
-		aStr1 = "SHRAPNEL drops bombs that";
-		aStr2 = "blow up fish on contact but";
-		aStr3 = "give lots of cash when clicked.";
+		aStr1 = lz("SHRAPNEL drops bombs that");
+		aStr2 = lz("blow up fish on contact but");
+		aStr3 = lz("give lots of cash when clicked.");
 		break;
 	case PET_GUMBO:
-		aStr1 = "GUMBO attracts guppies using";
-		aStr2 = "the lantern on his head,";
-		aStr3 = "luring them away from aliens.";
+		aStr1 = lz("GUMBO attracts guppies using");
+		aStr2 = lz("the lantern on his head,");
+		aStr3 = lz("luring them away from aliens.");
 		break;
 	case PET_BLIP:
-		aStr1 = "BLIP provides you with info";
-		aStr2 = "that helps you better combat";
-		aStr3 = "aliens and keep your fish fed.";
+		aStr1 = lz("BLIP provides you with info");
+		aStr2 = lz("that helps you better combat");
+		aStr3 = lz("aliens and keep your fish fed.");
 		break;
 	case PET_RHUBARB:
-		aStr1 = "RHUBARB snaps his claws at";
-		aStr2 = "fish, keeping them off the";
-		aStr3 = "bottom of your tank.";
+		aStr1 = lz("RHUBARB snaps his claws at");
+		aStr2 = lz("fish, keeping them off the");
+		aStr3 = lz("bottom of your tank.");
 		break;
 	case PET_NIMBUS:
-		aStr1 = "NIMBUS tosses any coins or";
-		aStr2 = "food he catches back up";
-		aStr3 = "toward the top of the tank.";
+		aStr1 = lz("NIMBUS tosses any coins or");
+		aStr2 = lz("food he catches back up");
+		aStr3 = lz("toward the top of the tank.");
 		break;
 	case PET_AMP:
-		aStr1 = "AMP can electrocute your";
-		aStr2 = "entire tank, killing your fish";
-		aStr3 = "and turning them into diamonds.";
+		aStr1 = lz("AMP can electrocute your");
+		aStr2 = lz("entire tank, killing your fish");
+		aStr3 = lz("and turning them into diamonds.");
 		aXDrawPet = 240;
 		break;
 	case PET_GASH:
-		aStr1 = "GASH viciously attacks aliens,";
-		aStr2 = "but will snack on one of";
-		aStr3 = "your guppies from time to time.";
+		aStr1 = lz("GASH viciously attacks aliens,");
+		aStr2 = lz("but will snack on one of");
+		aStr3 = lz("your guppies from time to time.");
 		break;
 	case PET_ANGIE:
-		aStr1 = "ANGIE has the ability to";
-		aStr2 = "resurrect dead fish.";
+		aStr1 = lz("ANGIE has the ability to");
+		aStr2 = lz("resurrect dead fish.");
 		aStr3 = "";
 		break;
 	case PET_PRESTO:
-		aStr1 = "Change PRESTO into";
-		aStr2 = "any of your other pets";
-		aStr3 = "by right-clicking on him.";
+		aStr1 = lz("Change PRESTO into");
+		aStr2 = lz("any of your other pets");
+		aStr3 = lz("by right-clicking on him.");
 		break;
 	case PET_WALTER:
-		aStr1 = "Likes: peach muffins, all";
-		aStr2 = "things brown and sticky";
-		aStr3 = "Dislikes: arugula";
+		aStr1 = lz("Likes: peach muffins, all");
+		aStr2 = lz("things brown and sticky");
+		aStr3 = lz("Dislikes: arugula");
 		break;
 	case PET_NOSTRADAMUS:
-		aStr1 = "Little known fact:  NOSTRADAMUS";
-		aStr2 = "is the nose of ex-president";
-		aStr3 = "Rutherford B. Hayes";
+		aStr1 = lz("Little known fact:  NOSTRADAMUS");
+		aStr2 = lz("is the nose of ex-president");
+		aStr3 = lz("Rutherford B. Hayes");
 		break;
 	case PET_STANLEY:
-		aStr1 = "STANLEY knows no fear.. except";
-		aStr2 = "that of badgers, aprons,";
-		aStr3 = "and badgers wearing aprons.";
+		aStr1 = lz("STANLEY knows no fear.. except");
+		aStr2 = lz("that of badgers, aprons,");
+		aStr3 = lz("and badgers wearing aprons.");
 		break;
 	case PET_BRINKLEY:
-		aStr1 = "Choosing this pet donates all";
-		aStr2 = "proceeds to the Falafel";
-		aStr3 = "Foundation. Free the falafels!";
+		aStr1 = lz("Choosing this pet donates all");
+		aStr2 = lz("proceeds to the Falafel");
+		aStr3 = lz("Foundation. Free the falafels!");
 		break;
 	default:
 		aStr1 = "";

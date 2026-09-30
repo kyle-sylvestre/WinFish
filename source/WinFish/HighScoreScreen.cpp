@@ -29,16 +29,16 @@ Sexy::HighScoreScreen::HighScoreScreen(WinFishApp* theApp)
 	mBubbleMgr->UpdateALot();
 
 	mPage = gHighScoreScreenPage;
-	mMenuButton = MakeDialogButton2(4, this, "Menu", IMAGE_MAINBUTTON);
+	mMenuButton = MakeDialogButton2(4, this, lz("Menu"), IMAGE_MAINBUTTON);
 	mMenuButton->Resize(525, 4, 80, mMenuButton->mHeight);
 
-	mAdvButton = MakeDialogButton2(PAGE_ADV, this, "Adventure", IMAGE_MAINBUTTON);
+	mAdvButton = MakeDialogButton2(PAGE_ADV, this, lz("Adventure"), IMAGE_MAINBUTTON);
 
-	mTimeTrialButton = MakeDialogButton2(PAGE_TIME, this, "Time Trial", IMAGE_MAINBUTTON);
+	mTimeTrialButton = MakeDialogButton2(PAGE_TIME, this, lz("Time Trial"), IMAGE_MAINBUTTON);
 
-	mChallengeButton = MakeDialogButton2(PAGE_CHAL, this, "Challenge", IMAGE_MAINBUTTON);
+	mChallengeButton = MakeDialogButton2(PAGE_CHAL, this, lz("Challenge"), IMAGE_MAINBUTTON);
 
-	mPersonalButton = MakeDialogButton2(PAGE_PERSONAL, this, "Personal", IMAGE_MAINBUTTON);
+	mPersonalButton = MakeDialogButton2(PAGE_PERSONAL, this, lz("Personal"), IMAGE_MAINBUTTON);
 
 	mAdvButton->Resize(20, 470 - mAdvButton->mHeight, 120, mAdvButton->mHeight);
 	mTimeTrialButton->Layout(LAY_SameBottom | LAY_Right | LAY_SameHeight | LAY_SameWidth,mAdvButton, 40);
@@ -101,16 +101,16 @@ void Sexy::HighScoreScreen::Draw(Graphics* g)
 	switch (mPage)
 	{
 	case PAGE_ADV:
-		aGameModeStr = "Adventure";
+		aGameModeStr = lz("Adventure");
 		break;
 	case PAGE_TIME:
-		aGameModeStr = "Time Trial";
+		aGameModeStr = lz("Time Trial");
 		break;
 	case PAGE_CHAL:
-		aGameModeStr = "Challenge";
+		aGameModeStr = lz("Challenge");
 		break;
 	case PAGE_PERSONAL:
-		aGameModeStr = "Personal Records";
+		aGameModeStr = lz("Personal Records");
 		DrawPersonalRecordsPage(g);
 		break;
 	default:
@@ -128,7 +128,7 @@ void Sexy::HighScoreScreen::Draw(Graphics* g)
 
 	g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 	g->SetColor(Color(0xff, 200, 0));
-	WriteCenteredLine(g, 25, "Hall of Fame");
+	WriteCenteredLine(g, 25, lz("Hall of Fame"));
 }
 
 void Sexy::HighScoreScreen::DrawGameModePage(Graphics* g)
@@ -165,7 +165,7 @@ void Sexy::HighScoreScreen::DrawGameModePage(Graphics* g)
 		g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 		g->SetColor(Color(0xff, 0xff, 100));
 
-		SexyString aTankStr = StrFormat("Tank %d", aTank);
+		SexyString aTankStr = StrFormat(lzcstr("Tank %d"), aTank);
 		int aTankStrWdth = g->GetFont()->StringWidth(aTankStr);
 
 		if (isAccel)
@@ -254,7 +254,7 @@ void Sexy::HighScoreScreen::DrawGameModePage(Graphics* g)
 
 	g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 	g->SetColor(Color(0xff, 0xff, 100));
-	SexyString aStr = "Tank 5 (Surviving Pets)";
+	SexyString aStr = lz("Tank 5 (Surviving Pets)");
 	int aStrWdth = g->GetFont()->StringWidth(aStr);
 	g->DrawString(aStr, 320 - aStrWdth / 2, 365);
 
@@ -315,7 +315,7 @@ void Sexy::HighScoreScreen::DrawPersonalRecordsPage(Graphics* g)
 		anInterface->PushTransform(aTransform2D);
 	}
 
-	SexyString aStr = "Adventure";
+	SexyString aStr = lz("Adventure");
 	int aStrWdth = g->GetFont()->StringWidth(aStr);
 	g->DrawString(aStr, 320 - aStrWdth / 2, 110);
 
@@ -330,11 +330,11 @@ void Sexy::HighScoreScreen::DrawPersonalRecordsPage(Graphics* g)
 		anInterface->PushTransform(aTransform2D);
 	}
 
-	aStr = "Time Trial";
+	aStr = lz("Time Trial");
 	aStrWdth = g->GetFont()->StringWidth(aStr);
 	g->DrawString(aStr, 173 - aStrWdth / 2, 290);
 
-	aStr = "Challenge";
+	aStr = lz("Challenge");
 	aStrWdth = g->GetFont()->StringWidth(aStr);
 	g->DrawString(aStr, 466 - aStrWdth / 2, 290);
 
@@ -400,10 +400,10 @@ void Sexy::HighScoreScreen::DrawPersonalRecordsPage(Graphics* g)
 		SetVaryingBlueColorGraphics(g, mUpdateCnt, aTextYPos);
 		g->SetColor(Color(0xffff88));
 
-		g->DrawString("Final Boss", 220, aTextYPos);
+		g->DrawString(lz("Final Boss"), 220, aTextYPos);
 
 		SetVaryingBlueColorGraphics(g, mUpdateCnt, aTextYPos);
-		g->DrawString(StrFormat("%d/18 Pets Saved", aFinalBossScore), 320, aTextYPos);
+		g->DrawString(StrFormat(lzcstr("%d/18 Pets Saved"), aFinalBossScore), 320, aTextYPos);
 
 		if (isAccel)
 			anInterface->PopTransform();
@@ -428,7 +428,7 @@ void Sexy::HighScoreScreen::DrawPersonalRecordsPage(Graphics* g)
 			SetVaryingBlueColorGraphics(g, mUpdateCnt, aTextYPos);
 			g->SetColor(Color(0xffff88));
 
-			g->DrawString(StrFormat("Tank %d", aTankNum), aTextXPos, aTextYPos);
+			g->DrawString(StrFormat(lzcstr("Tank %d"), aTankNum), aTextXPos, aTextYPos);
 			int aScore = -1;
 			if (i == 0)
 				aScore = mApp->mCurrentProfile->GetTimeTrialScore(aTankNum);

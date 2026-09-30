@@ -8,7 +8,7 @@
 #include "Res.h"
 
 Sexy::FishNamingDialog::FishNamingDialog(WinFishApp* theApp, const SexyString& theLine)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_FISH_NAMING, true, "Name Your Fish", theLine, "", BUTTONS_OK_CANCEL)
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_FISH_NAMING, true, lz("Name Your Fish"), theLine, "", BUTTONS_OK_CANCEL)
 {
 	mApp2 = theApp;
 	m0x164 = 12345;
@@ -62,7 +62,7 @@ void Sexy::FishNamingDialog::Draw(Graphics* g)
 		int startX = mBackgroundInsets.mLeft + mContentInsets.mLeft + 2;
 
 		Rect aWrappedRect = Rect(startX, 120, availableWidth, 0);
-		SexyString aStr = "Note: All fish come with a one day\nmoney back guarantee.";
+		SexyString aStr = lz("Note: All fish come with a one day\nmoney back guarantee.");
 		
 		WriteWordWrapped(g, aWrappedRect, aStr, mLinesFont->GetLineSpacing() + mLineSpacingOffset, mTextAlign);
 	}

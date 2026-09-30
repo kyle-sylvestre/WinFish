@@ -701,7 +701,7 @@ void Sexy::Fish::OnFoodAte(GameObject* obj)
                 if (mHunger > 30)
                     mHunger = 30;
 
-                mApp->mBoard->MakeNote(mX - 20 + mWidth / 2, mY - 5, 2, "YUK!");
+                mApp->mBoard->MakeNote(mX - 20 + mWidth / 2, mY - 5, 2, lz("YUK!"));
             }
             else if (mSize < 3) // 71
             {
@@ -750,13 +750,13 @@ void Sexy::Fish::OnFoodAte(GameObject* obj)
                 if (mApp->mBoard->mTank == 2 && mApp->mBoard->mLevel < 3 && !mApp->mCurrentProfile->mFinishedGame)
                 {
                     if (mApp->mBoard->mMessageShown[32])
-                        mApp->mBoard->ShowText("Hint: Feed star potions to BIG guppies!", false, 33);
+                        mApp->mBoard->ShowText(lz("Hint: Feed star potions to BIG guppies!"), false, 33);
                     if (mApp->mBoard->mMessageShown[31])
-                        mApp->mBoard->ShowText("Hint: Star potions are for big guppies only!", false, 32);
+                        mApp->mBoard->ShowText(lz("Hint: Star potions are for big guppies only!"), false, 32);
                     if (mApp->mBoard->mMessageShown[30])
-                        mApp->mBoard->ShowText("Hint: Only certain fish can handle star potions!", false, 31);
+                        mApp->mBoard->ShowText(lz("Hint: Only certain fish can handle star potions!"), false, 31);
 
-                    mApp->mBoard->ShowText("Warning! Use star potions carefully!", false, 30);
+                    mApp->mBoard->ShowText(lz("Warning! Use star potions carefully!"), false, 30);
                 }
 
                 mApp->mBoard->m0x49c++;
@@ -943,22 +943,22 @@ bool Fish::Hungry()
         if (mHunger == -1 && mBeginner)
         {
             if (mApp->mBoard->mMessageShown[23])
-                mApp->mBoard->ShowText("Fish are hungry! Click to drop food!", true, 24);
+                mApp->mBoard->ShowText(lz("Fish are hungry! Click to drop food!"), true, 24);
             if (mApp->mBoard->mMessageShown[8])
-                mApp->mBoard->ShowText("Fish are hungry! Click to drop food!", true, 23);
+                mApp->mBoard->ShowText(lz("Fish are hungry! Click to drop food!"), true, 23);
 
-            mApp->mBoard->ShowText("Fish are hungry! Click to drop food!", true, 8);
+            mApp->mBoard->ShowText(lz("Fish are hungry! Click to drop food!"), true, 8);
             return false;
         }
         if (mHunger == -200 && mBeginner && !mApp->mBoard->mMessageShown[21])
         {
-            mApp->mBoard->ShowText("Fish are REALLY hungry! Click to feed!", true, 21);
+            mApp->mBoard->ShowText(lz("Fish are REALLY hungry! Click to feed!"), true, 21);
             mApp->mBoard->PlaySample(SOUND_AWOOGA_ID, 3, 1.0);
             return false;
         }
         if (mHunger == -400 && mBeginner)
         {
-            mApp->mBoard->ShowText("Fish are about to die of hunger! Click on aquarium!", true, 22);
+            mApp->mBoard->ShowText(lz("Fish are about to die of hunger! Click on aquarium!"), true, 22);
             return false;
         }
         if (mHunger < -499 && mBeginner)
@@ -1344,11 +1344,11 @@ void Fish::DropCoin()
     if (mApp->mBoard->IsFirstLevel())
     {
         if (mApp->mBoard->mMessageShown[25])
-            mApp->mBoard->ShowText("Click on coins for extra money!", true, 26);
+            mApp->mBoard->ShowText(lz("Click on coins for extra money!"), true, 26);
         else if(mApp->mBoard->mMessageShown[5])
-            mApp->mBoard->ShowText("Click on coins for extra money!", true, 25);
+            mApp->mBoard->ShowText(lz("Click on coins for extra money!"), true, 25);
         else
-            mApp->mBoard->ShowText("Click on coins for extra money!", true, 5);
+            mApp->mBoard->ShowText(lz("Click on coins for extra money!"), true, 5);
     }
 }
 
@@ -1671,7 +1671,7 @@ void Sexy::Fish::FishOnGrow()
                 aBoard->mMessageShown[2] = true;
                 if (aBoard->mMessageWidget->mMessageTimer < 1)
                 {
-                    aBoard->ShowText("Your fish has grown! Good work!", false, 9);
+                    aBoard->ShowText(lz("Your fish has grown! Good work!"), false, 9);
                     return;
                 }
             }
@@ -1692,7 +1692,7 @@ void Sexy::Fish::FishOnGrow()
                     aBoard->mMessageShown[40] = true;
                     if (!aFinishedGame && aBoard->mMessageWidget->mMessageTimer < 1)
                     {
-                        aBoard->ShowText("Buy 3 egg pieces to complete level!", false, 7);
+                        aBoard->ShowText(lz("Buy 3 egg pieces to complete level!"), false, 7);
                         return;
                     }
                 }
@@ -1703,7 +1703,7 @@ void Sexy::Fish::FishOnGrow()
                 {
                     aBoard->mMessageShown[15] = true;
                     if (!aFinishedGame)
-                        aBoard->ShowText("Upgrade Food Quality to make food more nourishing!", false, 11);
+                        aBoard->ShowText(lz("Upgrade Food Quality to make food more nourishing!"), false, 11);
                     aBoard->MakeAndUnlockMenuButton(SlotTypes::SLOT_FOODLVL, true);
                     return;
                 }

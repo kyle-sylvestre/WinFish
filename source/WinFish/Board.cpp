@@ -794,7 +794,7 @@ void Board::Update()
 	}
 
 	if (mApp->mGameMode == GAMEMODE_VIRTUAL_TANK && mApp->mCurrentProfile->mShells == 0 && mGameUpdateCnt == 150) // 286
-		ShowText("Here you\'ll be able to build your own custom fish tank!", false, 44);
+		ShowText(lz("Here you\'ll be able to build your own custom fish tank!"), false, 44);
 
 	if (mRepeatFood)
 	{
@@ -935,7 +935,7 @@ void Board::Update()
 
 			if (m0x45c % aDifIncreaseProb == 0 && m0x45c != 0)
 			{
-                mMessageWidget->mMessage = "WARNING! ALIEN DIFFICULTY INCREASED!";
+                mMessageWidget->mMessage = lz("WARNING! ALIEN DIFFICULTY INCREASED!");
 				mMessageWidget->mIsBlinking = true;
 				mMessageWidget->mMessageTimer = 274;
 				mMessageWidget->mColor1 = Color(255, 50, 50, 255);
@@ -950,17 +950,17 @@ void Board::Update()
 				{
 					if (!mMessageShown[3] && IsTankAndLevelNB(1, 2))
 					{
-						mApp->DoDialogUnkF(DIALOG_INFO, true, "DANGER!", "A vicious alien is about to enter your tank! Defeat it with your laser weapon by clicking on it!", "Click to Continue", Dialog::BUTTONS_FOOTER);
+						mApp->DoDialogUnkF(DIALOG_INFO, true, lz("DANGER!"), lz("A vicious alien is about to enter your tank! Defeat it with your laser weapon by clicking on it!"), lz("Click to Continue"), Dialog::BUTTONS_FOOTER);
 						mMessageShown[3] = true;
 					}
 					else if (!mMessageShown[4] && IsTankAndLevelNB(1, 2))
 					{
-						mApp->DoDialogUnkF(DIALOG_INFO, true, "BATTLE TIP", "Shoot the alien\'s head to push it downwards! Shoot its tail to deflect it upwards!", "Click to Continue", Dialog::BUTTONS_FOOTER);
+						mApp->DoDialogUnkF(DIALOG_INFO, true, lz("BATTLE TIP"), lz("Shoot the alien\'s head to push it downwards! Shoot its tail to deflect it upwards!"), lz("Click to Continue"), Dialog::BUTTONS_FOOTER);
 						mMessageShown[4] = true;
 					}
 					else if (!mMessageShown[17] && IsTankAndLevelNB(2, 3))
 					{
-						mApp->DoDialogUnkF(DIALOG_INFO, true, "WARNING!", "A new breed of alien is fast approaching!  Lasers can\'t hurt this baddie, so find another way to defeat it!", "Click to Continue", Dialog::BUTTONS_FOOTER);
+						mApp->DoDialogUnkF(DIALOG_INFO, true, lz("WARNING!"), lz("A new breed of alien is fast approaching!  Lasers can\'t hurt this baddie, so find another way to defeat it!"), lz("Click to Continue"), Dialog::BUTTONS_FOOTER);
 						mMessageShown[17] = true;
 					}
 				}
@@ -969,25 +969,25 @@ void Board::Update()
 			{
 				if(!mMessageShown[46] && mLevel == 4 && mTank == 2 && (mAlienExpect == 9 || mAlienExpect == 10 
 					|| mAlienExpect == 11 || mAlienExpect == 12))
-					mMessageWidget->mMessage = "FOURTEEN ALIEN SIGNATURES DETECTED";
+					mMessageWidget->mMessage = lz("FOURTEEN ALIEN SIGNATURES DETECTED");
 				else
 				{
 					if (mAlienExpect == ALIEN_GUS)
-						mMessageWidget->mMessage = "ALIEN SIGNATURE TYPE-G DETECTED";
+						mMessageWidget->mMessage = lz("ALIEN SIGNATURE TYPE-G DETECTED");
 					else if (mAlienExpect == ALIEN_DESTRUCTOR)
-						mMessageWidget->mMessage = "ALIEN SIGNATURE TYPE-D DETECTED";
+						mMessageWidget->mMessage = lz("ALIEN SIGNATURE TYPE-D DETECTED");
 					else if (mAlienExpect == ALIEN_ULYSEES)
-						mMessageWidget->mMessage = "ALIEN SIGNATURE TYPE-U DETECTED";
+						mMessageWidget->mMessage = lz("ALIEN SIGNATURE TYPE-U DETECTED");
 					else if (mAlienExpect == ALIEN_PSYCHOSQUID)
-						mMessageWidget->mMessage = "ALIEN SIGNATURE TYPE-P DETECTED";
+						mMessageWidget->mMessage = lz("ALIEN SIGNATURE TYPE-P DETECTED");
 					else if (mAlienExpect == ALIEN_BILATERUS)
-						mMessageWidget->mMessage = "ALIEN SIGNATURE TYPE-II DETECTED";
+						mMessageWidget->mMessage = lz("ALIEN SIGNATURE TYPE-II DETECTED");
 					else if (mAlienExpect == 9 || mAlienExpect == 10 || mAlienExpect == 11 || mAlienExpect == 12)
-						mMessageWidget->mMessage = "MULTIPLE ALIEN SIGNATURES DETECTED";
+						mMessageWidget->mMessage = lz("MULTIPLE ALIEN SIGNATURES DETECTED");
 					else if (mAlienExpect == ALIEN_CYRAX)
-						mMessageWidget->mMessage = StrFormat("%s OF DOOM APPROACHING", GetCyraxEndGameString(mApp->mCurrentProfile->mCyraxNum + 1).c_str());
+						mMessageWidget->mMessage = StrFormat(lzcstr("%s OF DOOM APPROACHING"), GetCyraxEndGameString(mApp->mCurrentProfile->mCyraxNum + 1).c_str());
 					else
-						mMessageWidget->mMessage = "ENEMY APPROACHING";
+						mMessageWidget->mMessage = lz("ENEMY APPROACHING");
 				}
 				mMessageWidget->mIsBlinking = false;
 				mMessageWidget->mMessageTimer = 274;
@@ -1099,7 +1099,7 @@ void Board::Update()
 				if (!mMessageShown[46] && mLevel == 4 && mTank == 4 && (mAlienExpect == 9 || mAlienExpect == 10 ||
 					mAlienExpect == 11 || mAlienExpect == 12) && mAlienTimer == 100)
 				{
-					mMessageWidget->mMessage = "JUST KIDDING. ONLY TWO!";
+					mMessageWidget->mMessage = lz("JUST KIDDING. ONLY TWO!");
 					mMessageShown[46] = true;
 				}
 				if (mAlienTimer == 1)
@@ -1117,11 +1117,11 @@ void Board::Update()
 			{
 				mShouldSave = false;
 				Unk04();
-				mApp->DoDialogUnkF(DIALOG_GAME_OVER, true, "GAME OVER", "Oops!  All of your fish have died!", "Click to Continue", Dialog::BUTTONS_FOOTER);
+				mApp->DoDialogUnkF(DIALOG_GAME_OVER, true, lz("GAME OVER"), lz("Oops!  All of your fish have died!"), lz("Click to Continue"), Dialog::BUTTONS_FOOTER);
 			}
 			else
 			{
-				mApp->DoDialogUnkF(DIALOG_FIRST_LVL_GAME_OVER, true, "YOUR LAST FISH HAS DIED!", "Normally this would end your game, but this time we\'ll give you another fish to keep playing! Make sure you keep it well fed!", "Click to Continue", Dialog::BUTTONS_FOOTER);
+				mApp->DoDialogUnkF(DIALOG_FIRST_LVL_GAME_OVER, true, lz("YOUR LAST FISH HAS DIED!"), lz("Normally this would end your game, but this time we\'ll give you another fish to keep playing! Make sure you keep it well fed!"), lz("Click to Continue"), Dialog::BUTTONS_FOOTER);
 			}
 		}
 		if(mTank == 5)
@@ -1132,7 +1132,7 @@ void Board::Update()
 				mShouldSave = false;
 				if (mCyraxPtr != nullptr && mCyraxPtr->mMaxHealth - mCyraxPtr->mHealth > 1000.0)
 					mApp->mCurrentProfile->mFinishedGameCount++;
-				mApp->DoDialogUnkF(DIALOG_GAME_OVER, true, "GAME OVER", "Oops!  All of your pets have died!", "Click to Continue", Dialog::BUTTONS_FOOTER);
+				mApp->DoDialogUnkF(DIALOG_GAME_OVER, true, lz("GAME OVER"), lz("Oops!  All of your pets have died!"), lz("Click to Continue"), Dialog::BUTTONS_FOOTER);
 
 			}
 		}
@@ -1141,15 +1141,15 @@ void Board::Update()
 	if (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK)
 	{
 		if (mApp->mGameMode == GAMEMODE_ADVENTURE && IsTankAndLevelNB(1, 1) && mGameUpdateCnt == 150)
-			ShowText("Here are your first fish! Take good care of them!", false, 1);
+			ShowText(lz("Here are your first fish! Take good care of them!"), false, 1);
 		else if(mApp->mGameMode == GAMEMODE_ADVENTURE && IsTankAndLevelNB(1,2) && mGameUpdateCnt == 150)
-			ShowText("On this level you will meet your 1st alien opponent!", false, 20);
+			ShowText(lz("On this level you will meet your 1st alien opponent!"), false, 20);
 		else if(mApp->mGameMode == GAMEMODE_TIME_TRIAL && mGameUpdateCnt == 150)
-			ShowText("How much money can you earn before time runs out?", false, 53);
+			ShowText(lz("How much money can you earn before time runs out?"), false, 53);
 		else if(mApp->mGameMode == GAMEMODE_CHALLENGE && mGameUpdateCnt == 150)
-			ShowText("Can you fend off the increasingly hungry aliens?", false, 51);
+			ShowText(lz("Can you fend off the increasingly hungry aliens?"), false, 51);
 		else if(mApp->mGameMode == GAMEMODE_SANDBOX && mGameUpdateCnt == 150)
-			ShowText("Make sure caps-lock is off and GO TO TOWN!!", false, 48);
+			ShowText(lz("Make sure caps-lock is off and GO TO TOWN!!"), false, 48);
 	}
 
 	if (mLevel == 1 && mTank == 1 && m0x4e6)
@@ -1183,8 +1183,8 @@ void Board::Draw(Graphics* g)
 	if (mMessageShown[2] && mLevel == 1 && mTank == 1 && !mApp->mCurrentProfile->mFinishedGame) // 52
 	{
 		g->DrawImage(IMAGE_HELPARROW, 40, 70);
-		g->DrawString("Click here to", 65, 95);
-		g->DrawString("buy fish!", 83, 107);
+		g->DrawString(lz("Click here to"), 65, 95);
+		g->DrawString(lz("buy fish!"), 83, 107);
 	} // 65
 	else
 	{
@@ -1193,27 +1193,27 @@ void Board::Draw(Graphics* g)
 			if (mMessageShown[15] && mLevel == 2 && mTank == 1 && !mApp->mCurrentProfile->mFinishedGame)
 			{
 				g->DrawImage(IMAGE_HELPARROW, 110, 70);
-				g->DrawString("Click here to", 135, 95);
-				g->DrawString("upgrade!", 152, 107);
+				g->DrawString(lz("Click here to"), 135, 95);
+				g->DrawString(lz("upgrade!"), 152, 107);
 			}
 			else if (mTank == 5 && m0x4f4 && !mIsBonusRound)
 			{
 				g->DrawImage(IMAGE_HELPARROW, 460, 70);
-				g->DrawString("Click here to", 485, 95);
-				g->DrawString("end the level!", 480, 107);
+				g->DrawString(lz("Click here to"), 485, 95);
+				g->DrawString(lz("end the level!"), 480, 107);
 			}
 			else if (mApp->mGameMode == GAMEMODE_VIRTUAL_TANK && !mHasVirtualTankFish && !mApp->IsScreenSaver() && !mApp->GetDialog(39))
 			{
 				g->DrawImage(IMAGE_HELPARROW, 100, 70);
-				g->DrawString("Click here to", 125, 95);
-				g->DrawString("buy fish!", 140, 107);
+				g->DrawString(lz("Click here to"), 125, 95);
+				g->DrawString(lz("buy fish!"), 140, 107);
 			}
 		}
 		else // 18
 		{
 			g->DrawImage(IMAGE_HELPARROW, 460, 70);
-			g->DrawString("Click here to", 485, 95);
-			g->DrawString("buy egg piece!", 480, 107);
+			g->DrawString(lz("Click here to"), 485, 95);
+			g->DrawString(lz("buy egg piece!"), 480, 107);
 		}
 	} // 132
 
@@ -1235,19 +1235,19 @@ void Board::Draw(Graphics* g)
 	if (!mApp->mRelaxMode)
 	{
 		if (mApp->mGameMode == GAMEMODE_CHALLENGE)
-			g->DrawString("Challenge", 15, 470);
+			g->DrawString(lz("Challenge"), 15, 470);
 		else if(mApp->mGameMode == GAMEMODE_TIME_TRIAL)
-			g->DrawString("Time Trial", 15, 470);
+			g->DrawString(lz("Time Trial"), 15, 470);
 		else if(mApp->mGameMode == GAMEMODE_SANDBOX)
-			g->DrawString("Sandbox", 15, 470);
+			g->DrawString(lz("Sandbox"), 15, 470);
 		else if(!mIsBonusRound || mApp->mCurrentProfile->mFinishedGame && mTank != 5)
-			g->DrawString(StrFormat("Tank %d-%d", mTank, mLevel), 15, 470);
+			g->DrawString(StrFormat(lzcstr("Tank %d-%d"), mTank, mLevel), 15, 470);
 		else if(mTank != 5)
-			g->DrawString("Bonus Round", 15, 470);
+			g->DrawString(lz("Bonus Round"), 15, 470);
 	}
 	else
 	{
-		g->DrawString("Relax", 15, 470);
+		g->DrawString(lz("Relax"), 15, 470);
 	}
 
 	if (mApp->mGameMode == GAMEMODE_TIME_TRIAL)
@@ -1257,9 +1257,9 @@ void Board::Draw(Graphics* g)
 		int aSecs = aTime % 60;
 		if (aMins < 0) aMins = 0; if (aSecs < 0) aSecs = 0;
 		if (mGameUpdateCnt < 347)
-			g->DrawString(StrFormat("%d:%02d", aMins, aSecs), g->GetFont()->StringWidth("Time Remaining: ") + 465, 470);
+			g->DrawString(StrFormat("%d:%02d", aMins, aSecs), g->GetFont()->StringWidth(lz("Time Remaining: ")) + 465, 470);
 		else
-			g->DrawString(StrFormat("Time Remaining: %d:%02d", aMins, aSecs), 465, 470);
+			g->DrawString(StrFormat(lzcstr("Time Remaining: %d:%02d"), aMins, aSecs), 465, 470);
 
 		if (mIsBonusRound)
 			DrawBonusRound(g);
@@ -1272,7 +1272,7 @@ void Board::Draw(Graphics* g)
 			{
 				if (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK)
 				{
-					g->DrawString(StrFormat("Time: %d:%02d", (Unk01() - m0x3b8) / 60000, (Unk01() - m0x3b8) / 1000 % 60), 540, 470);
+					g->DrawString(StrFormat(lzcstr("Time: %d:%02d"), (Unk01() - m0x3b8) / 60000, (Unk01() - m0x3b8) / 1000 % 60), 540, 470);
 				}
 			}
 		}
@@ -2243,39 +2243,39 @@ void Sexy::Board::StartGame()
 			if (!aGameFin)
 			{
 				anId = 0;
-				aMsg = "Welcome to the Insaniquarium!";
+				aMsg = lz("Welcome to the Insaniquarium!");
 			}
 			else
 			{
 				anId = 0;
-				aMsg = "Welcome to the Bonus Adventure!";
+				aMsg = lz("Welcome to the Bonus Adventure!");
 			}
 		}
 		else if (mLevel == 2 && mTank == 1 && !aGameFin)
 		{
 			anId = 16;
-			aMsg = "Welcome to the next level!";
+			aMsg = lz("Welcome to the next level!");
 		}
 		else if (mLevel == 1 && mTank == 2 && !aGameFin)
 		{
 			anId = 19;
-			aMsg = "Welcome to the second tank! Now things get tricky!";
+			aMsg = lz("Welcome to the second tank! Now things get tricky!");
 		}
 	}
 	else if (mApp->mGameMode == GAMEMODE_TIME_TRIAL)
 	{
 		anId = 52;
-		aMsg = "Welcome to Time Trial mode!";
+		aMsg = lz("Welcome to Time Trial mode!");
 	}
 	else if (mApp->mGameMode == GAMEMODE_SANDBOX)
 	{
 		anId = 47;
-		aMsg = "You\'ve discovered the top-secret SANDBOX mode!";
+		aMsg = lz("You\'ve discovered the top-secret SANDBOX mode!");
 	}
 	else if (mApp->mGameMode == GAMEMODE_CHALLENGE)
 	{
 		anId = 50;
-		aMsg = "Welcome to Challenge mode!";
+		aMsg = lz("Welcome to Challenge mode!");
 	}
 	if (!aMsg.empty() && anId != -1)
 		ShowText(aMsg, false, anId);
@@ -3042,7 +3042,7 @@ bool Sexy::Board::Unk09(Coin* theCoin)
 	else
 	{
 		theCoin->mComboCount = 25;
-		MakeNote(theCoin->mX, theCoin->mY, aUnk01 + 3, StrFormat("+%d (MAX CHAIN!!)", mCoinComboCount));
+		MakeNote(theCoin->mX, theCoin->mY, aUnk01 + 3, StrFormat(lzcstr("+%d (MAX CHAIN!!)"), mCoinComboCount));
 
 		FishSong* aFishSong = new FishSong();
 		aFishSong->mTone = aSound;
@@ -3268,7 +3268,7 @@ void Sexy::Board::HandleBuyEgg()
 	}
 	
 	if (IsTankAndLevelNB(1, 1) && mMessageWidget->mMessageTimer < 1 && m0x43c == 1)
-		ShowText("Collect 2 more egg pieces to finish level!", false, 10);
+		ShowText(lz("Collect 2 more egg pieces to finish level!"), false, 10);
 
 	m0x43c++;
 
@@ -3281,7 +3281,7 @@ void Sexy::Board::HandleBuyEgg()
 				UpdateSlotPrice(i, m0x344[i]);
 		}
 		if(m0x43c < 4)
-			ShowText("Prices have been reset!", false, -1);
+			ShowText(lz("Prices have been reset!"), false, -1);
 	}
 
 	MenuButtonSetupNoVT(SLOT_EGG, true);
@@ -3480,7 +3480,7 @@ void Sexy::Board::NostradamusSneezeEffect()
 
 	mAlienTimer = 635;
 	mApp->SomeMusicPlayFunc(false);
-	ShowText("Attack Postponed by Sneeze of Power!", false, -1);
+	ShowText(lz("Attack Postponed by Sneeze of Power!"), false, -1);
 }
 
 void Sexy::Board::PlayChompSound(bool flag)
@@ -4102,7 +4102,7 @@ void Sexy::Board::HandleBuySlotPressed(int theSlotId)
 	{
 	case SLOT_GUPPY:
 		if (IsTankAndLevelNB(1, 1) && mMoney < aPrice)
-			ShowText("You can\'t afford new fish yet! Collect more money!", false, 14);
+			ShowText(lz("You can\'t afford new fish yet! Collect more money!"), false, 14);
 
 		if (!Buy(aPrice, true))
 			return;
@@ -4131,7 +4131,7 @@ void Sexy::Board::HandleBuySlotPressed(int theSlotId)
 				MakeAndUnlockMenuButton(SLOT_FOODLIMIT, true);
 				MakeAndUnlockMenuButton(SLOT_EGG, true);
 				if (!mApp->mCurrentProfile->mFinishedGame)
-					ShowText("Upgrade Food Quantity to drop more food at once!", false, 12);
+					ShowText(lz("Upgrade Food Quantity to drop more food at once!"), false, 12);
 			}
 
 			PlaySample(SOUND_BUY_ID, 3, 1.0);
@@ -4141,7 +4141,7 @@ void Sexy::Board::HandleBuySlotPressed(int theSlotId)
 		if (gFoodLimit < 9 && Buy(aPrice, true))
 		{
 			if(mTank == 1 && gFoodLimit == 1 && !mApp->mCurrentProfile->mFinishedGame)
-				ShowText("Hold down mouse button to Auto-Feed!", false, -1);
+				ShowText(lz("Hold down mouse button to Auto-Feed!"), false, -1);
 
 			gFoodLimit++;
 			MenuButtonSetupNoVT(SLOT_FOODLIMIT, true);
@@ -4172,7 +4172,7 @@ void Sexy::Board::HandleBuySlotPressed(int theSlotId)
 				m0x441 = true;
 				if (mLevel < 3)
 				{
-					ShowText("Click on tank to drop star potion!", 0, -1);
+					ShowText(lz("Click on tank to drop star potion!"), 0, -1);
 					mMessageWidget->mMessageTimer = 180;
 				}
 			}
@@ -4271,59 +4271,59 @@ void Sexy::Board::MakeVirtualTankButtons()
 			mMessageWidget->mY = 60;
 	}
 
-	mMenuButtons[SLOT_GRUBBER] = new MenuButtonWidget(mWidgetManager, 10, this, "Visit Store");
+	mMenuButtons[SLOT_GRUBBER] = new MenuButtonWidget(mWidgetManager, 10, this, lz("Visit Store"));
 	mMenuButtons[SLOT_GRUBBER]->mButtonImage = IMAGE_MENUBTNU;
 	mMenuButtons[SLOT_GRUBBER]->mOverImage = IMAGE_MENUBTNO;
 	mMenuButtons[SLOT_GRUBBER]->mDownImage = IMAGE_MENUBTND2;
 	mMenuButtons[SLOT_GRUBBER]->Resize(70, 2, 58, 60);
 	mWidgetManager->AddWidget(mMenuButtons[SLOT_GRUBBER]);
 
-	mMenuButtons[SLOT_GRUBBER]->mPriceText = "STORE";
+	mMenuButtons[SLOT_GRUBBER]->mPriceText = lz("STORE");
 	mMenuButtons[SLOT_GRUBBER]->Configure(IMAGE_TROPHYBUTTONS, 5, 1, 0, 2);
 
-	mMenuButtons[SLOT_GEKKO] = new MenuButtonWidget(mWidgetManager, 11, this, "Add/Remove Fish");
+	mMenuButtons[SLOT_GEKKO] = new MenuButtonWidget(mWidgetManager, 11, this, lz("Add/Remove Fish"));
 	mMenuButtons[SLOT_GEKKO]->mButtonImage = IMAGE_MENUBTNU;
 	mMenuButtons[SLOT_GEKKO]->mOverImage = IMAGE_MENUBTNO;
 	mMenuButtons[SLOT_GEKKO]->mDownImage = IMAGE_MENUBTND2;
 	mMenuButtons[SLOT_GEKKO]->Resize(144, 2, 58, 60);
 	mWidgetManager->AddWidget(mMenuButtons[SLOT_GEKKO]);
-	mMenuButtons[SLOT_GEKKO]->mPriceText = "FISH";
+	mMenuButtons[SLOT_GEKKO]->mPriceText = lz("FISH");
 	mMenuButtons[SLOT_GEKKO]->Configure(IMAGE_TROPHYBUTTONS, 5, 1, 0, 3);
 
-	mMenuButtons[SLOT_ULTRA] = new MenuButtonWidget(mWidgetManager, 12, this, "Add/Remove Pets");
+	mMenuButtons[SLOT_ULTRA] = new MenuButtonWidget(mWidgetManager, 12, this, lz("Add/Remove Pets"));
 	mMenuButtons[SLOT_ULTRA]->mButtonImage = IMAGE_MENUBTNU;
 	mMenuButtons[SLOT_ULTRA]->mOverImage = IMAGE_MENUBTNO;
 	mMenuButtons[SLOT_ULTRA]->mDownImage = IMAGE_MENUBTND2;
 	mMenuButtons[SLOT_ULTRA]->Resize(216, 2, 58, 60);
 	mWidgetManager->AddWidget(mMenuButtons[SLOT_ULTRA]);
-	mMenuButtons[SLOT_ULTRA]->mPriceText = "PETS";
+	mMenuButtons[SLOT_ULTRA]->mPriceText = lz("PETS");
 	mMenuButtons[SLOT_ULTRA]->Configure(IMAGE_TROPHYBUTTONS, 5, 1, 0, 4);
 
-	mMenuButtons[SLOT_WEAPON] = new MenuButtonWidget(mWidgetManager, 13, this, "Tank Options");
+	mMenuButtons[SLOT_WEAPON] = new MenuButtonWidget(mWidgetManager, 13, this, lz("Tank Options"));
 	mMenuButtons[SLOT_WEAPON]->mButtonImage = IMAGE_MENUBTNU;
 	mMenuButtons[SLOT_WEAPON]->mOverImage = IMAGE_MENUBTNO;
 	mMenuButtons[SLOT_WEAPON]->mDownImage = IMAGE_MENUBTND2;
 	mMenuButtons[SLOT_WEAPON]->Resize(364, 2, 58, 60);
 	mWidgetManager->AddWidget(mMenuButtons[SLOT_WEAPON]);
-	mMenuButtons[SLOT_WEAPON]->mPriceText = "TANK";
+	mMenuButtons[SLOT_WEAPON]->mPriceText = lz("TANK");
 	mMenuButtons[SLOT_WEAPON]->Configure(IMAGE_TROPHYBUTTONS, 5, 1, 0, 5);
 
-	mMenuButtons[SLOT_EGG] = new MenuButtonWidget(mWidgetManager, 14, this, "Special Food");
+	mMenuButtons[SLOT_EGG] = new MenuButtonWidget(mWidgetManager, 14, this, lz("Special Food"));
 	mMenuButtons[SLOT_EGG]->mButtonImage = IMAGE_MENUBTNU;
 	mMenuButtons[SLOT_EGG]->mOverImage = IMAGE_MENUBTNO;
 	mMenuButtons[SLOT_EGG]->mDownImage = IMAGE_MENUBTND2;
 	mMenuButtons[SLOT_EGG]->Resize(290, 2, 58, 60);
 	mWidgetManager->AddWidget(mMenuButtons[SLOT_EGG]);
-	mMenuButtons[SLOT_EGG]->mPriceText = "FEED";
+	mMenuButtons[SLOT_EGG]->mPriceText = lz("FEED");
 	mMenuButtons[SLOT_EGG]->Configure(IMAGE_TROPHYBUTTONS, 5, 1, 0, 1);
 	
-	mBackButton = new MenuButtonWidget(mWidgetManager, 15, this, "Back to Main Menu");
+	mBackButton = new MenuButtonWidget(mWidgetManager, 15, this, lz("Back to Main Menu"));
 	mBackButton->mButtonImage = IMAGE_MENUBTNU;
 	mBackButton->mOverImage = IMAGE_MENUBTNO;
 	mBackButton->mDownImage = IMAGE_MENUBTND2;
 	mBackButton->Resize(438, 2, 58, 60);
 	mWidgetManager->AddWidget(mBackButton);
-	mBackButton->mPriceText = "BACK";
+	mBackButton->mPriceText = lz("BACK");
 	mBackButton->Configure(IMAGE_TROPHYBUTTONS, 5, 1, 0, 0);
 }
 
@@ -4439,32 +4439,32 @@ bool Sexy::Board::DoCheatCode(int theCheatCode)
 {
 	bool aStatus = mApp->mCurrentProfile->ToggleCheatFlag(theCheatCode);
 	if (theCheatCode == CC_WAVY)
-		ShowText(aStatus ? "Wavy Mode Enabled" : "Wavy Mode Disabled", false, -1);
+		ShowText(aStatus ? lz("Wavy Mode Enabled") : lz("Wavy Mode Disabled"), false, -1);
 	else if (theCheatCode == CC_PREGO)
-		ShowText(aStatus ? "Original Prego Sound Enabled" : "Original Prego Sound Disabled", false, -1);
+		ShowText(aStatus ? lz("Original Prego Sound Enabled") : lz("Original Prego Sound Disabled"), false, -1);
 	else if (theCheatCode == CC_BETATEST)
-		ShowText(aStatus ? "Original Breeder Sound Enabled" : "Original Breeder Sound Disabled", false, -1);
+		ShowText(aStatus ? lz("Original Breeder Sound Enabled") : lz("Original Breeder Sound Disabled"), false, -1);
 	else if (theCheatCode == CC_SUPERMEGA)
-		ShowText(aStatus ? "Ultra Prego Sound Enabled" : "Ultra Prego Sound Disabled", false, -1);
+		ShowText(aStatus ? lz("Ultra Prego Sound Enabled") : lz("Ultra Prego Sound Disabled"), false, -1);
 	else if (theCheatCode == CC_VOID)
 	{
 		mApp->mCurrentProfile->SetCheatFlag(CC_SPACE, false);
 		ApplyShadowsIf3D();
 		Unk03();
-		ShowText(aStatus ? "Void Mode Enabled" : "Void Mode Disabled", false, -1);
+		ShowText(aStatus ? lz("Void Mode Enabled") : lz("Void Mode Disabled"), false, -1);
 	}
 	else if (theCheatCode == CC_SPACE)
 	{
 		mApp->mCurrentProfile->SetCheatFlag(CC_VOID, false);
 		ApplyShadowsIf3D();
 		Unk03();
-		ShowText(aStatus ? "Space Mode Enabled" : "Space Mode Disabled", false, -1);
+		ShowText(aStatus ? lz("Space Mode Enabled") : lz("Space Mode Disabled"), false, -1);
 		if (aStatus)
 			mStarField->Init(1000);
 	}
 	else if (theCheatCode == CC_ZOMBIE)
 	{
-		ShowText(aStatus ? "Zombie Mode Enabled" : "Zombie Mode Disabled", false, -1);
+		ShowText(aStatus ? lz("Zombie Mode Enabled") : lz("Zombie Mode Disabled"), false, -1);
 		gZombieMode = aStatus;
 	}
 	return true;
@@ -4529,45 +4529,45 @@ MenuButtonWidget* Sexy::Board::MakeAndUnlockMenuButton(int theBtnId, bool flag)
 	switch (theBtnId)
 	{
 	case 0:
-		aToolTipStr = "buy guppy";
+		aToolTipStr = lz("buy guppy");
 		break;
 	case 1:
-		aToolTipStr = "buy breeder";
+		aToolTipStr = lz("buy breeder");
 		break;
 	case 2:
-		aToolTipStr = "upgrade food quality";
+		aToolTipStr = lz("upgrade food quality");
 		break;
 	case 3:
-		aToolTipStr = "upgrade food quantity";
+		aToolTipStr = lz("upgrade food quantity");
 		break;
 	case 4:
-		aToolTipStr = "buy carnivore";
+		aToolTipStr = lz("buy carnivore");
 		break;
 	case 5:
-		aToolTipStr = "buy star potion";
+		aToolTipStr = lz("buy star potion");
 		break;
 	case 6:
-		aToolTipStr = "buy starcatcher";
+		aToolTipStr = lz("buy starcatcher");
 		break;
 	case 7:
-		aToolTipStr = "buy guppycruncher";
+		aToolTipStr = lz("buy guppycruncher");
 		break;
 	case 8:
-		aToolTipStr = "buy beetlemuncher";
+		aToolTipStr = lz("buy beetlemuncher");
 		break;
 	case 9:
-		aToolTipStr = "buy ultravore";
+		aToolTipStr = lz("buy ultravore");
 		break;
 	case 10:
-		aToolTipStr = "upgrade weapon";
+		aToolTipStr = lz("upgrade weapon");
 		break;
 	case 11:
 		if (mApp->mGameMode == GAMEMODE_TIME_TRIAL)
-			aToolTipStr = "buy random pet";
+			aToolTipStr = lz("buy random pet");
 		else if (mApp->mGameMode == GAMEMODE_SANDBOX)
-			aToolTipStr = "end level";
+			aToolTipStr = lz("end level");
 		else
-			aToolTipStr = "buy egg piece";
+			aToolTipStr = lz("buy egg piece");
 		break;
 	}
 
@@ -4695,7 +4695,7 @@ void Sexy::Board::MenuButtonSetupNoVT(int theBtnId, bool flag)
 		{
 			if (flag)
 			{
-				ShowText("Hold down mouse button for Rapid Fire!", false, -1);
+				ShowText(lz("Hold down mouse button for Rapid Fire!"), false, -1);
 			}
 			aBtn->SetMaxedOut();
 		}
@@ -4864,7 +4864,7 @@ bool Sexy::Board::Buy(int theCost, bool playBuzzer)
 				m0x450 = 70;
 
 			if (mMoney == 0 && IsFirstLevel())
-				mApp->DoDialogUnkF(DIALOG_OUT_OF_MONEY_LOAN, true, "OUT OF MONEY!", "You\'ve run out of money!  Because you\'re new, we\'ll float you a loan, but be careful next time!", "Click to Continue", Dialog::BUTTONS_FOOTER);
+				mApp->DoDialogUnkF(DIALOG_OUT_OF_MONEY_LOAN, true, lz("OUT OF MONEY!"), lz("You\'ve run out of money!  Because you\'re new, we\'ll float you a loan, but be careful next time!"), lz("Click to Continue"), Dialog::BUTTONS_FOOTER);
 
 			return false;
 		}
@@ -4899,9 +4899,9 @@ void Sexy::Board::DropFood(int theX, int theY, int unk1, bool unk2, int theFoodC
 				UpdateMoneyLabelText();
 			}
 			if (IsTankAndLevelNB(1, 1) && mMessageWidget->mMessageTimer <= 0)
-				ShowText("You can only drop 1 food pellet at a time for now", false, 6);
+				ShowText(lz("You can only drop 1 food pellet at a time for now"), false, 6);
 			else if(IsTankAndLevelNB(1, 2) && mMessageWidget->mMessageTimer <= 0 && mSlotUnlocked[3])
-				ShowText("Upgrade Food Quantity to drop more food at once!", false, 13);
+				ShowText(lz("Upgrade Food Quantity to drop more food at once!"), false, 13);
 			return;
 		}
 	}
@@ -5581,7 +5581,7 @@ void Board::DrawOverlay1(Graphics* g)
 	g->FillRect(0, 445, 640, 35);
 	g->SetFont(FONT_CONTINUUMBOLD14);
 	g->SetColor(Color::White);
-	SexyString aWarning = "Warning: Insaniquarium is running.  Shells collected here may not be saved.";
+	SexyString aWarning = lz("Warning: Insaniquarium is running.  Shells collected here may not be saved.");
 	int aStrWdth = g->GetFont()->StringWidth(aWarning);
 	if (mApp->mScreenSaverUnk01)
 	{
@@ -5593,7 +5593,7 @@ void Board::DrawOverlay1(Graphics* g)
 	g->SetFont(FONT_CONTINUUMBOLD14);
 	g->SetColor(Color(0xffffff));
 
-	SexyString aShellsCollectedStr = StrFormat("%d Shells Collected", m0x400);
+	SexyString aShellsCollectedStr = StrFormat(lzcstr("%d Shells Collected"), m0x400);
 	aStrWdth = g->GetFont()->StringWidth(aShellsCollectedStr);
 	int aStrY = 0;
 	int aStrX = 0;
@@ -5810,7 +5810,7 @@ void Sexy::Board::DrawBonusRound(Graphics* g)
 		g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 		g->SetColor(Color(255, 255, 0, anAlphaVal));
 
-		SexyString aStr = "BONUS ROUND";
+		SexyString aStr = lz("BONUS ROUND");
 		int aStrWdth = g->GetFont()->StringWidth(aStr);
 		int aCenteredStrX = (mWidth - aStrWdth) / 2;
 		int anXStrOffset = 0;
@@ -5820,7 +5820,7 @@ void Sexy::Board::DrawBonusRound(Graphics* g)
 		g->SetFont(FONT_CONTINUUMBOLD14);
 		g->SetColor(Color(180, 250, 90, anAlphaVal));
 
-		aStr = "Collect as many shells as you can!";
+		aStr = lz("Collect as many shells as you can!");
 		aStrWdth = g->GetFont()->StringWidth(aStr);
 		aCenteredStrX = (mWidth - aStrWdth) / 2;
 		anXStrOffset = 0;
@@ -5911,7 +5911,7 @@ void Sexy::Board::DrawBonusRound(Graphics* g)
 	if (aSecs < 0)
 		aSecs = 0;
 
-	SexyString aTimeRStr = StrFormat("Time Remaining: %d:%02d", aMins, aSecs);
+	SexyString aTimeRStr = StrFormat(lzcstr("Time Remaining: %d:%02d"), aMins, aSecs);
 
 	g->DrawString(aTimeRStr, 465, 470);
 }

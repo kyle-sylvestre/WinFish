@@ -8,7 +8,7 @@
 #include "Res.h"
 
 Sexy::FoodDialog::FoodDialog(WinFishApp* theApp)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_FOOD, false, "FOOD SELECTOR", "", "CLOSE", BUTTONS_FOOTER)
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_FOOD, false, lz("FOOD SELECTOR"), "", lz("CLOSE"), BUTTONS_FOOTER)
 {
 	for (int i = 0;i < 8;i++)
 		mButtons[i] = {};
@@ -65,9 +65,9 @@ void Sexy::FoodDialog::Draw(Graphics* g)
 	g->SetColor(Color(0xffff00));
 	g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 	int anAscent = g->GetFont()->GetAscent();
-	g->DrawString("SELECT", 10, anAscent + 5);
+	g->DrawString(lz("SELECT"), 10, anAscent + 5);
 	int aHeight = g->GetFont()->GetHeight();
-	g->DrawString("FOOD", 10, aHeight - 5 + anAscent + 5);
+	g->DrawString(lz("FOOD"), 10, aHeight - 5 + anAscent + 5);
 	for (int i = 0; i < 8; i++)
 	{
 		if (!mButtons[i].mShown)

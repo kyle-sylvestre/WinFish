@@ -7,6 +7,9 @@
 #include <SexyAppFramework/KeyCodes.h>
 #include "SDL2/SDL.h"
 
+#define lz(str) Sexy::gSexyApp->GetString(str, str)
+#define lzcstr(str) Sexy::gSexyApp->GetString(str, str).c_str()
+
 namespace Sexy
 {
 	class Board;

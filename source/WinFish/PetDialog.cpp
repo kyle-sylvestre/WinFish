@@ -10,7 +10,7 @@
 using namespace Sexy;
 
 Sexy::PetDialog::PetDialog(WinFishApp* theApp)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_PET_DIALOG, false, "PRESTO CHANGE-O", "", "CANCEL", Dialog::BUTTONS_FOOTER)
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_PET_DIALOG, false, lz("PRESTO CHANGE-O"), "", lz("CANCEL"), Dialog::BUTTONS_FOOTER)
 {
 	for (int i = 0; i < PET_END; i++)
 		mRects[i] = Rect(0, 0, 0, 0);
@@ -67,7 +67,7 @@ void Sexy::PetDialog::Draw(Graphics* g)
 	g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 
 	int anAscent = g->GetFont()->GetAscent();
-	WriteCenteredLine(g, anAscent + 5, "PRESTO CHANGE-O");
+	WriteCenteredLine(g, anAscent + 5, lz("PRESTO CHANGE-O"));
 
 	for (int i = 0; i < PET_END; i++)
 	{

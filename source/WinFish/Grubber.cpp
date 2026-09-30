@@ -463,10 +463,10 @@ void Sexy::Grubber::Remove(bool removeShadow)
 	if (mApp->mBoard->IsTankAndLevelNB(3, 1))
 	{
 		if (mApp->mBoard->mMessageShown[38])
-			mApp->mBoard->ShowText("Try luring small guppies down to your guppycrunchers!", false, 39);
+			mApp->mBoard->ShowText(lz("Try luring small guppies down to your guppycrunchers!"), false, 39);
 		if (mApp->mBoard->mMessageShown[37])
-			mApp->mBoard->ShowText("Guppycrunchers and carnivores share the same diet!", false, 38);
-		mApp->mBoard->ShowText("Warning! Your guppycruncher has died!", false, 37);
+			mApp->mBoard->ShowText(lz("Guppycrunchers and carnivores share the same diet!"), false, 38);
+		mApp->mBoard->ShowText(lz("Warning! Your guppycruncher has died!"), false, 37);
 	}
 }
 

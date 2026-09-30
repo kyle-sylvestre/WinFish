@@ -10,19 +10,19 @@
 using namespace Sexy;
 
 Sexy::ContinueDialog::ContinueDialog(WinFishApp* theApp)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_CONTINUE_GAME, true, "CONTINUE GAME?", "", "CANCEL", Dialog::BUTTONS_FOOTER)
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_CONTINUE_GAME, true, lz("CONTINUE GAME?"), "", lz("CANCEL"), Dialog::BUTTONS_FOOTER)
 {
 	if (mApp->mGameMode == GAMEMODE_ADVENTURE)
 	{
-		mDialogLines = "Do you want to continue your current game or restart the level?";
-		mContinueButton = MakeDialogButton(0, this, "Continue", NULL);
-		mRestartButton = MakeDialogButton(1, this, "Restart Level", NULL);
+		mDialogLines = lz("Do you want to continue your current game or restart the level?");
+		mContinueButton = MakeDialogButton(0, this, lz("Continue"), NULL);
+		mRestartButton = MakeDialogButton(1, this, lz("Restart Level"), NULL);
 	}
 	else
 	{
-		mDialogLines = "Do you want to continue your current game or start a new game?";
-		mContinueButton = MakeDialogButton(0, this, "Continue", NULL);
-		mRestartButton = MakeDialogButton(1, this, "New Game", NULL);
+		mDialogLines = lz("Do you want to continue your current game or start a new game?");
+		mContinueButton = MakeDialogButton(0, this, lz("Continue"), NULL);
+		mRestartButton = MakeDialogButton(1, this, lz("New Game"), NULL);
 	}
 }
 
@@ -87,13 +87,13 @@ void Sexy::ContinueDialog::ButtonDepress(int theId)
 	{
 		if (mApp->mGameMode == GAMEMODE_ADVENTURE)
 		{
-			Dialog* aDia = mApp->DoDialog(DIALOG_RESTART_GAME, true, "Restart Level?", "Are you sure that you want to restart the level?", "", BUTTONS_OK_CANCEL);
-			aDia->mYesButton->mLabel = "Restart";
+			Dialog* aDia = mApp->DoDialog(DIALOG_RESTART_GAME, true, lz("Restart Level?"), lz("Are you sure that you want to restart the level?"), "", BUTTONS_OK_CANCEL);
+			aDia->mYesButton->mLabel = lz("Restart");
 		}
 		else
 		{
-			Dialog* aDia = mApp->DoDialog(DIALOG_RESTART_GAME, true, "New Game?", "Are you sure that you want to start a new game?", "", BUTTONS_OK_CANCEL);
-			aDia->mYesButton->mLabel = "New Game";
+			Dialog* aDia = mApp->DoDialog(DIALOG_RESTART_GAME, true, lz("New Game?"), lz("Are you sure that you want to start a new game?"), "", BUTTONS_OK_CANCEL);
+			aDia->mYesButton->mLabel = lz("New Game");
 		}
 	}
 	else

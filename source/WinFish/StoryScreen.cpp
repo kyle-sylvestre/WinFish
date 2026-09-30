@@ -94,12 +94,12 @@ Sexy::StoryScreen::StoryScreen(WinFishApp* theApp, int theStoryId)
 	mWidth = mApp->mWidth;
 	mHeight = mApp->mHeight;
 
-	mBackToMainMenuButton = MakeHyperlinkWidget(0, this, "Back To Main Menu");
+	mBackToMainMenuButton = MakeHyperlinkWidget(0, this, lz("Back To Main Menu"));
 	mBackToMainMenuButton->mX = 630 - mBackToMainMenuButton->mWidth;
 	mBackToMainMenuButton->mY = 460 - mBackToMainMenuButton->mHeight / 2;
 
-	mBackButton = MakeHyperlinkWidget(1, this, "Back");
-	mNextButton = MakeHyperlinkWidget(2, this, "Next");
+	mBackButton = MakeHyperlinkWidget(1, this, lz("Back"));
+	mNextButton = MakeHyperlinkWidget(2, this, lz("Next"));
 
 	mBackButton->mX = 220 - mBackButton->mWidth;
 	mBackButton->mY = 15;
@@ -179,10 +179,10 @@ void Sexy::StoryScreen::Draw(Graphics* g)
 		g->DrawImage(mTalkShowImg, 0, 0);
 		g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 		g->SetColor(Color(0xffffff));
-		WriteCenteredLine(g, 80, "The Story Of");
+		WriteCenteredLine(g, 80, lz("The Story Of"));
 		g->SetFont(FONT_JUNGLEFEVER15OUTLINE);
 		g->SetColor(Color(0xffffff));
-		WriteCenteredLine(g, 110, STORY_TITLES[mStoryId]);
+		WriteCenteredLine(g, 110, lz(STORY_TITLES[mStoryId]));
 	}
 	else
 	{
@@ -192,11 +192,11 @@ void Sexy::StoryScreen::Draw(Graphics* g)
 
 		g->SetFont(FONT_LIDDIE18);
 		g->SetColor(Color(215, 255, 255, 255));
-		WriteCenteredLine(g, 80, "The Story Of");
+		WriteCenteredLine(g, 80, lz("The Story Of"));
 
 		g->SetFont(FONT_LIDDIE15);
 		g->SetColor(Color(150, 250, 150, 255));
-		WriteCenteredLine(g, 110, STORY_TITLES[mStoryId]);
+		WriteCenteredLine(g, 110, lz(STORY_TITLES[mStoryId]));
 	}
 
 	int anImgId;
@@ -243,7 +243,7 @@ void Sexy::StoryScreen::Draw(Graphics* g)
 	}
 
 	g->SetColor(Color::White);
-	WriteWordWrapped(g, aStrWrapRect, STORY_TEXT[mStoryId], -1, -1);
+	WriteWordWrapped(g, aStrWrapRect, lz(STORY_TEXT[mStoryId]), -1, -1);
 
 	g->SetColor(Color::Black);
 	g->FillRect(0, 0, mWidth, 40);

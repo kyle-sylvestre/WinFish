@@ -19,9 +19,9 @@ Sexy::TankScreen::TankScreen(WinFishApp* theApp)
 	mY = 0;
 	mWidth = theApp->mWidth;
 	mHeight = theApp->mHeight;
-	mMenuButton = MakeDialogButton2(99, this, "Menu", IMAGE_MAINBUTTON);
+	mMenuButton = MakeDialogButton2(99, this, lz("Menu"), IMAGE_MAINBUTTON);
 	mMenuButton->Resize(525, 4, 80, mMenuButton->mHeight);
-	mStoriesButton = MakeDialogButton(4, this, "Stories", FONT_JUNGLEFEVER12OUTLINE);
+	mStoriesButton = MakeDialogButton(4, this, lz("Stories"), FONT_JUNGLEFEVER12OUTLINE);
 	mStoriesButton->Resize(245, 247, 150, mStoriesButton->mHeight);
 	mStoriesButton->SetColor(0, Color(255, 240, 0));
 	if (mApp->mCurrentProfile->m0x7c == 0 || mApp->mGameMode != GAMEMODE_CHALLENGE)
@@ -37,7 +37,7 @@ Sexy::TankScreen::TankScreen(WinFishApp* theApp)
 
 	for (int i = 0; i < 4; i++)
 	{
-		mTankButtons[i] = MakeDialogButton2(i, this, StrFormat("Tank %d", i + 1), IMAGE_MAINBUTTON);
+		mTankButtons[i] = MakeDialogButton2(i, this, StrFormat(lzcstr("Tank %d"), i + 1), IMAGE_MAINBUTTON);
 		mTankButtons[i]->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 		mTankButtons[i]->Resize(m0xa8[i * 2] + 14, m0xa8[i * 2 + 1] + 134, 193, mTankButtons[i]->mHeight);
 	}
@@ -123,19 +123,19 @@ void Sexy::TankScreen::Draw(Graphics* g)
 	g->SetColor(Color(255, 200, 0));
 	SexyString aStr;
 	if(mApp->mGameMode == GAMEMODE_TIME_TRIAL)
-		aStr = "Time Trial";
+		aStr = lz("Time Trial");
 	else if(mApp->mGameMode == GAMEMODE_CHALLENGE)
-		aStr = "Challenge";
+		aStr = lz("Challenge");
 	else
-		aStr = "Choose a Tank";
+		aStr = lz("Choose a Tank");
 	WriteCenteredLine(g, 25, aStr);
 	
 	g->SetColor(Color::White);
 	g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 	if (mApp->mGameMode == GAMEMODE_TIME_TRIAL)
-		aStr = "How much money can you earn before time runs out?";
+		aStr = lz("How much money can you earn before time runs out?");
 	else if(mApp->mGameMode == GAMEMODE_CHALLENGE)
-		aStr = "Can you fend off the increasingly hungry aliens?";
+		aStr = lz("Can you fend off the increasingly hungry aliens?");
 	else
 		aStr = "";
 
@@ -159,9 +159,9 @@ void Sexy::TankScreen::Draw(Graphics* g)
 			g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 			g->SetColor(Color::White);
 			if (mApp->mGameMode == GAMEMODE_TIME_TRIAL)
-				WriteWordWrapped(g, aDrawStrRect, StrFormat("Complete Tank %d\nin Adventure Mode\nto Unlock this Tank", i + 1), -1, 0);
+				WriteWordWrapped(g, aDrawStrRect, StrFormat(lzcstr("Complete Tank %d\nin Adventure Mode\nto Unlock this Tank"), i + 1), -1, 0);
 			else if(mApp->mGameMode == GAMEMODE_CHALLENGE)
-				WriteWordWrapped(g, aDrawStrRect, StrFormat("Complete Tank %d\nin Challenge Mode\nto Unlock this Tank", i + 1), -1, 0);
+				WriteWordWrapped(g, aDrawStrRect, StrFormat(lzcstr("Complete Tank %d\nin Challenge Mode\nto Unlock this Tank"), i + 1), -1, 0);
 		}
 	}
 }

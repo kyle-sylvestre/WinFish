@@ -6,7 +6,7 @@
 #include "Res.h"
 
 Sexy::ScreenSaverDialog::ScreenSaverDialog(WinFishApp* theApp)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_SCREENSAVER, true, "Screensaver", "", "", BUTTONS_OK_CANCEL)
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_SCREENSAVER, true, lz("Screensaver"), "", "", BUTTONS_OK_CANCEL)
 {
 	mSSEnabledCB = MakeCheckbox(0, this, mApp->mScreenSaverEnabled);
 	mSSSoundCB = MakeCheckbox(1, this, mApp->mScreenSaverSound);
@@ -57,28 +57,28 @@ void Sexy::ScreenSaverDialog::RemovedFromManager(WidgetManager* theWidgetManager
 void Sexy::ScreenSaverDialog::Draw(Graphics* g)
 {
 	MoneyDialog::Draw(g);
-	DrawCheckboxString(g, "Enable Screensaver", mSSEnabledCB, nullptr);
-	DrawCheckboxString(g, "Allow Monitor Powersave Mode", mSSPowerSaveCB, nullptr);
-	DrawCheckboxString(g, "Enable Sound", mSSSoundCB, nullptr);
-	DrawCheckboxString(g, "Rotate Backdrops", mSSRotateBackdropsCB, nullptr);
-	DrawCheckboxString(g, "Periodically Darken Screen", mSSPeriodicDimCB, nullptr);
-	DrawCheckboxString(g, "Show Shells Collected", mSSShowMoneyCB, nullptr);
+	DrawCheckboxString(g, lz("Enable Screensaver"), mSSEnabledCB, nullptr);
+	DrawCheckboxString(g, lz("Allow Monitor Powersave Mode"), mSSPowerSaveCB, nullptr);
+	DrawCheckboxString(g, lz("Enable Sound"), mSSSoundCB, nullptr);
+	DrawCheckboxString(g, lz("Rotate Backdrops"), mSSRotateBackdropsCB, nullptr);
+	DrawCheckboxString(g, lz("Periodically Darken Screen"), mSSPeriodicDimCB, nullptr);
+	DrawCheckboxString(g, lz("Show Shells Collected"), mSSShowMoneyCB, nullptr);
 
 	SexyString aStr = "";
 	if (mSSEnabledCB->mIsOver)
-		aStr = "Check here to set your Virtual Tank as your Screensaver.";
+		aStr = lz("Check here to set your Virtual Tank as your Screensaver.");
 	else if (mSSPowerSaveCB->mIsOver)
-		aStr = "Check here to allow your monitor to go into powersave mode while running the Insaniquarium Screensaver.";
+		aStr = lz("Check here to allow your monitor to go into powersave mode while running the Insaniquarium Screensaver.");
 	else if (mSSSoundCB->mIsOver)
-		aStr = "This option controls whether or not to play sounds in the Screensaver.";
+		aStr = lz("This option controls whether or not to play sounds in the Screensaver.");
 	else if (mSSRotateBackdropsCB->mIsOver)
-		aStr = "Setting this option will cause the Screensaver to periodically rotate among your purchased tank backdrops.";
+		aStr = lz("Setting this option will cause the Screensaver to periodically rotate among your purchased tank backdrops.");
 	else if (mSSPeriodicDimCB->mIsOver)
-		aStr = "This option will make the Screensaver periodically darken the screen.";
+		aStr = lz("This option will make the Screensaver periodically darken the screen.");
 	else if (mSSShowMoneyCB->mIsOver)
-		aStr = "This option will have the Screensaver show you how many Shells you have collected while it has been running.";
+		aStr = lz("This option will have the Screensaver show you how many Shells you have collected while it has been running.");
 	else
-		aStr = "Insaniquarium Screensaver Settings";
+		aStr = lz("Insaniquarium Screensaver Settings");
 
 	if (aStr.length() > 0)
 	{

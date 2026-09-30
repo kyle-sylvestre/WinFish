@@ -29,7 +29,7 @@ TitleScreen::TitleScreen(WinFishApp* theApp)
 	mHyperlink1->SetVisible(false);
 
 	mHyperlink2 = new HyperlinkWidget(0, this);
-	mHyperlink2->mLabel = "Click Here To Register!";
+	mHyperlink2->mLabel = lz("Click Here To Register!");
 	mHyperlink2->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 	mHyperlink2->mColor = Color(0xffec91);
 	mHyperlink2->mOverColor = Color::White;
@@ -127,7 +127,7 @@ void TitleScreen::Draw(Graphics* g)
 	{
 		if (mApp->mIsRegistered && !mApp->mBuildUnlocked)
 		{
-			SexyString aStr = "THANKS FOR REGISTERING!";
+			SexyString aStr = lz("THANKS FOR REGISTERING!");
 			g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 			g->SetColor(Color::White);
 			int aStrWdth = g->GetFont()->StringWidth(aStr);
@@ -143,7 +143,7 @@ void TitleScreen::Draw(Graphics* g)
 	}
 	else
 	{
-		SexyString aStr = "Starting Screensaver";
+		SexyString aStr = lz("Starting Screensaver");
 		g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 		g->SetColor(Color(0xffec91));
 		int aStrWdth = g->GetFont()->StringWidth(aStr);
@@ -152,7 +152,7 @@ void TitleScreen::Draw(Graphics* g)
 
 	g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 	g->SetColor(Color::White);
-	SexyString aVersionStr = "Version " + mApp->mProductVersion;
+	SexyString aVersionStr = lz("Version ") + mApp->mProductVersion;
 	int aStrWdth = g->GetFont()->StringWidth(aVersionStr);
 	g->WriteString(aVersionStr, mWidth - aStrWdth / 2 - 16, 211);
 }
@@ -261,9 +261,9 @@ void Sexy::TitleScreen::TrialFunction()
 		if (aTimeRemain < 1)
 			m0xc0 = true;
 		else if (aTimeRemain == 1)
-			m0xa4 = "YOU HAVE 1 MINUTE LEFT IN THIS TRIAL!";
+			m0xa4 = lz("YOU HAVE 1 MINUTE LEFT IN THIS TRIAL!");
 		else
-			m0xa4 = StrFormat("YOU HAVE %d MINUTES LEFT IN THIS TRIAL!", aTimeRemain);
+			m0xa4 = StrFormat(lzcstr("YOU HAVE %d MINUTES LEFT IN THIS TRIAL!"), aTimeRemain);
 	}
 	else if(mApp->mMaxTime < 1)
 	{
@@ -273,9 +273,9 @@ void Sexy::TitleScreen::TrialFunction()
 			if (aExecs < 1)
 				m0xc0 = true;
 			else if (aExecs == 1)
-				m0xa4 = "YOU HAVE 1 FREE PLAY REMAINING!";
+				m0xa4 = lz("YOU HAVE 1 FREE PLAY REMAINING!");
 			else
-				m0xa4 = StrFormat("YOU HAVE %d FREE PLAYS REMAINING!", aExecs);
+				m0xa4 = StrFormat(lzcstr("YOU HAVE %d FREE PLAYS REMAINING!"), aExecs);
 		}
 	}
 	else
@@ -284,9 +284,9 @@ void Sexy::TitleScreen::TrialFunction()
 		if (aPlays < 1)
 			m0xc0 = true;
 		else if(aPlays == 1)
-			m0xa4 = "YOU HAVE 1 FREE PLAY REMAINING!";
+			m0xa4 = lz("YOU HAVE 1 FREE PLAY REMAINING!");
 		else
-			m0xa4 = StrFormat("YOU HAVE %d FREE PLAYS REMAINING!", aPlays);
+			m0xa4 = StrFormat(lzcstr("YOU HAVE %d FREE PLAYS REMAINING!"), aPlays);
 	}
 	if (m0xc0)
 	{

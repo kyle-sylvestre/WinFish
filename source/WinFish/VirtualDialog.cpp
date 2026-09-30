@@ -9,7 +9,7 @@
 using namespace Sexy;
 
 Sexy::VirtualDialog::VirtualDialog(WinFishApp* theApp)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_VIRTUAL, true, "WELCOME TO VIRTUAL TANK!", "", "OK", BUTTONS_FOOTER)
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_VIRTUAL, true, lz("WELCOME TO VIRTUAL TANK!"), "", lz("OK"), BUTTONS_FOOTER)
 {
 	mFishBoxRect = Rect(30, 85, 490, 220);
 	mWidth = 550;
@@ -42,7 +42,7 @@ void Sexy::VirtualDialog::Draw(Graphics* g)
 
 	Rect aStrRect = Rect(30, 55, mWidth - 60, 0);
 
-	WriteWordWrapped(g, aStrRect, "Customize your very own virtual aquarium!", -1, 0);
+	WriteWordWrapped(g, aStrRect, lz("Customize your very own virtual aquarium!"), -1, 0);
 
 	g->DrawImageBox(mFishBoxRect, IMAGE_FISHBOX);
 	mBubbleMgr->Draw(g);
@@ -55,26 +55,26 @@ void Sexy::VirtualDialog::Draw(Graphics* g)
 	aStrRect.mY = mFishBoxRect.mY + 35;
 	aStrRect.mWidth = mFishBoxRect.mWidth - 120;
 	aStrRect.mHeight = mFishBoxRect.mHeight;
-	WriteWordWrapped(g, aStrRect, "Buy all sorts of fish in the Store.  Virtual fish never die, but try to take good care of them.", -1, -1);
+	WriteWordWrapped(g, aStrRect, lz("Buy all sorts of fish in the Store.  Virtual fish never die, but try to take good care of them."), -1, -1);
 
 	aStrRect.mY += 60;
 	g->DrawImage(IMAGE_HELPSHELL, 72, aStrRect.mY);
 
-	WriteWordWrapped(g, aStrRect, "Use shells to buy fish -- you can earn shells in every game mode!", -1, -1);
+	WriteWordWrapped(g, aStrRect, lz("Use shells to buy fish -- you can earn shells in every game mode!"), -1, -1);
 
 	g->DrawImageCel(IMAGE_TROPHYBUTTONS, 60, aStrRect.mY + 48, 5);
 	aStrRect.mY += 60;
 
-	WriteWordWrapped(g, aStrRect, "Make Virtual Tank your screensaver!  Click on the Tank button to set it up.", -1, -1);
+	WriteWordWrapped(g, aStrRect, lz("Make Virtual Tank your screensaver!  Click on the Tank button to set it up."), -1, -1);
 
 	g->SetFont(FONT_TINY);
 	g->SetColor(Color(0xaaffaa));
 
-	g->DrawString("STORE", 67, aStrRect.mY - 80);
+	g->DrawString(lz("STORE"), 67, aStrRect.mY - 80);
 
-	g->DrawString("SHELLS", 64, aStrRect.mY - 28);
+	g->DrawString(lz("SHELLS"), 64, aStrRect.mY - 28);
 
-	g->DrawString("TANK", 68, aStrRect.mY + 35);
+	g->DrawString(lz("TANK"), 68, aStrRect.mY + 35);
 }
 
 void Sexy::VirtualDialog::Resize(int theX, int theY, int theWidth, int theHeight)

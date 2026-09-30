@@ -43,7 +43,7 @@ Sexy::InterludeScreen::InterludeScreen(WinFishApp* theApp, int unk)
 	m0xa8 = 0;
 
 	mBackButton = new HyperlinkWidget(0, this);
-	mBackButton->mLabel = "Back To Main Menu";
+	mBackButton->mLabel = lz("Back To Main Menu");
 	mBackButton->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 	mBackButton->mColor = Color(0x808080);
 	mBackButton->mOverColor = Color::White;
@@ -174,16 +174,16 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 
 	m0xac = 540;
 	m0xa8 = 0;
-	DrawStringHelper(g, "Congratulations!", 0, 0, 0);
-	DrawStringHelper(g, "You\'ve successfully vanquished the alien hordes!", 2, 1, 0);
-	DrawStringHelper(g, "The epic conflict between fish and evil has", 2, 1, 0);
-	DrawStringHelper(g, "finally come to a close.", 1, 1, 0);
-	DrawStringHelper(g, "Thanks to you, aquarium owners can", 2, 1, 0);
-	DrawStringHelper(g, "sleep easy tonight!", 1, 1, 0);
-	DrawStringHelper(g, "Many a pet gave their lives in the final battle,", 3, 1, 0);
-	DrawStringHelper(g, "but do not grieve, little one!", 1, 1, 0);
-	DrawStringHelper(g, "Angie purposefully sat out of the fight, and", 2, 1, 0);
-	DrawStringHelper(g, "word is she\'s got a few tricks up her sleeves...", 1, 1, 0);
+	DrawStringHelper(g, lz("Congratulations!"), 0, 0, 0);
+	DrawStringHelper(g, lz("You\'ve successfully vanquished the alien hordes!"), 2, 1, 0);
+	DrawStringHelper(g, lz("The epic conflict between fish and evil has"), 2, 1, 0);
+	DrawStringHelper(g, lz("finally come to a close."), 1, 1, 0);
+	DrawStringHelper(g, lz("Thanks to you, aquarium owners can"), 2, 1, 0);
+	DrawStringHelper(g, lz("sleep easy tonight!"), 1, 1, 0);
+	DrawStringHelper(g, lz("Many a pet gave their lives in the final battle,"), 3, 1, 0);
+	DrawStringHelper(g, lz("but do not grieve, little one!"), 1, 1, 0);
+	DrawStringHelper(g, lz("Angie purposefully sat out of the fight, and"), 2, 1, 0);
+	DrawStringHelper(g, lz("word is she\'s got a few tricks up her sleeves..."), 1, 1, 0);
 
 	m0xac += 150;
 
@@ -278,75 +278,75 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 	int local20 = m0xac + 150;
 	if (gPetsDiedOnBossLevel == 0)
 	{
-		DrawStringHelper(g, "Wait a minute!", 0, 1, 0);
-		DrawStringHelper(g, "You didn\'t lose any pets!!", 1, 1, 0);
-		DrawStringHelper(g, "How did you do that?", 1, 1, 0);
-		DrawStringHelper(g, "That\'s really amazing!", 1, 1, 0);
-		DrawStringHelper(g, "Seriously, though...", 3, 1, 0);
+		DrawStringHelper(g, lz("Wait a minute!"), 0, 1, 0);
+		DrawStringHelper(g, lz("You didn\'t lose any pets!!"), 1, 1, 0);
+		DrawStringHelper(g, lz("How did you do that?"), 1, 1, 0);
+		DrawStringHelper(g, lz("That\'s really amazing!"), 1, 1, 0);
+		DrawStringHelper(g, lz("Seriously, though..."), 3, 1, 0);
 		DrawStringHelper(g, "How did you do that??", 1, 1, 0);
-		DrawStringHelper(g, "Fine, keep it to yourself.", 3, 1, 0);
+		DrawStringHelper(g, lz("Fine, keep it to yourself."), 3, 1, 0);
 	}
 	else if(gPetsDiedOnBossLevel == 1)
 	{
-		DrawStringHelper(g, "My goodness!  That\'s it?", 5, 1, 0);	
-		DrawStringHelper(g, "You only lost one pet?!", 1, 1, 0);
-		DrawStringHelper(g, "That\'s unbelievable!!", 1, 1, 0);
-		DrawStringHelper(g, "How the heck did that happen?!", 2, 1, 0);
-		DrawStringHelper(g, "You rule this game!!", 1, 1, 0);
+		DrawStringHelper(g, lz("My goodness!  That\'s it?"), 5, 1, 0);	
+		DrawStringHelper(g, lz("You only lost one pet?!"), 1, 1, 0);
+		DrawStringHelper(g, lz("That\'s unbelievable!!"), 1, 1, 0);
+		DrawStringHelper(g, lz("How the heck did that happen?!"), 2, 1, 0);
+		DrawStringHelper(g, lz("You rule this game!!"), 1, 1, 0);
 	}
 	else if (gPetsDiedOnBossLevel < 4)
 	{
-		DrawStringHelper(g, "Woah, hold on...", 5, 1, 0);
-		DrawStringHelper(g, StrFormat("only %d pets died?!", gPetsDiedOnBossLevel), 1, 1, 0);
-		DrawStringHelper(g, "That\'s incredible!!", 2, 1, 0);
-		DrawStringHelper(g, "Good shooting, there!", 1, 1, 0);
+		DrawStringHelper(g, lz("Woah, hold on..."), 5, 1, 0);
+		DrawStringHelper(g, StrFormat(lzcstr("only %d pets died?!"), gPetsDiedOnBossLevel), 1, 1, 0);
+		DrawStringHelper(g, lz("That\'s incredible!!"), 2, 1, 0);
+		DrawStringHelper(g, lz("Good shooting, there!"), 1, 1, 0);
 	}
 	else if (gPetsDiedOnBossLevel < 6)
 	{
-		DrawStringHelper(g, "Hmmm... actually it looks like", 5, 1, 0);
-		DrawStringHelper(g, "not that many pets died.", 1, 1, 0);
-		DrawStringHelper(g, "Great work!!", 2, 1, 0);
+		DrawStringHelper(g, lz("Hmmm... actually it looks like"), 5, 1, 0);
+		DrawStringHelper(g, lz("not that many pets died."), 1, 1, 0);
+		DrawStringHelper(g, lz("Great work!!"), 2, 1, 0);
 	}
 	else if (gPetsDiedOnBossLevel < 11)
 	{
-		DrawStringHelper(g, "Also, you saved a fair number of pets yourself.", 7, 1, 0);
-		DrawStringHelper(g, "Good job!", 1, 1, 0);
+		DrawStringHelper(g, lz("Also, you saved a fair number of pets yourself."), 7, 1, 0);
+		DrawStringHelper(g, lz("Good job!"), 1, 1, 0);
 	}
 
 	m0xac = local20;
 
-	DrawStringHelper(g, "Thanks for playing!", 8, 1, 0);
-	DrawStringHelper(g, "We\'ll see you next game!", 1, 1, 0);
-	DrawStringHelper(g, "I N S A N I Q U A R I U M", 4, 1, 0);
-	DrawStringHelper(g, "Cast", 4, 0, 0);
-	DrawStringHelper(g, "Guppy", 4, 1, 1);
+	DrawStringHelper(g, lz("Thanks for playing!"), 8, 1, 0);
+	DrawStringHelper(g, lz("We\'ll see you next game!"), 1, 1, 0);
+	DrawStringHelper(g, lz("I N S A N I Q U A R I U M"), 4, 1, 0);
+	DrawStringHelper(g, lz("Cast"), 4, 0, 0);
+	DrawStringHelper(g, lz("Guppy"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_SMALLSWIM, 160, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "Carnivore", 0, 1, 2);
+	DrawStringHelper(g, lz("Carnivore"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_SMALLSWIM, 400, m0xac - 90, ivar3, 4);
-	DrawStringHelper(g, "Starcatcher", 4, 1, 1);
+	DrawStringHelper(g, lz("Starcatcher"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_STARCATCHER, 160, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "Guppycruncher", 0, 1, 2);
+	DrawStringHelper(g, lz("Guppycruncher"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_GRUBBER, 400, m0xac - 100, ivar3, 0);
-	DrawStringHelper(g, "Beetlemuncher", 4, 1, 1);
+	DrawStringHelper(g, lz("Beetlemuncher"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_GEKKO, 160, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "Breeder", 0, 1, 2);
+	DrawStringHelper(g, lz("Breeder"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_BREEDER, 400, m0xac - 90, ivar3, 6);
-	DrawStringHelper(g, "Ultravore", 5, 1, 0);
+	DrawStringHelper(g, lz("Ultravore"), 5, 1, 0);
 	g->DrawImageCel(IMAGE_ULTRA, 240, m0xac - 170, ivar3, 0);
-	DrawStringHelper(g, "Sylvester", 8, 1, 1);
+	DrawStringHelper(g, lz("Sylvester"), 8, 1, 1);
 	g->DrawImageCel(IMAGE_SYLV, 120, m0xac - 180, ivar3, 0);
-	DrawStringHelper(g, "Balrog", 0, 1, 2);
+	DrawStringHelper(g, lz("Balrog"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_BALROG, 360, m0xac - 180, ivar3, 0);
-	DrawStringHelper(g, "Gus", 6, 1, 1);
+	DrawStringHelper(g, lz("Gus"), 6, 1, 1);
 	g->DrawImageCel(IMAGE_GUS, 120, m0xac - 180, ivar3, 0);
-	DrawStringHelper(g, "Destructor", 0, 1, 2);
+	DrawStringHelper(g, lz("Destructor"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_DESTRUCTOR, 360, m0xac - 180, ivar3, 0);
-	DrawStringHelper(g, "Ulysses", 6, 1, 1);
+	DrawStringHelper(g, lz("Ulysses"), 6, 1, 1);
 	g->DrawImageCel(IMAGE_ULYSSES, 120, m0xac - 180, local8, 0);
-	DrawStringHelper(g, "Psychosquid", 0, 1, 2);
+	DrawStringHelper(g, lz("Psychosquid"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_PSYCHOSQUID, 360, m0xac - 165, ivar3, 0);
 
-	DrawStringHelper(g, "Bilaterus", 6, 1, 1);
+	DrawStringHelper(g, lz("Bilaterus"), 6, 1, 1);
 	g->DrawImageCel(IMAGE_BILATERUS, 255, m0xac - 90, 9, 4);
 	g->DrawImageCel(IMAGE_BILATERUS, 225, m0xac - 95, 2, 7);
 	g->DrawImageCel(IMAGE_BILATERUS, 195, m0xac - 100, 2, 6);
@@ -356,41 +356,41 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 	g->DrawImageCel(IMAGE_BILATERUS, 75, m0xac - 85, 2, 7);
 	g->DrawImageCel(IMAGE_BILATERUS, 45, m0xac - 90, localc, 2);
 
-	DrawStringHelper(g, "Cyrax", 0, 1, 2);
+	DrawStringHelper(g, lz("Cyrax"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_BOSS, 360, m0xac - 180, ivar3, 0);
-	DrawStringHelper(g, "Stinky", 7, 1, 1);
+	DrawStringHelper(g, lz("Stinky"), 7, 1, 1);
 	g->DrawImageCel(IMAGE_STINKY, 160, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "Niko", 0, 1, 2);
+	DrawStringHelper(g, lz("Niko"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_NIKO, 400, m0xac - 105, localc, 0);
-	DrawStringHelper(g, "Itchy", 4, 1, 1);
+	DrawStringHelper(g, lz("Itchy"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_ITCHY, 160, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "Prego", 0, 1, 2);
+	DrawStringHelper(g, lz("Prego"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_PREGO, 400, m0xac - 105, ivar3, 0);
-	DrawStringHelper(g, "Zorf", 4, 1, 1);
+	DrawStringHelper(g, lz("Zorf"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_ZORF, 160, m0xac - 105, ivar3, 0);
-	DrawStringHelper(g, "Clyde", 0, 1, 2);
+	DrawStringHelper(g, lz("Clyde"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_CLYDE, 400, m0xac - 95, local8, 0);
-	DrawStringHelper(g, "Vert", 4, 1, 1);
+	DrawStringHelper(g, lz("Vert"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_VERT, 160, m0xac - 90, localc, 0);
-	DrawStringHelper(g, "Rufus", 0, 1, 2);
+	DrawStringHelper(g, lz("Rufus"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_RUFUS, 400, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "Meryl", 4, 1, 1);
+	DrawStringHelper(g, lz("Meryl"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_MERYL, 160, m0xac - 105, ivar3, 0);
-	DrawStringHelper(g, "Wadsworth", 0, 1, 2);
+	DrawStringHelper(g, lz("Wadsworth"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_WADSWORTH, 400, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "SEYMOUR", 4, 1, 1);
+	DrawStringHelper(g, lz("SEYMOUR"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_SEYMOUR, 160, m0xac - 90, local8, 0);
-	DrawStringHelper(g, "SHRAPNEL", 0, 1, 2);
+	DrawStringHelper(g, lz("SHRAPNEL"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_SHRAPNEL, 400, m0xac - 100, local8, 0);
-	DrawStringHelper(g, "GUMBO", 4, 1, 1);
+	DrawStringHelper(g, lz("GUMBO"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_GUMBO, 160, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "BLIP", 0, 1, 2);
+	DrawStringHelper(g, lz("BLIP"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_BLIP, 400, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "RHUBARB", 4, 1, 1);
+	DrawStringHelper(g, lz("RHUBARB"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_RHUBARB, 160, m0xac - 100, local8, 0);
-	DrawStringHelper(g, "NIMBUS", 0, 1, 2);
+	DrawStringHelper(g, lz("NIMBUS"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_NIMBUS, 400, m0xac - 90, ivar3, 0);
-	DrawStringHelper(g, "AMP", 4, 1, 1);
+	DrawStringHelper(g, lz("AMP"), 4, 1, 1);
 	g->DrawImageCel(IMAGE_AMP, 120, m0xac - 75, ivar3, 0);
 
 	g->SetColorizeImages(true);
@@ -402,11 +402,11 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 	g->SetDrawMode(Graphics::DRAWMODE_NORMAL);
 	g->SetColorizeImages(false);
 
-	DrawStringHelper(g, "GASH", 0, 1, 2);
+	DrawStringHelper(g, lz("GASH"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_GASH, 400, m0xac - 100, ivar3, 0);
-	DrawStringHelper(g, "ANGIE", 4, 1, 1);
+	DrawStringHelper(g, lz("ANGIE"), 4, 1, 1);
 	DrawAngieHalo(g, 160, m0xac - 100, m0xb4, ivar3, false);
-	DrawStringHelper(g, "PRESTO", 0, 1, 2);
+	DrawStringHelper(g, lz("PRESTO"), 0, 1, 2);
 	g->DrawImageCel(IMAGE_PRESTO, 400, m0xac - 90, ivar3, 0);
 
 	m0xac += m0xb0 * 6;
@@ -417,7 +417,7 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 	}
 	else
 	{
-		DrawStringHelper(g, "BRINKLEY", 0, 1, 1);
+		DrawStringHelper(g, lz("BRINKLEY"), 0, 1, 1);
 		g->DrawImageCel(IMAGE_BRINKLEY, 160, m0xac - 100, ivar3, 0);
 	}
 
@@ -428,7 +428,7 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 	}
 	else
 	{
-		DrawStringHelper(g, "NOSTRADAMUS", 0, 1, 2);
+		DrawStringHelper(g, lz("NOSTRADAMUS"), 0, 1, 2);
 		g->DrawImageCel(IMAGE_NOSTRADAMUS, 400, m0xac - 100, ivar3, 0);
 	}
 
@@ -440,7 +440,7 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 	}
 	else
 	{
-		DrawStringHelper(g, "STANLEY", 0, 1, 1);
+		DrawStringHelper(g, lz("STANLEY"), 0, 1, 1);
 		g->DrawImageCel(IMAGE_STANLEY, 160, m0xac - 100, ivar3, 0);
 	}
 
@@ -451,60 +451,60 @@ void Sexy::InterludeScreen::Draw(Graphics* g)
 	}
 	else
 	{
-		DrawStringHelper(g, "WALTER", 0, 1, 2);
+		DrawStringHelper(g, lz("WALTER"), 0, 1, 2);
 		g->DrawImageCel(IMAGE_WALTER, 400, m0xac - 100, ivar3, 0);
 	}
 
 	if (gInterludeInt02 == 0)
 		gInterludeInt02 = m0xac;
 
-	DrawStringHelper(g, "Credits", 7, 0, 0);
+	DrawStringHelper(g, lz("Credits"), 7, 0, 0);
 
-	DrawStringHelper(g, "Game Design", 3, 0, 0);
+	DrawStringHelper(g, lz("Game Design"), 3, 0, 0);
 	DrawStringHelper(g, "George Fan", 1, 1, 0);
 
-	DrawStringHelper(g, "Producer", 3, 0, 0);
+	DrawStringHelper(g, lz("Producer"), 3, 0, 0);
 	DrawStringHelper(g, "Jason Kapalka", 1, 1, 0);
 	DrawStringHelper(g, "Sukhbir Sidhu", 1, 1, 0);
 
-	DrawStringHelper(g, "Programming", 3, 0, 0);
+	DrawStringHelper(g, lz("Programming"), 3, 0, 0);
 	DrawStringHelper(g, "George Fan", 1, 1, 0);
 	DrawStringHelper(g, "Thien Tran", 1, 1, 0);
 	DrawStringHelper(g, "Brian Rothstein", 1, 1, 0);
 
-	DrawStringHelper(g, "Art", 3, 0, 0);
+	DrawStringHelper(g, lz("Art"), 3, 0, 0);
 	DrawStringHelper(g, "Josh Langley", 1, 1, 0);
 	DrawStringHelper(g, "Walter Wilson", 1, 1, 0);
 
-	DrawStringHelper(g, "Character Design", 3, 0, 0);
+	DrawStringHelper(g, lz("Character Design"), 3, 0, 0);
 	DrawStringHelper(g, "George Fan", 1, 1, 0);
 
-	DrawStringHelper(g, "Music", 3, 0, 0);
+	DrawStringHelper(g, lz("Music"), 3, 0, 0);
 	DrawStringHelper(g, "Jonne Valtonen", 1, 1, 0);
 	DrawStringHelper(g, "George Fan", 1, 1, 0);
 
-	DrawStringHelper(g, "PopCap Framework", 3, 0, 0);
+	DrawStringHelper(g, lz("PopCap Framework"), 3, 0, 0);
 	DrawStringHelper(g, "Brian Fiete", 1, 1, 0);
 
-	DrawStringHelper(g, "Biz Dev", 3, 0, 0);
+	DrawStringHelper(g, lz("Biz Dev"), 3, 0, 0);
 	DrawStringHelper(g, "Don Walters", 1, 1, 0);
 
-	DrawStringHelper(g, "QA", 3, 0, 0);
+	DrawStringHelper(g, lz("QA"), 3, 0, 0);
 	DrawStringHelper(g, "Eric Harman", 1, 1, 0);
 	DrawStringHelper(g, "Shawn Conard", 1, 1, 0);
 	DrawStringHelper(g, "Brenna Flood", 1, 1, 0);
 	DrawStringHelper(g, "Chad Zoellner", 1, 1, 0);
 
-	DrawStringHelper(g, "Marmot Salesman", 3, 0, 0);
+	DrawStringHelper(g, lz("Marmot Salesman"), 3, 0, 0);
 	DrawStringHelper(g, "David P. Wycliff", 1, 1, 0);
 
-	DrawStringHelper(g, "Special Thanks", 3, 0, 0);
+	DrawStringHelper(g, lz("Special Thanks"), 3, 0, 0);
 	DrawStringHelper(g, "PopCap Beta Testers", 1, 1, 0);
 	DrawStringHelper(g, "Tysen Henderson", 1, 1, 0);
 	DrawStringHelper(g, "Hai-Pao Fan", 1, 1, 0);
 	DrawStringHelper(g, "Jan Campbell", 1, 1, 0);
 
-	DrawStringHelper(g, "brought to you by:", 7, 1, 0);
+	DrawStringHelper(g, lz("brought to you by:"), 7, 1, 0);
 	DrawStringHelper(g, "Flying Bear Entertainment", 1, 0, 0);
 	DrawStringHelper(g, "and", 1, 1, 0);
 	DrawStringHelper(g, "PopCap Games", 1, 0, 0);

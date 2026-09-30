@@ -30,7 +30,7 @@ Sexy::GameSelector::GameSelector(WinFishApp* theApp)
 	mVirtualTankButton->mOverImage = IMAGE_BATTLETANKBUTTON;
 	mVirtualTankButton->mDownImage = IMAGE_BATTLETANKBUTTOND;
 	mVirtualTankButton->SetFont(FONT_JUNGLEFEVER15OUTLINE);
-	mVirtualTankButton->mLabel = "Virtual Tank";
+	mVirtualTankButton->mLabel = lz("Virtual Tank");
 	mVirtualTankButton->mColors[ButtonWidget::COLOR_LABEL] = Color(0xff, 0xf0, 0);
 	mVirtualTankButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(200, 200, 0xff);
 	mVirtualTankButton->Resize(357, 287, 217, 66);
@@ -41,7 +41,7 @@ Sexy::GameSelector::GameSelector(WinFishApp* theApp)
 	mChallengeButton->mOverImage = IMAGE_MIDDLEBUTTON;
 	mChallengeButton->mDownImage = IMAGE_MIDDLEBUTTOND;
 	mChallengeButton->SetFont(FONT_JUNGLEFEVER15OUTLINE);
-	mChallengeButton->mLabel = "Challenge";
+	mChallengeButton->mLabel = lz("Challenge");
 	mChallengeButton->mColors[ButtonWidget::COLOR_LABEL] = Color(0xff, 0xf0, 0);
 	mChallengeButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(200, 200, 0xff);
 	mChallengeButton->Resize(359, 212, 213, 48);
@@ -52,21 +52,21 @@ Sexy::GameSelector::GameSelector(WinFishApp* theApp)
 	mTimeTrialButton->mOverImage = IMAGE_MIDDLEBUTTON;
 	mTimeTrialButton->mDownImage = IMAGE_MIDDLEBUTTOND;
 	mTimeTrialButton->SetFont(FONT_JUNGLEFEVER15OUTLINE);
-	mTimeTrialButton->mLabel = "Time Trial";
+	mTimeTrialButton->mLabel = lz("Time Trial");
 	mTimeTrialButton->mColors[ButtonWidget::COLOR_LABEL] = Color(0xff, 0xf0, 0);
 	mTimeTrialButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(200, 200, 0xff);
 	mTimeTrialButton->Resize(359, 142, 213, 48);
 
-	mOptionsButton = MakeDialogButton2(3, this, "Options", IMAGE_LEFTBUTTON);
+	mOptionsButton = MakeDialogButton2(3, this, lz("Options"), IMAGE_LEFTBUTTON);
 	mOptionsButton->Resize(325, 412, 92, mOptionsButton->mHeight);
 
-	mQuitButton = MakeDialogButton2(4, this, "Quit", IMAGE_RIGHTBUTTON);
+	mQuitButton = MakeDialogButton2(4, this, lz("Quit"), IMAGE_RIGHTBUTTON);
 	mQuitButton->Resize(514, 412, 89, mQuitButton->mHeight);
 
-	mHallOfFameButton = MakeDialogButton2(6, this, "Hall of Fame", IMAGE_MAINBUTTON);
+	mHallOfFameButton = MakeDialogButton2(6, this, lz("Hall of Fame"), IMAGE_MAINBUTTON);
 	mHallOfFameButton->Resize(401, 380, 127, mHallOfFameButton->mHeight);
 
-	mHelpButton = MakeDialogButton2(7, this, "Help", IMAGE_CENTERBUTTON);
+	mHelpButton = MakeDialogButton2(7, this, lz("Help"), IMAGE_CENTERBUTTON);
 	mHelpButton->Resize(419, 412, 93, mHelpButton->mHeight);
 
 	mGameSelectorOverlay = new GameSelectorOverlay();
@@ -270,9 +270,9 @@ void Sexy::GameSelector::DrawOverlay(Graphics* g)
 	else
 	{
 		if (aProf->mLevel == 6)
-			anAdvString = StrFormat("Bonus Level %d", aProf->mTank);
+			anAdvString = StrFormat(lzcstr("Bonus Level %d"), aProf->mTank);
 		else if(aProf->mLevel != 1 || aProf->mTank != 1)
-			anAdvString = StrFormat("Tank %d-%d", aProf->mTank, aProf->mLevel);
+			anAdvString = StrFormat(lzcstr("Tank %d-%d"), aProf->mTank, aProf->mLevel);
 	}
 
 	if (anAdvString.size() > 0)
@@ -283,7 +283,7 @@ void Sexy::GameSelector::DrawOverlay(Graphics* g)
 
 	if (aProf->mShells > 0)
 	{
-		SexyString aStr = StrFormat("%d Shells", aProf->mShells);
+		SexyString aStr = StrFormat(lzcstr("%d Shells"), aProf->mShells);
 		g->DrawString(aStr, (-g->GetFont()->StringWidth(aStr) / 2) + 465, 346);
 	}
 }
@@ -307,7 +307,7 @@ void Sexy::GameSelector::AddedToManager(WidgetManager* theWidgetManager)
 		mNotYouButton->mColor = Color(0, 0, 120);
 		mNotYouButton->mOverColor = Color(100, 100, 220);
 		mNotYouButton->mDoFinger = true;
-		mNotYouButton->mLabel = "If this is not you, click here.";
+		mNotYouButton->mLabel = lz("If this is not you, click here.");
 		mNotYouButton->mUnderlineSize = 1;
 		mNotYouButton->SetVisible(true);
 		int aStrWdth = mNotYouButton->mFont->StringWidth(mNotYouButton->mLabel);
@@ -411,7 +411,7 @@ void Sexy::GameSelector::ButtonDepress(int theId)
 		UserProfile* aProf = mApp->mCurrentProfile;
 		if (aProf->mTank < 2 && !aProf->mFinishedGame)
 		{
-			mApp->DoDialog(14, true, "Not Yet!", "You\'ll need to complete a tank in Adventure Mode before this option becomes available.", "OK", Dialog::BUTTONS_FOOTER);
+			mApp->DoDialog(14, true, lz("Not Yet!"), lz("You\'ll need to complete a tank in Adventure Mode before this option becomes available."), lz("OK"), Dialog::BUTTONS_FOOTER);
 			return;
 		}
 		mApp->mGameMode = GAMEMODE_TIME_TRIAL;
@@ -424,7 +424,7 @@ void Sexy::GameSelector::ButtonDepress(int theId)
 	{
 		if (!mApp->mCurrentProfile->mFinishedGame)
 		{
-			mApp->DoDialog(14, true, "Not Yet!", "You\'ll need to beat Adventure Mode before this option becomes available.", "OK", Dialog::BUTTONS_FOOTER);
+			mApp->DoDialog(14, true, lz("Not Yet!"), lz("You\'ll need to beat Adventure Mode before this option becomes available."), lz("OK"), Dialog::BUTTONS_FOOTER);
 			return;
 		}
 		mApp->mGameMode = GAMEMODE_CHALLENGE;
@@ -475,24 +475,24 @@ void Sexy::GameSelector::DrawMerylSpeak(Graphics* g, int theHoverId, int theAlph
 		{
 		case 1:
 			if (aTank == 1 && aLevel == 1 && !aFinishedGame)
-				aStrToDraw = "New to Insaniquarium?\nClick here to start your aquatic adventure!";
+				aStrToDraw = lz("New to Insaniquarium?\nClick here to start your aquatic adventure!");
 			else
-				aStrToDraw = "Feed fish and fight aliens!\nClick here to continue\nyour adventure...";
+				aStrToDraw = lz("Feed fish and fight aliens!\nClick here to continue\nyour adventure...");
 			break;
 		case 2:
-			aStrToDraw = "How much money can you earn before time runs out?";
+			aStrToDraw = lz("How much money can you earn before time runs out?");
 			break;
 		case 3:
-			aStrToDraw = "Can you fend off the increasingly difficult aliens?";
+			aStrToDraw = lz("Can you fend off the increasingly difficult aliens?");
 			break;
 		case 4:
-			aStrToDraw = "Buy and raise your own\ncustom fish, then use them\nas a screensaver!";
+			aStrToDraw = lz("Buy and raise your own\ncustom fish, then use them\nas a screensaver!");
 			break;
 		case 5:
-			aStrToDraw = "Wow!  Nice trophy!";
+			aStrToDraw = lz("Wow!  Nice trophy!");
 			break;
 		case 6:
-			aStrToDraw = "The pets wanted you to have this solid gold trophy since you are now the undisputed champion of all Insaniquarium!";
+			aStrToDraw = lz("The pets wanted you to have this solid gold trophy since you are now the undisputed champion of all Insaniquarium!");
 			break;
 		default:
 			break;
@@ -530,7 +530,7 @@ void Sexy::GameSelector::DrawMerylSpeak(Graphics* g, int theHoverId, int theAlph
 			theColor.mAlpha = theAlphaValue;
 			g->SetColor(theColor);
 			int aFontAscent = g->GetFont()->GetAscent();
-			g->DrawString("If this is not you, click here.", mNotYouButton->mX,
+			g->DrawString(lz("If this is not you, click here."), mNotYouButton->mX,
 				(aFontAscent + mNotYouButton->mHeight) / 2 - 1 + mNotYouButton->mY);
 		}
 	}
@@ -572,16 +572,16 @@ void Sexy::GameSelector::UpdateAdventureButton()
 	{
 		if (aProf->mFinishedGame)
 		{
-			mAdventureButton->mLabel = "Bonus Adventure";
+			mAdventureButton->mLabel = lz("Bonus Adventure");
 			return;
 		}
 		if(aProf->mTank == 1 && aProf->mLevel == 1)
 		{
-			mAdventureButton->mLabel = "Start Adventure";
+			mAdventureButton->mLabel = lz("Start Adventure");
 			return;
 		}
 	}
-	mAdventureButton->mLabel = "Adventure";
+	mAdventureButton->mLabel = lz("Adventure");
 }
 
 void Sexy::GameSelector::SandboxActivated()

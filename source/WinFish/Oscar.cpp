@@ -80,8 +80,8 @@ void Sexy::Oscar::OnFoodAte(GameObject* obj)
 		int aRandVal = Rand();
 		if (aRandVal % 3 == 0)
 		{
-			mApp->mBoard->MakeNote(mX - 40 + mWidth / 2, mY - 10, 2, "This is my last pizza,");
-			mApp->mBoard->MakeNote(mX + mWidth / 2, mY + 5, 2, "I swear!");
+			mApp->mBoard->MakeNote(mX - 40 + mWidth / 2, mY - 10, 2, lz("This is my last pizza,"));
+			mApp->mBoard->MakeNote(mX + mWidth / 2, mY + 5, 2, lz("I swear!"));
 		}
 	}
 }
@@ -471,10 +471,10 @@ void Sexy::Oscar::RemoveFromGame(bool aRemoveShadow)
 	if (mApp->mBoard->IsTankAndLevelNB(1, 3))
 	{
 		if (mApp->mBoard->mMessageShown[28])
-			mApp->mBoard->ShowText("Try feeding small guppies to your carnivores!", false, 29);
+			mApp->mBoard->ShowText(lz("Try feeding small guppies to your carnivores!"), false, 29);
 		if (mApp->mBoard->mMessageShown[27])
-			mApp->mBoard->ShowText("Hint: Carnivores won\'t eat fish food!", false, 28);
-		mApp->mBoard->ShowText("Warning! Your carnivore has died!", false, 27);
+			mApp->mBoard->ShowText(lz("Hint: Carnivores won\'t eat fish food!"), false, 28);
+		mApp->mBoard->ShowText(lz("Warning! Your carnivore has died!"), false, 27);
 	}
 }
 

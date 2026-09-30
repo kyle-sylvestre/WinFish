@@ -12,7 +12,7 @@
 using namespace Sexy;
 
 Sexy::UserDialog::UserDialog(WinFishApp* theApp, bool transferShells)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, transferShells*16 + 24, true, transferShells ? "TRANSFER SHELLS" : "WHO ARE YOU?",
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, transferShells*16 + 24, true, transferShells ? lz("TRANSFER SHELLS") : lz("WHO ARE YOU?"),
 		"", "", BUTTONS_OK_CANCEL)
 {
 	mTransferShells = transferShells;
@@ -33,15 +33,15 @@ Sexy::UserDialog::UserDialog(WinFishApp* theApp, bool transferShells)
 	else
 		mScrollbarWidget = new ScrollbarWidget(0, mListWidget);
 
-	mRenameButton = MakeDialogButton(0, this, "Rename", FONT_JUNGLEFEVER12OUTLINE);
-	mDeleteButton = MakeDialogButton(1, this, "Delete", FONT_JUNGLEFEVER12OUTLINE);
+	mRenameButton = MakeDialogButton(0, this, lz("Rename"), FONT_JUNGLEFEVER12OUTLINE);
+	mDeleteButton = MakeDialogButton(1, this, lz("Delete"), FONT_JUNGLEFEVER12OUTLINE);
 	mEditWidget = MakeEditWidget(0, this);
 	mEditWidget->SetText("", true);
 	mEditWidget->mCursorPos = mEditWidget->mString.size();
 	mListWidget->mScrollbar = mScrollbarWidget;
 
 	if (!mTransferShells)
-		mListWidget->AddLine("(Create a New User)", false);
+		mListWidget->AddLine(lz("(Create a New User)"), false);
 
 	if (mApp->mCurrentProfile && !mTransferShells)
 		mListWidget->SetSelect(mListWidget->AddLine(mApp->mCurrentProfile->mUserName, false));
@@ -86,8 +86,8 @@ void Sexy::UserDialog::Draw(Graphics* g)
 
 	int aXPos = mContentInsets.mLeft + mBackgroundInsets.mLeft;
 	int aYPos = mContentInsets.mTop + mBackgroundInsets.mTop + mY + 54;
-	g->DrawString("Transfer Shells to User", aXPos + 70, aYPos);
-	g->DrawString("Transfer Amount", aXPos, mEditWidget->mY - mY + 17);
+	g->DrawString(lz("Transfer Shells to User"), aXPos + 70, aYPos);
+	g->DrawString(lz("Transfer Amount"), aXPos, mEditWidget->mY - mY + 17);
 
 	g->DrawImage(IMAGE_HELPSHELL, mEditWidget->mX - mX - 35, mEditWidget->mY - mY + 3);
 	DrawEditWidgetBox(g, mEditWidget);

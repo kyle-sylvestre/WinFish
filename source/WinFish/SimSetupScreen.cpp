@@ -23,19 +23,19 @@ Sexy::SimSetupScreen::SimSetupScreen(WinFishApp* theApp)
 	mApp->PlayMusic(2, 0);
 	m0x98 = 140;
 	m0x94 = 60;
-	mReturnButton = MakeDialogButton(9, this, "Return to Tank", FONT_JUNGLEFEVER10OUTLINE);
+	mReturnButton = MakeDialogButton(9, this, lz("Return to Tank"), FONT_JUNGLEFEVER10OUTLINE);
 	mReturnButton->Resize(225, 420, 186, mReturnButton->mHeight);
 
-	mSSButton = MakeDialogButton(8, this, "Screensaver...", FONT_JUNGLEFEVER10OUTLINE);
+	mSSButton = MakeDialogButton(8, this, lz("Screensaver..."), FONT_JUNGLEFEVER10OUTLINE);
 	mSSButton->Resize(80, 320, 186, mSSButton->mHeight);
 
-	mPrevButton = MakeDialogButton2(0, this, "Prev", IMAGE_LEFTBUTTON);
+	mPrevButton = MakeDialogButton2(0, this, lz("Prev"), IMAGE_LEFTBUTTON);
 	mPrevButton->Resize(m0x94 + 14, m0x98 + 134, 65, mPrevButton->mHeight);
 
-	mNextButton = MakeDialogButton2(1, this, "Next", IMAGE_RIGHTBUTTON);
+	mNextButton = MakeDialogButton2(1, this, lz("Next"), IMAGE_RIGHTBUTTON);
 	mNextButton->Layout(0x4403, mPrevButton, 65, 0, 0, 0);
 
-	mSellButton = MakeDialogButton2(2, this, "Sell", IMAGE_CENTERBUTTON);
+	mSellButton = MakeDialogButton2(2, this, lz("Sell"), IMAGE_CENTERBUTTON);
 	mSellButton->Layout(0x4402, mPrevButton, -2, 0, 0, 0);
 	mSellButton->Layout(0x20000, mNextButton, 0, 0, 3, 0);
 
@@ -136,43 +136,43 @@ void Sexy::SimSetupScreen::Draw(Graphics* g)
 
 	g->SetFont(FONT_JUNGLEFEVER17OUTLINE);
 	g->SetColor(Color(0xff, 200, 0));
-	WriteCenteredLine(g, 25, "Tank Setup");
+	WriteCenteredLine(g, 25, lz("Tank Setup"));
 	
 	g->DrawImage(IMAGE_TANKCHOOSER, m0x94, m0x98);
 	g->DrawImage(GetImageById(mApp->mBoard->mCurrentBackgroundId + (IMAGE_TANKBACKDROP1_ID - 1)), m0x94 + 16, m0x98 + 10);
 	
 	g->SetFont(FONT_JUNGLEFEVER12OUTLINE);
 	g->SetColor(Color::White);
-	SexyString aStr = "Current Backdrop";
+	SexyString aStr = lz("Current Backdrop");
 	g->DrawString(aStr, (IMAGE_TANKCHOOSER->mWidth - g->GetFont()->StringWidth(aStr)) / 2 + m0x94, m0x98 - 5);
 
 	g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 	g->SetColor(Color::White);
-	DrawCheckboxString(g, "Show Fish Names", mFishNamesCB, nullptr);
-	DrawCheckboxString(g, "Show Bubbulator", mBubbulatorCB, nullptr);
-	DrawCheckboxString(g, "Enable Alien Attractor", mAttractorCB, nullptr);
-	DrawCheckboxString(g, "Allow Fish To Drop Shells", mDropShellsCB, nullptr);
-	DrawCheckboxString(g, "Always Show When", mShowHungryCB, "Fish Are Hungry");
+	DrawCheckboxString(g, lz("Show Fish Names"), mFishNamesCB, nullptr);
+	DrawCheckboxString(g, lz("Show Bubbulator"), mBubbulatorCB, nullptr);
+	DrawCheckboxString(g, lz("Enable Alien Attractor"), mAttractorCB, nullptr);
+	DrawCheckboxString(g, lz("Allow Fish To Drop Shells"), mDropShellsCB, nullptr);
+	DrawCheckboxString(g, lz("Always Show When"), mShowHungryCB, lzcstr("Fish Are Hungry"));
 
 	SexyString aInfoStr = "";
 	if (mFishNamesCB->mIsOver)
-		aInfoStr = "This checkbox controls whether or not to display the names of your fish in your Virtual Tank.";
+		aInfoStr = lz("This checkbox controls whether or not to display the names of your fish in your Virtual Tank.");
 	else if (mBubbulatorCB->mIsOver)
-		aInfoStr = "This checkbox controls whether or not to display the Bubbulator in your Virtual Tank.";
+		aInfoStr = lz("This checkbox controls whether or not to display the Bubbulator in your Virtual Tank.");
 	else if (mAttractorCB->mIsOver)
-		aInfoStr = "This checkbox controls whether or not to display the Alien Attractor in your Virtual Tank.";
+		aInfoStr = lz("This checkbox controls whether or not to display the Alien Attractor in your Virtual Tank.");
 	else if (mDropShellsCB->mIsOver)
-		aInfoStr = "This checkbox controls whether fish will drop shells in your Virtual Tank.";
+		aInfoStr = lz("This checkbox controls whether fish will drop shells in your Virtual Tank.");
 	else if (mShowHungryCB->mIsOver)
-		aInfoStr = "Virtual Fish only need to be fed three times per day.  After that, they will not look hungry unless you check this checkbox.";
+		aInfoStr = lz("Virtual Fish only need to be fed three times per day.  After that, they will not look hungry unless you check this checkbox.");
 	else if (mSSButton->mIsOver || mSSButton->mIsDown)
-		aInfoStr = "Click to set your Virtual Tank as your computer\'s screensaver.\nThe screensaver will display the Virtual Tank belonging to the user who last enabled it.";
+		aInfoStr = lz("Click to set your Virtual Tank as your computer\'s screensaver.\nThe screensaver will display the Virtual Tank belonging to the user who last enabled it.");
 	else if (mSellButton->mIsOver || mSellButton->mIsDown)
-		aInfoStr = "You can sell your tank backdrops if you\'re in need of more Shells.";
+		aInfoStr = lz("You can sell your tank backdrops if you\'re in need of more Shells.");
 	else if (mNextButton->mIsOver || mNextButton->mIsDown || mPrevButton->mIsOver || mPrevButton->mIsDown)
-		aInfoStr = "You can choose which tank backdrop to display in Virtual Tank.  You can buy additional backdrops from the Virtual Tank Store.";
+		aInfoStr = lz("You can choose which tank backdrop to display in Virtual Tank.  You can buy additional backdrops from the Virtual Tank Store.");
 	else
-		aInfoStr = "Welcome to the Virtual Tank setup screen!";
+		aInfoStr = lz("Welcome to the Virtual Tank setup screen!");
 
 	if (aInfoStr.length() > 0)
 	{
@@ -183,14 +183,14 @@ void Sexy::SimSetupScreen::Draw(Graphics* g)
 	}
 
 	g->SetColor(Color::White);
-	aStr = StrFormat("The Screensaver is %s", mApp->mScreenSaverEnabled ? "enabled" : "disabled");
+	aStr = StrFormat(lzcstr("The Screensaver is %s"), mApp->mScreenSaverEnabled ? lzcstr("enabled") : lzcstr("disabled"));
 	int aStrX = mSSButton->mWidth / 2 + mSSButton->mX;
 	int aStrY = mSSButton->mHeight + 20 + mSSButton->mY;
 	g->DrawString(aStr, aStrX - g->GetFont()->StringWidth(aStr) / 2, aStrY);
 
 	if (mApp->mScreenSaverEnabled)
 	{
-		aStr = StrFormat("User: %s", mApp->mScreenSaverUserName.c_str());
+		aStr = StrFormat(lzcstr("User: %s"), mApp->mScreenSaverUserName.c_str());
 		g->DrawString(aStr, aStrX - g->GetFont()->StringWidth(aStr) / 2, aStrY + 15);
 	}
 }
@@ -242,11 +242,11 @@ void Sexy::SimSetupScreen::ButtonDepress(int theId)
 		}
 		if (aNumOfBackdrops == 1)
 		{
-			mApp->DoDialog(DIALOG_INFO, true, "Not Allowed", "You are not allowed to sell your only backdrop!", "OK", Dialog::BUTTONS_FOOTER);
+			mApp->DoDialog(DIALOG_INFO, true, lz("Not Allowed"), lz("You are not allowed to sell your only backdrop!"), lz("OK"), Dialog::BUTTONS_FOOTER);
 		}
 		else
 		{
-			mApp->DoAreYouSureSellDialog(StrFormat("Are you sure that you want to sell this backdrop?\n\nRefund Value: %d Shells", 10000));
+			mApp->DoAreYouSureSellDialog(StrFormat(lzcstr("Are you sure that you want to sell this backdrop?\n\nRefund Value: %d Shells"), 10000));
 		}
 	}
 	else if (theId == 8)
@@ -261,12 +261,12 @@ void Sexy::SimSetupScreen::CheckboxChecked(int theId, bool checked)
 	m0x9c = true;
 	if (theId == 4 && checked && mApp->mCurrentProfile->mBubbulatorBought == 0)
 	{
-		mApp->DoDialog(DIALOG_INFO, true, "Unavailable", "You must buy the bubbulator in order to use this option.", "OK", Dialog::BUTTONS_FOOTER);
+		mApp->DoDialog(DIALOG_INFO, true, lz("Unavailable"), lz("You must buy the bubbulator in order to use this option."), lz("OK"), Dialog::BUTTONS_FOOTER);
 		mBubbulatorCB->mChecked = false;
 	}
 	else if (theId == 5 && checked && mApp->mCurrentProfile->mAlienAttractorBought == 0)
 	{
-		mApp->DoDialog(DIALOG_INFO, true, "Unavailable", "You must buy the alien attractor in order to use this option.", "OK", Dialog::BUTTONS_FOOTER);
+		mApp->DoDialog(DIALOG_INFO, true, lz("Unavailable"), lz("You must buy the alien attractor in order to use this option."), lz("OK"), Dialog::BUTTONS_FOOTER);
 		mAttractorCB->mChecked = false;
 	}
 }

@@ -11,19 +11,19 @@
 using namespace Sexy;
 
 Sexy::OptionsDialog::OptionsDialog(WinFishApp* theApp, bool theFlag)
-	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_OPTIONS, true, "Options",
-		"", "OK", BUTTONS_FOOTER)
+	: MoneyDialog(theApp, IMAGE_DIALOG, IMAGE_DIALOGBUTTON, DIALOG_OPTIONS, true, lz("Options"),
+		"", lz("OK"), BUTTONS_FOOTER)
 {
 	mApp2 = theApp;
 	SetColor(3, Color(0xff, 0xff, 100));
 	mFlag = theFlag;
-	mRegisterButton = MakeDialogButton(0, this, "Register", NULL);
-	mHelpButton = MakeDialogButton(1, this, "Help", NULL);
-	SexyString aWebLinkStr = mApp->GetString("weblinktext", "");
+	mRegisterButton = MakeDialogButton(0, this, lz("Register"), NULL);
+	mHelpButton = MakeDialogButton(1, this, lz("Help"), NULL);
+    SexyString aWebLinkStr = mApp->GetString("weblinktext", "");
 	mWebLinkButton = MakeDialogButton(2, this, aWebLinkStr, NULL);
 
-	mCheckUpdatesButton = MakeDialogButton(4, this, "Check Updates", NULL);
-	mBackButton = MakeDialogButton(3, this, "Back to Main Menu", NULL);
+	mCheckUpdatesButton = MakeDialogButton(4, this, lz("Check Updates"), NULL);
+	mBackButton = MakeDialogButton(3, this, lz("Back to Main Menu"), NULL);
 
 	mMusicSlider = new Slider(IMAGE_SLIDERTRACK, IMAGE_SLIDERTHUMB, 5, this);
 	double aMusicValue = mApp->GetMusicVolume();
@@ -108,11 +108,11 @@ void Sexy::OptionsDialog::Draw(Graphics* g)
 	g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
 	g->SetColorizeImages(true);
 	g->SetColor(mColors[4]);
-	g->DrawString("Music", 48, 78);
-	g->DrawString("Sound Fx", 48, 110);
-	g->DrawString("Fullscreen", mFullscreenCB->mX - mX + 43, mFullscreenCB->mY - mY + 24);
-	g->DrawString("Custom Cursors", mCustomCursorsCB->mX - mX + 43, mCustomCursorsCB->mY - mY + 24);
-	g->DrawString("Hardware Acceleration", m3DCB->mX - mX + 43, m3DCB->mY - mY + 24);
+	g->DrawString(lz("Music"), 48, 78);
+	g->DrawString(lz("Sound Fx"), 48, 110);
+	g->DrawString(lz("Fullscreen"), mFullscreenCB->mX - mX + 43, mFullscreenCB->mY - mY + 24);
+	g->DrawString(lz("Custom Cursors"), mCustomCursorsCB->mX - mX + 43, mCustomCursorsCB->mY - mY + 24);
+	g->DrawString(lz("Hardware Acceleration"), m3DCB->mX - mX + 43, m3DCB->mY - mY + 24);
 	g->SetColorizeImages(false);
 }
 
@@ -192,22 +192,22 @@ void Sexy::OptionsDialog::WidgetClicked(int theId, bool theFlag)
 	{
 		if (!theFlag && mApp->mForceFullscreen)
 		{
-			mApp->DoDialog(8, true, "No Windowed Mode", "Windowed mode is only available if your desktop was running in either\n16 bit or 32 bit color mode when you started the game.\n\nIf you\'d like to run in Windowed mode then you need to quit the game and switch your desktop to 16 or 32 bit color mode.",
-				"OK", BUTTONS_FOOTER);
+			mApp->DoDialog(8, true, lz("No Windowed Mode"), "Windowed mode is only available if your desktop was running in either\n16 bit or 32 bit color mode when you started the game.\n\nIf you\'d like to run in Windowed mode then you need to quit the game and switch your desktop to 16 or 32 bit color mode.",
+				lz("OK"), BUTTONS_FOOTER);
 			mFullscreenCB->SetChecked(true);
 		}
 	}
 	else if (theId == 9 && theFlag)
 	{
 		if (!mApp->Is3DAccelerationSupported())
-			mApp->DoDialog(14, true, "Not Supported", 
-				"Hardware Acceleration cannot be enabled on this computer.\n\nYour video card does not\nmeet the minimum requirements\nfor this game.",
-				"OK", BUTTONS_FOOTER);
+			mApp->DoDialog(14, true, lz("Not Supported"), 
+				lz("Hardware Acceleration cannot be enabled on this computer.\n\nYour video card does not\nmeet the minimum requirements\nfor this game."),
+				lz("OK"), BUTTONS_FOOTER);
 
 		if (!mApp->Is3DAccelerationRecommended())
-			mApp->DoDialog(14, true, "Warning",
-				"Your video card may not fully support this feature.\n\nIf you experience slower performance, please disable Hardware Acceleration.",
-				"OK", BUTTONS_FOOTER);
+			mApp->DoDialog(14, true, lz("Warning"),
+				lz("Your video card may not fully support this feature.\n\nIf you experience slower performance, please disable Hardware Acceleration."),
+				lz("OK"), BUTTONS_FOOTER);
 	}
 }
 

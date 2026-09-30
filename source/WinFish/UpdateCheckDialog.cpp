@@ -7,8 +7,8 @@
 using namespace Sexy;
 
 Sexy::UpdateCheckDialog::UpdateCheckDialog(Image* theComponentImage, Image* theButtonComponentImage, Image* theWaitImage, int theId) :
-	Dialog(theComponentImage, theButtonComponentImage, theId, true, gSexyApp->GetString("UPDATE_CHECK_TITLE"),
-		gSexyApp->GetString("UPDATE_CHECK_BODY"), gSexyApp->GetString("DIALOG_BUTTON_CANCEL"), BUTTONS_FOOTER)
+	Dialog(theComponentImage, theButtonComponentImage, theId, true, lz("UPDATE_CHECK_TITLE"),
+		lz("UPDATE_CHECK_BODY"), lz("DIALOG_BUTTON_CANCEL"), BUTTONS_FOOTER)
 {
 	mWaitBarImage = theWaitImage;
 	mCheckFinished = 0;
@@ -44,11 +44,11 @@ void Sexy::UpdateCheckDialog::Update()
 
 	Dialog* aDia = NULL;
 	if (aResCode == HTTPTransfer::RESULT_NOT_FOUND || gSexyApp->mInternetManager->IsUpToDate())
-		aDia = ((WinFishApp*)gSexyApp)->DoDialog(mId + 20000, true,gSexyApp->GetString("UP_TO_DATE_TITLE"), 
-			gSexyApp->GetString("UP_TO_DATE_BODY"), gSexyApp->GetString("DIALOG_BUTTON_OK"), BUTTONS_FOOTER);
+		aDia = ((WinFishApp*)gSexyApp)->DoDialog(mId + 20000, true,lz("UP_TO_DATE_TITLE"),
+			lz("UP_TO_DATE_BODY"), lz("DIALOG_BUTTON_OK"), BUTTONS_FOOTER);
 	else
-		aDia = ((WinFishApp*)gSexyApp)->DoDialog(mId + 10000, true, gSexyApp->GetString("NEW_VERSION_TITLE"),
-			gSexyApp->GetString("NEW_VERSION_BODY"), "", BUTTONS_YES_NO);
+		aDia = ((WinFishApp*)gSexyApp)->DoDialog(mId + 10000, true, lz("NEW_VERSION_TITLE"),
+			lz("NEW_VERSION_BODY"), "", BUTTONS_YES_NO);
 
 	aDia->Move(mX + 32, mY - 32);
 #endif

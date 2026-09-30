@@ -784,7 +784,7 @@ bool Sexy::GameObject::PrestoRightClicked(int theTimer)
 
 	mApp->mBoard->PlaySample(SOUND_BUZZER_ID, 3, 1.0);
 
-	mApp->mBoard->MakeNote(mX + mWidth / 2 - 20, mY - 10, 2, "Recharging...");
+	mApp->mBoard->MakeNote(mX + mWidth / 2 - 20, mY - 10, 2, lz("Recharging..."));
 	return false;
 }
 
@@ -792,9 +792,9 @@ void Sexy::GameObject::DrawPrestoMisc(Graphics* g, int theTimer)
 {
 	g->SetColor(Color(0xaaffaa));
 	g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
-	int aStrWdth = g->GetFont()->StringWidth("Presto");
+	int aStrWdth = g->GetFont()->StringWidth(lz("Presto"));
 	int aX = (mWidth - aStrWdth) / 2;
-	g->DrawString("Presto", aX, mHeight - 2);
+	g->DrawString(lz("Presto"), aX, mHeight - 2);
 
 	if (theTimer > 0)
 	{
@@ -803,7 +803,7 @@ void Sexy::GameObject::DrawPrestoMisc(Graphics* g, int theTimer)
 		g2.SetColor(Color(0xff3333));
 		g2.ClipRect(aStrWdth - (aStrWdth * theTimer) / 360 + aX, 0, mWidth, mHeight);
 
-		g2.DrawString("Presto", aX, mHeight - 2);
+		g2.DrawString(lz("Presto"), aX, mHeight - 2);
 	}
 }
 
@@ -825,11 +825,11 @@ SexyString Sexy::GameObject::GetStoreDescription()
 		if (mPreNamedTypeId == COOKIE)
 		{
 			// TODO HEre 0051b7bf some string global
-			return "This is Cookie.\nCookie will feed\nyour more exotic fish.";
+			return lz("This is Cookie.\nCookie will feed\nyour more exotic fish.");
 		}
 
 		if (mName[mName.length() - 1] == '.')
-			return StrFormat("This is %s", mName.c_str());
+			return StrFormat(lzcstr("This is %s"), mName.c_str());
 		else
 			return StrFormat("This is %s.", mName.c_str());
 	}
@@ -837,22 +837,22 @@ SexyString Sexy::GameObject::GetStoreDescription()
 	switch (GetAttribute())
 	{
 	case 0:
-		return "You\'ve never seen\na fish like this!";
+		return lz("You\'ve never seen\na fish like this!");
 	case 1:
-		return "This fish is a\nvoracious eater.";
+		return lz("This fish is a\nvoracious eater.");
 	case 2:
-		return "This fish goes\nfrom 0 to 60\nin 1.3 seconds!";
+		return lz("This fish goes\nfrom 0 to 60\nin 1.3 seconds!");
 	case 3:
-		return "This fish is\na musical genius!";
+		return lz("This fish is\na musical genius!");
 	case 4:
-		return "This fish is\n\"forwardly challenged\"\nbut it\'s great otherwise!";
+		return lz("This fish is\n\"forwardly challenged\"\nbut it\'s great otherwise!");
 	case 5:
-		return "This fish has\ndeveloped a taste\nfor exotic food!";
+		return lz("This fish has\ndeveloped a taste\nfor exotic food!");
 	case 6:
-		return "This fish has a\nvery special diet.";
+		return lz("This fish has a\nvery special diet.");
 	case 7:
 	case 8:
-		return "This fish is extremely \nrare.  We hardly ever\nget them in stock.";
+		return lz("This fish is extremely \nrare.  We hardly ever\nget them in stock.");
 	}
 
 	switch (mType)
@@ -861,34 +861,34 @@ SexyString Sexy::GameObject::GetStoreDescription()
 	{
 		Fish* aFish = (Fish*)this;
 		if (aFish->mHasSpecialColors)
-			return "These adorable little\nfish are a mainstay\nof any aquarium!";
+			return lz("These adorable little\nfish are a mainstay\nof any aquarium!");
 		if (aFish->mRainbowFish)
-			return "Choose from a dazzling\narray of colors.  C\'mon!\nyou know you want one!";
-		return "This one\'s pretty\ncool, isn\'t it?";
+			return lz("Choose from a dazzling\narray of colors.  C\'mon!\nyou know you want one!");
+		return lz("This one\'s pretty\ncool, isn\'t it?");
 	}
 	case TYPE_OSCAR:
 	{
 		Oscar* aFish = (Oscar*)this;
 		if (aFish->mHasSpecialColors && aFish->mRainbowFish)
-			return "This one\'s pretty\ncool, isn\'t it?";
-		return "Specially trained not\nto eat store-bought\nguppies.  I promise!";
+			return lz("This one\'s pretty\ncool, isn\'t it?");
+		return lz("Specially trained not\nto eat store-bought\nguppies.  I promise!");
 	}
 	case TYPE_ULTRA:
-		return "Many regard this\nto be the\nSUV of fish!";
+		return lz("Many regard this\nto be the\nSUV of fish!");
 	case TYPE_PENTA:
-		return "Isn\'t this little guy\njust the cutest?\nAnswer: Yes.";
+		return lz("Isn\'t this little guy\njust the cutest?\nAnswer: Yes.");
 	case TYPE_GRUBBER:
-		return "It won\'t eat\nyour guppies, but\nwatch your fingers!";
+		return lz("It won\'t eat\nyour guppies, but\nwatch your fingers!");
 	case TYPE_BREEDER:
-		return "Take care of this fish,\nand she\'ll give you a\nbaby fish at\nno extra charge!";
+		return lz("Take care of this fish,\nand she\'ll give you a\nbaby fish at\nno extra charge!");
 	case TYPE_SYLVESTER_FISH:
-		return "Don\'t worry.  This\n\"fish\" has been\ndomesticated.";
+		return lz("Don\'t worry.  This\n\"fish\" has been\ndomesticated.");
 	case TYPE_BALL_FISH:
-		return "Some people think\nthis fish looks\nlike a ball.";
+		return lz("Some people think\nthis fish looks\nlike a ball.");
 	case TYPE_BI_FISH:
-		return "This \"fish\" may look\ndead, but he is actually\nquite lively!";
+		return lz("This \"fish\" may look\ndead, but he is actually\nquite lively!");
 	default:
-		return "All of our fish come\nwith a free plastic bag!\nTake one home today!";
+		return lz("All of our fish come\nwith a free plastic bag!\nTake one home today!");
 	}
 	return SexyString();
 }

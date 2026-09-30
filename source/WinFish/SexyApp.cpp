@@ -43,7 +43,7 @@ SexyApp::SexyApp()
 	mBetaSupport = NULL;
 	//mBetaValidate = false;
 
-	SetString("UPDATE_CHECK_BODY", "Contacting PopCap.com to determine if there are any updates available for this product ...");
+	//SetString(lz("UPDATE_CHECK_BODY"), "Contacting PopCap.com to determine if there are any updates available for this product ...");
 
 	char aStr[9] = {0};
 	strncpy(aStr, BUILD_INFO_MARKER, 8);
@@ -571,7 +571,10 @@ void SexyApp::InitPropertiesHook()
 {
 	// Load properties if we need to
 	bool checkSig = !IsScreenSaver();
-	LoadProperties("properties\\partner.xml", false, checkSig);
+    std::string aFilename = Sexy::GetResourcePath("properties/partner.xml");
+	LoadProperties(aFilename.c_str(), false, checkSig);
+    aFilename = Sexy::GetResourcePath("properties/default.xml");
+    LoadProperties(aFilename.c_str(), false, checkSig);
 
 	// Check to see if this build is unlocked.
 	if (GetBoolean("NoReg", false))
@@ -591,7 +594,6 @@ void SexyApp::InitPropertiesHook()
 	mBetaSupport = nullptr;//new BetaSupport(this);
 
 #ifdef ZYLOM
-	LoadProperties();
 	ZylomGS_StandAlone_Init(mZylomGameId, (char*) GetString("BUG_REPORT_TITLE").c_str(), (char*) GetString("BUG_REPORT_BODY").c_str());
 #endif
 }
