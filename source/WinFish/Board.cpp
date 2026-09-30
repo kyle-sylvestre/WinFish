@@ -935,6 +935,7 @@ void Board::Update()
 
 			if (m0x45c % aDifIncreaseProb == 0 && m0x45c != 0)
 			{
+                mMessageWidget->mMessage = "WARNING! ALIEN DIFFICULTY INCREASED!";
 				mMessageWidget->mIsBlinking = true;
 				mMessageWidget->mMessageTimer = 274;
 				mMessageWidget->mColor1 = Color(255, 50, 50, 255);
