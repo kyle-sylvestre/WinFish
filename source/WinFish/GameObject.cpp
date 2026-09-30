@@ -102,7 +102,7 @@ int Sexy::GameObject::GetShellPrice()
 
 		const Time LIFESPAN_SECONDS = 86400;
 
-		if (currentTime >= mTimeBought + LIFESPAN_SECONDS)
+		if (currentTime - mTimeBought <= LIFESPAN_SECONDS)
 			return -1;
 	}
 
@@ -490,7 +490,7 @@ void Sexy::GameObject::Unk03(long long theTodayInSec, Time theCurTime)
 	if (mTodayBought)
 	{
 		const Time ONE_DAY_IN_SECONDS = 86400;
-		if (mTimeBought + ONE_DAY_IN_SECONDS <= theCurTime)
+        if (theCurTime < mTimeBought || theCurTime - mTimeBought >= ONE_DAY_IN_SECONDS)
 			mTodayBought = false;
 	}
 
