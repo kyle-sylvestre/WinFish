@@ -5364,7 +5364,10 @@ GameObject* Sexy::Board::SpawnPet(int thePetType, int theX, int theY, bool flag1
 		aPet = new FishTypePet(theX, theY, thePetType, flag1);
 	if (mApp->mGameMode == GAMEMODE_VIRTUAL_TANK && !flag2)
 	{
-		aPet->mVirtualTankId = flag1 ? PET_PRESTO : thePetType + 1000;
+        // A Presto keeps its own pet slot no matter which species it is currently wearing.
+        // The +1000 applies to BOTH arms - binding it to the false arm alone drops a Presto
+        // into the 0..19 fish-slot range, where the fish screens pick it up as a guppy.
+        aPet->mVirtualTankId = (flag1 ? PET_PRESTO : thePetType) + 1000;
 
         // Pets never go through the store, so nothing else seeds their virtual-tank
         // bookkeeping. Without this they start at day 0 and Unk03 decays them straight
