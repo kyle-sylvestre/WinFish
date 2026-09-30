@@ -5365,6 +5365,13 @@ GameObject* Sexy::Board::SpawnPet(int thePetType, int theX, int theY, bool flag1
 	if (mApp->mGameMode == GAMEMODE_VIRTUAL_TANK && !flag2)
 	{
 		aPet->mVirtualTankId = flag1 ? PET_PRESTO : thePetType + 1000;
+
+        // Pets never go through the store, so nothing else seeds their virtual-tank
+        // bookkeeping. Without this they start at day 0 and Unk03 decays them straight
+        // to "Horribly Depressed", which also pins their coin drops at the slowest rate.
+        aPet->mTimeBought = GetTime();
+        aPet->mShellPrice = 0;
+        aPet->BoughtSetup();
 	}
 	AddGameObject(aPet);
 	mWidgetManager->AddWidget(aPet);
