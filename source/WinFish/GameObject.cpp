@@ -828,10 +828,11 @@ SexyString Sexy::GameObject::GetStoreDescription()
 			return lz("This is Cookie.\nCookie will feed\nyour more exotic fish.");
 		}
 
+        std::string line = StrFormat(lzcstr("This is %s"), mName.c_str());
 		if (mName[mName.length() - 1] == '.')
-			return StrFormat(lzcstr("This is %s"), mName.c_str());
+            return line;
 		else
-			return StrFormat("This is %s.", mName.c_str());
+            return line + ".";
 	}
 
 	switch (GetAttribute())
