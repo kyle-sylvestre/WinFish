@@ -1050,7 +1050,7 @@ void Sexy::SimFishScreen::DrawOverlay(Graphics* g)
 			g->SetColor(aCol3);
 			SexyString aLikesStr = "";
 			if (gUnkInt10 >= 0 && gUnkInt10 <= 330)
-				aLikesStr = StrFormat(lzcstr("Likes %s, %s, and %s."), LIKES[gUnkInt10].c_str(),LIKES[gUnkInt10].c_str(),LIKES[gUnkInt10].c_str());
+				aLikesStr = StrFormat(lzcstr("Likes %s, %s, and %s."), lzcstr(LIKES[gUnkInt10]),lzcstr(LIKES[gUnkInt10]),lzcstr(LIKES[gUnkInt10]));
 			else
 				aLikesStr = GetAdditionalNotes(anObj);
 
@@ -1214,9 +1214,9 @@ SexyString Sexy::SimFishScreen::GetAdditionalNotes(GameObject* theObject)
 	{
 		SexyString aLastLike = GetLastSpecialLike(theObject);
 		return StrFormat(lzcstr("Likes %s, %s, and %s."), 
-			LIKES[theObject->mLikes[0]].c_str(),
-			LIKES[theObject->mLikes[1]].c_str(),
-			aLastLike.empty() ? LIKES[theObject->mLikes[2]].c_str() : aLastLike.c_str()
+			lzcstr(LIKES[theObject->mLikes[0]]),
+			lzcstr(LIKES[theObject->mLikes[1]]),
+			aLastLike.empty() ? lzcstr(LIKES[theObject->mLikes[2]]) : aLastLike.c_str()
 		);
 	}
 	}
