@@ -505,8 +505,8 @@ void Sexy::FishTypePet::DropCoin()
 	if (mApp->mBoard->mTank == 5 || mApp->mBoard->mPause)
 		return;
 
-	int anExoticFoodReqsInTank[8];
-	int anExoticFoodInTank[8];
+    int anExoticFoodReqsInTank[8] = {};
+    int anExoticFoodInTank[8] = {};
 
 	if (mFishTypePetType == PET_PREGO)
 	{
