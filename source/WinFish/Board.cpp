@@ -342,10 +342,14 @@ bool Board::RemoveGameObjectFromLists(GameObject* theObject, bool aFlag)
 		break;
 	case TYPE_OTHER_TYPE_PET:
 	{
-		OtherTypePet* aPet = (OtherTypePet*)theObject;
-		if (aPet->mOtherTypePetType >= PET_STINKY && aPet->mOtherTypePetType < PET_END)
-			mPetsInTank[aPet->mOtherTypePetType]--;
-		mOtherTypePetList->erase(std::remove(mOtherTypePetList->begin(), mOtherTypePetList->end(), (OtherTypePet*)theObject), mOtherTypePetList->end());
+        OtherTypePet* aPet = (OtherTypePet*)theObject;
+        size_t aPrevSize = mOtherTypePetList->size();
+        mOtherTypePetList->erase(std::remove(mOtherTypePetList->begin(), mOtherTypePetList->end(), (OtherTypePet*)theObject), mOtherTypePetList->end());
+        // Only count down when this call is what actually removed the pet. A hidden pet is
+        // already out of the list, and decrementing twice drives the count negative.
+        if (mOtherTypePetList->size() != aPrevSize &&
+            aPet->mOtherTypePetType >= PET_STINKY && aPet->mOtherTypePetType < PET_END)
+            mPetsInTank[aPet->mOtherTypePetType]--;
 		break;
 	}
 	case TYPE_FISH_TYPE_PET:
