@@ -21,6 +21,13 @@ Current .sln file is made with Build tools: Visual Studio 2022 (v142 toolset).
 
 Open WinFish.sln in Visual Studio and press F5 to build.
 
+### Fish Names Table
+Old		New
+Oscar	Carnivore
+Penta	Star Catcher
+Gekko	Beetle Muncher
+Grubber	Guppy Cruncher
+
 ### Miscellaneous notes
 
 Legal notes:
