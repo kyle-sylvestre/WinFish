@@ -1270,19 +1270,21 @@ void Board::Draw(Graphics* g)
 	}
 	else
 	{
-		if (((mApp->mCurrentProfile->mCheatCodeFlags >> 7) & 1) != 0)
-		{
-			if (!mIsBonusRound)
-			{
-				if (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK)
-				{
-					g->DrawString(StrFormat("Time: %d:%02d", (Unk01() - m0x3b8) / 60000, (Unk01() - m0x3b8) / 1000 % 60), 540, 470);
-				}
-			}
-		}
-		else if (mIsBonusRound)
-			DrawBonusRound(g);
-	} // 276
+		if (mIsBonusRound)
+        {
+            DrawBonusRound(g);
+        }
+        else
+        {
+            if (((mApp->mCurrentProfile->mCheatCodeFlags >> 7) & 1) != 0)
+            {
+                if (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK)
+                {
+                    g->DrawString(StrFormat("Time: %d:%02d", (Unk01() - m0x3b8) / 60000, (Unk01() - m0x3b8) / 1000 % 60), 540, 470);
+                }
+            }
+        }
+    } // 276
 
 	if (mAlienTimer < 1 || mAlienTimer > 225 || mPetsInTank[13] == 0 || mTank == 5 || mApp->mGameMode == GAMEMODE_VIRTUAL_TANK)
 		return;
