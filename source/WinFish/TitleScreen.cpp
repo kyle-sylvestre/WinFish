@@ -150,11 +150,11 @@ void TitleScreen::Draw(Graphics* g)
 		g->WriteString(m0xa4, mWidth - aStrWdth / 2 - 13, 395);
 	}
 
-	g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
-	g->SetColor(Color::White);
-	SexyString aVersionStr = "Version " + mApp->mProductVersion;
-	int aStrWdth = g->GetFont()->StringWidth(aVersionStr);
-	g->WriteString(aVersionStr, mWidth - aStrWdth / 2 - 16, 211);
+	//g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
+	//g->SetColor(Color::White);
+	//SexyString aVersionStr = "Version " + mApp->mProductVersion;
+	//int aStrWdth = g->GetFont()->StringWidth(aVersionStr);
+	//g->WriteString(aVersionStr, mWidth - aStrWdth / 2 - 16, 211);
 }
 
 void TitleScreen::Update()
