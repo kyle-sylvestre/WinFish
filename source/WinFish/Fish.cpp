@@ -965,7 +965,7 @@ bool Fish::Hungry()
         }
         if (mHunger < -499 && mBeginner)
         {
-            Die();
+            Die(true);
             return false;
         }
         if (mHunger < 500)
@@ -979,7 +979,7 @@ bool Fish::Hungry()
         }
     }
     else
-        Die();
+        Die(true);
     return false;
 }
 
