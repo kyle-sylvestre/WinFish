@@ -269,7 +269,7 @@ void PlatformInit()
             }
 
             const std::string FOLDERS[] = {
-                Sexy::StrFormat("%ls\\PopCap Games\\Insaniquarium Deluxe", appdata),
+                Sexy::StrFormat("%ls\\PopCap Games\\Insaniquarium", GetFolder(FOLDERID_ProgramData).c_str()),
                 datapath,
             };
             
