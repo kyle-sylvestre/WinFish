@@ -435,6 +435,12 @@ void Sexy::UserProfile::SetCheatFlag(char thePos, bool theFlag)
         mCheatCodeFlags &= ~mask;
 }
 
+bool Sexy::UserProfile::GetCheatFlag(char thePos)
+{
+    unsigned int mask = 1 << thePos;
+    return ((mCheatCodeFlags & mask) != 0);
+}
+
 bool Sexy::UserProfile::ToggleCheatFlag(char theIdx)
 {
     unsigned int aMask = 1 << theIdx;

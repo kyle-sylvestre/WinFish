@@ -2,6 +2,7 @@
 #include <SexyAppFramework/WidgetManager.h>
 #include <SexyAppFramework/DialogButton.h>
 
+#include "CheatsDialog.h"
 #include "OptionsDialog.h"
 #include "WinFishApp.h"
 #include "WinFishCommon.h"
@@ -38,6 +39,7 @@ Sexy::OptionsDialog::OptionsDialog(WinFishApp* theApp, bool theFlag)
 	mFullscreenCB = MakeCheckbox(7, this, !mApp->mIsWindowed);
 	mCustomCursorsCB = MakeCheckbox(8, this, mApp->mCustomCursorsEnabled);
 	m3DCB = MakeCheckbox(9, this, mApp->Is3DAccelerated());
+    mCheatsButton = MakeDialogButton(10, this, "Cheats", NULL);
 
 	if (theFlag)
 		mBackButton->SetVisible(false);
@@ -45,6 +47,8 @@ Sexy::OptionsDialog::OptionsDialog(WinFishApp* theApp, bool theFlag)
 		mCheckUpdatesButton->SetVisible(false);
 	if(mApp->mBuildUnlocked)
 		mRegisterButton->SetVisible(false);
+	if(mApp->mBoard == NULL)
+		mCheatsButton->SetVisible(false);
 	mWebLinkButton->SetVisible(mWebLinkButton->mLabel.size() != 0);
 }
 
@@ -70,6 +74,8 @@ Sexy::OptionsDialog::~OptionsDialog()
 		delete mHelpButton;
 	if (mBackButton)
 		delete mBackButton;
+    if (mCheatsButton)
+        delete mCheatsButton;
 }
 
 void Sexy::OptionsDialog::AddedToManager(WidgetManager* theWidgetManager)
@@ -85,6 +91,7 @@ void Sexy::OptionsDialog::AddedToManager(WidgetManager* theWidgetManager)
 	theWidgetManager->AddWidget(mFullscreenCB);
 	theWidgetManager->AddWidget(mWebLinkButton);
 	theWidgetManager->AddWidget(mBackButton);
+    theWidgetManager->AddWidget(mCheatsButton);
 }
 
 void Sexy::OptionsDialog::RemovedFromManager(WidgetManager* theWidgetManager)
@@ -100,6 +107,7 @@ void Sexy::OptionsDialog::RemovedFromManager(WidgetManager* theWidgetManager)
 	theWidgetManager->RemoveWidget(mFullscreenCB);
 	theWidgetManager->RemoveWidget(mWebLinkButton);
 	theWidgetManager->RemoveWidget(mBackButton);
+    theWidgetManager->RemoveWidget(mCheatsButton);
 }
 
 void Sexy::OptionsDialog::Draw(Graphics* g)
@@ -143,6 +151,7 @@ void Sexy::OptionsDialog::Resize(int theX, int theY, int theWidth, int theHeight
 	if (mHelpButton->mVisible) aBottomButtons.push_back(mHelpButton);
 	if (mRegisterButton->mVisible) aBottomButtons.push_back(mRegisterButton);
 	if (mCheckUpdatesButton->mVisible) aBottomButtons.push_back(mCheckUpdatesButton);
+    if (mCheatsButton->mVisible) aBottomButtons.push_back(mCheatsButton);
 
 	if (aBottomButtons.size() == 1 || aBottomButtons.size() == 3)
 	{
@@ -252,6 +261,13 @@ void Sexy::OptionsDialog::ButtonDepress(int theId)
 	case 4:
 		mApp->DoUpdateCheckDialog();
 		return;
+    case 10:
+	{
+		CheatsDialog *aDia = new CheatsDialog(mApp, 0);
+		aDia->Resize(46, 26, 548, 348);
+		mApp->AddDialog(DIALOG_CHEATS, aDia);
+		return;
+	}
 	default:
 		return;
 	}

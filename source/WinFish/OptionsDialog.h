@@ -26,6 +26,7 @@ namespace Sexy
 		DialogButton* mCheckUpdatesButton;
 		DialogButton* mWebLinkButton;
 		DialogButton* mBackButton;
+        DialogButton* mCheatsButton;
 		bool mFlag;
 
 	public:

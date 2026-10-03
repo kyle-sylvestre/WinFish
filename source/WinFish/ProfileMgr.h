@@ -49,6 +49,7 @@ namespace Sexy
 		void						LoadFromMemory();
 		void						Init();
 		void						SetCheatFlag(char thePos, bool theFlag);
+        bool                        GetCheatFlag(char thePos);
 		bool						ToggleCheatFlag(char theIdx);
 		void						SyncUsersDat(DataSync& theDataSync);
 		void						Save();
