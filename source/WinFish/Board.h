@@ -235,6 +235,7 @@ namespace Sexy
 		bool								mAlienAttractorShown;
 		bool								mAlwaysShowWhenHungry;
 		bool								m0x500;
+        bool                                mPrestoTooltip;
 
 	public:
 		Board(WinFishApp* theApp);
@@ -394,6 +395,8 @@ namespace Sexy
 		void					RessurectPenta(int theX);
 		void					RessurectGrubber(int theX);
 		void					RessurectBreeder(int theX, int theY, int theSize, bool flipped);
+        
+        GameObject *            GetPresto();
 	};
 
 	///////////////////////////////////////////////////////////////////////////////

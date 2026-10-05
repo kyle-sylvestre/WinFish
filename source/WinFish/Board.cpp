@@ -70,6 +70,11 @@ namespace Sexy
 using namespace Sexy;
 
 const double PI = 3.141590118408203;
+#if defined(__ANDROID__)
+const Rect PRESTO_BUTTON = {485, 432, 60, 60};
+#else
+const Rect PRESTO_BUTTON = {640, 480, 60, 60};
+#endif
 
 Board::Board(WinFishApp* theApp)
 {
@@ -228,6 +233,11 @@ Board::Board(WinFishApp* theApp)
 	for (int i = 0; i < 64; i++)
 		mSoundPlayedTimerArray[i] = -1000;
 	mHasVirtualTankFish = false;
+    
+    bool aTemp = false;
+    mPrestoTooltip = true;
+    if (gSexyApp->RegistryReadBoolean("PrestoTooltip", &aTemp))
+        mPrestoTooltip = aTemp;
 }
 
 Board::~Board()
@@ -1220,6 +1230,31 @@ void Board::Draw(Graphics* g)
 			g->DrawString("buy egg piece!", 480, 107);
 		}
 	} // 132
+    
+    GameObject *aPresto = GetPresto();
+    if (aPresto)
+    {
+        Rect aSource = {0, 0, 80, 80};
+        Rect aDest = PRESTO_BUTTON;
+        bool aColorize = g->GetColorizeImages();
+        Color aColor = g->GetColor();
+        Color aPrestoColor = {255, 255, 255, 64};
+        g->SetColorizeImages(true);
+        g->SetColor(aPrestoColor);
+        g->DrawImage(IMAGE_PRESTO, aDest, aSource);
+        g->SetColor(aColor);
+        g->SetColorizeImages(aColorize);
+        
+        if (mPrestoTooltip)
+        {
+            int x = 460;
+            int y = 400;
+            g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
+            g->SetColor(Color(0x6e, 0xfa, 0x6e));
+            g->DrawString("Tap to open", x + 13, y + 25);
+            g->DrawString("Presto Window", x, y + 37);
+        }
+    }
 
 	if (mApp->mGameMode == GAMEMODE_VIRTUAL_TANK)
 		return;
@@ -1485,7 +1520,22 @@ void Board::MouseDown(int x, int y, int theClickCount)
 			return;
 		}
 	}
-
+    
+    GameObject *aPresto = GetPresto();
+    if (aPresto)
+    {
+        if (PRESTO_BUTTON.Contains(x, y))
+        {
+            if (mPrestoTooltip)
+            {
+                gSexyApp->RegistryWriteBoolean("PrestoTooltip", false);
+                mPrestoTooltip = false;
+            }
+            mApp->OpenPrestoDialog(aPresto);
+            return;
+        }
+    }
+    
 	if (theClickCount < 0)
 	{
 		if (y > 40)
@@ -3361,7 +3411,11 @@ void Sexy::Board::HandleBuyEgg()
 	}
 
 	if (aPetId == PET_PRESTO)
-		mApp->mCurrentProfile->AddShells(5000);
+    {
+        mApp->mCurrentProfile->AddShells(5000);
+        gSexyApp->RegistryWriteBoolean("PrestoTooltip", true);
+        mPrestoTooltip = true;
+    }
 
 	mApp->SwitchToHatchScreen(aPetId);
 }
@@ -5955,6 +6009,32 @@ void Sexy::Board::DrawCoolBonusString(Graphics* g, SexyString& theString, int th
 
 		aPrevChar = aChar;
 	}
+}
+
+GameObject *Board::GetPresto()
+{
+    GameObject *aResult = NULL;
+    for(int i = 0; i < mFishTypePetList->size(); i++)
+    {
+        FishTypePet* aPet = mFishTypePetList->at(i);
+        if (aPet->m0x230 || aPet->mFishTypePetType == PET_PRESTO)
+        {
+            aResult = aPet;
+            break;
+        }
+    }
+
+    for(int i = 0; i < mOtherTypePetList->size(); i++)
+    {
+        OtherTypePet* aPet = mOtherTypePetList->at(i);
+        if (aPet->mIsPresto)
+        {
+            aResult = aPet;
+            break;
+        }
+    }
+    
+    return aResult;
 }
 
 Sexy::BoardOverlay::BoardOverlay(Board* theBoard, int thePriority)
