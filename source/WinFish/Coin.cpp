@@ -25,6 +25,8 @@ Sexy::Coin::Coin()
 	mClip = false;
 	m0x190 = nullptr;
 	mType = TYPE_COIN;
+	m0x180 = 0;
+	m0x184 = 0;
 }
 
 Sexy::Coin::Coin(int theX, int theY, int theType, OtherTypePet* unk, double theVel)

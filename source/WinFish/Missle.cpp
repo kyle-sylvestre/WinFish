@@ -23,6 +23,9 @@ Sexy::Missle::Missle()
     m0x1a8 = 0;
     mClip = false;
     mType = TYPE_MISSLE;
+	m0x1ac = 0;
+	m0x1b0 = 0;
+	m0x1b4 = 0;
 }
 
 Sexy::Missle::Missle(int x, int y, GameObject* theTarget, int theType)

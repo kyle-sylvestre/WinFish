@@ -78,6 +78,7 @@ Fish::Fish() : GameObject()
     mWadsworthVXModCounter = 0;
     mUnusedTimer = 0;
     mVirtualFish = 0;
+    mRainbowFish = false;
     mRainbowFishDeterminant = 0;
 }
 

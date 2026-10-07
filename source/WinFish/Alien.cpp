@@ -16,6 +16,11 @@ Sexy::Alien::Alien()
 {
 	mType = TYPE_ALIEN;
 	mClip = false;
+	mGusFoundFood = false;
+	mCyraxSpawnAlienTimer = 0;
+	mCyraxSpawnMiniTimer = 0;
+	mCyraxSpawnAlienThreshold = 0;
+	mCyraxSpawnMiniThreshold = 0;
 }
 
 Sexy::Alien::Alien(int theX, int theY, int theAlienType)

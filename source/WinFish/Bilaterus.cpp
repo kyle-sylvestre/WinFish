@@ -17,6 +17,7 @@ Sexy::Bilaterus::Bilaterus()
 	mType = TYPE_BILATERUS;
 	mActiveHead = nullptr;
 	mPassiveHead = nullptr;
+	mBoneList = nullptr;
 }
 
 Bilaterus::Bilaterus(int theX, int theY)
