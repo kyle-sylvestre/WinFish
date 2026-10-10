@@ -1727,10 +1727,10 @@ void Board::DrawOverlay0(Graphics* g)
 		{
 			int aRow = m0x2c4;
 			if (m0x2c4 < 1)
-				aRow = 30 - m0x2c4;
+				aRow = 30 - mAlienTimer;
 			if (aRow > 5)
 				aRow = 5;
-			g->DrawImageBox(Rect((anX - IMAGE_AA_BEAM->mWidth / 2) + 40, (anY - IMAGE_AA_BEAM->mHeight) + 40, IMAGE_AA_BEAM->mWidth, aRow * 450 / 5), IMAGE_AA_BEAM);
+			g->DrawImageBox(Rect((anX - IMAGE_AA_BEAM->mWidth / 2) + 40, (anY - (aRow * 450 / 5)) + 40, IMAGE_AA_BEAM->mWidth, aRow * 450 / 5), IMAGE_AA_BEAM);
 		}
 		DrawAlienAttractorMisc(g, anX, anY, mAlienTimer, m0x2c4);
 	}
@@ -5811,7 +5811,7 @@ void Sexy::Board::DrawAlienAttractorMisc(Graphics* g, int theX, int theY, int th
 	}
 	else if (theTime < 300)
 	{
-		g->DrawImage(IMAGE_AA_TOP2, aNewX, aNewY);
+		g->DrawImage(IMAGE_AA_TOP1, aNewX, aNewY);
 		int anAlphaMod = (300 - theTime) % 40;
 		if (anAlphaMod > 20)
 			anAlphaMod = 40 - anAlphaMod;
