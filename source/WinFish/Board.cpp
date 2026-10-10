@@ -1247,8 +1247,8 @@ void Board::Draw(Graphics* g)
         
         if (mPrestoTooltip)
         {
-            int x = 460;
-            int y = 400;
+            int x = PRESTO_BUTTON.mX - 25; // 460
+            int y = PRESTO_BUTTON.mY - 32; // 400;
             g->SetFont(FONT_JUNGLEFEVER10OUTLINE);
             g->SetColor(Color(0x6e, 0xfa, 0x6e));
             g->DrawString("Tap to open", x + 13, y + 25);
