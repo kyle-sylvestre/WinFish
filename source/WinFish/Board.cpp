@@ -4208,6 +4208,7 @@ void Sexy::Board::HandleBuySlotPressed(int theSlotId)
 		if (!Buy(aPrice, true))
 			return;
 		SpawnBreederBought();
+        PlaySplashSound();
 		break;
 	case SLOT_FOODLVL:
 		if (gFoodType < 2 && Buy(aPrice, true))
