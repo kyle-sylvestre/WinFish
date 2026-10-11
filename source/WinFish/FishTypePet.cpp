@@ -72,7 +72,7 @@ Sexy::FishTypePet::FishTypePet(int theX, int theY, int thePetType, bool flag)
 	}
 	else if (thePetType == PET_MERYL)
 	{
-		mCoinDropT = 4320 - (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK ? 0 : 2920);
+		mCoinDropT = 4320 - (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK ? 2920 : 0);
 	}
 	else if (thePetType == PET_WADSWORTH)
 	{
