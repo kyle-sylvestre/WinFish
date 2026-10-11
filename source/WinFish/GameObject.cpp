@@ -867,9 +867,9 @@ SexyString Sexy::GameObject::GetStoreDescription()
 	case TYPE_GUPPY:
 	{
 		Fish* aFish = (Fish*)this;
-		if (aFish->mHasSpecialColors)
+		if (!aFish->mHasSpecialColors)
 			return "These adorable little\nfish are a mainstay\nof any aquarium!";
-		if (aFish->mRainbowFish)
+		if (!aFish->mRainbowFish)
 			return "Choose from a dazzling\narray of colors.  C\'mon!\nyou know you want one!";
 		return "This one\'s pretty\ncool, isn\'t it?";
 	}
