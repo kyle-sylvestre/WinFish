@@ -1496,6 +1496,7 @@ void Fish::Init(int theX, int theY)
     mVirtualFish = false;
     mX = theX;
     mY = theY;
+    mVX = 0.0;
     mVY = -0.5;
     mWidth = 80;
     mHeight = 80;
