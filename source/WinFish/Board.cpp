@@ -1483,17 +1483,6 @@ void Sexy::Board::KeyChar(SexyChar theChar)
 			if (mCheatCodes[i]->CheckCodeActivated(theChar))
 				if (DoCheatCode(i))
 					return;
-		if (theChar == 'b' || theChar == 'B')
-		{
-			if (!mBubbulatorShown)
-			{
-				int aNumOfBubbs = mApp->mSeed->Next() % 3 + 2;
-				for (int i = 0; i < aNumOfBubbs; i++)
-					SpawnRandomBubble();
-			}
-			else
-				mBubbulatorTimer = 40;
-		}
 	}
 	if (theChar == ' ')
 		mApp->DoLostFocusDialog();
@@ -1505,6 +1494,26 @@ void Board::KeyDown(KeyCode theKey)
 		for (int i = 0; i < SDL_arraysize(mCheatCodes); i++)
 			if (mCheatCodes[i]->CheckCodeActivated(theKey))
 				DoCheatCode(i);
+    
+    if (mApp->mGameMode != GAMEMODE_SANDBOX)
+    {
+        if (theKey == 'b' || theKey == 'B')
+        {
+            if (mBubbulatorShown)
+            {
+                if (mBubbulatorTimer > 60)
+                {
+                    mBubbulatorTimer = 40;
+                }
+            }
+            else
+            {
+                int aNumOfBubbs = mApp->mSeed->Next() % 3 + 2;
+                for (int i = 0; i < aNumOfBubbs; i++)
+                    SpawnRandomBubble();
+            }
+        }
+    }
 }
 
 void Board::MouseDown(int x, int y, int theClickCount)
@@ -1533,6 +1542,21 @@ void Board::MouseDown(int x, int y, int theClickCount)
             }
             mApp->OpenPrestoDialog(aPresto);
             return;
+        }
+    }
+    
+    
+    if (mBubbulatorShown)
+    {
+        int anX, anY;
+        GetBubbleSpawnCoords(anX, anY);
+        Rect bub = { anX, anY, 71, 92 };
+        if (bub.Contains(x, y))
+        {
+            if (mBubbulatorTimer > 60)
+            {
+                mBubbulatorTimer = 40;
+            }
         }
     }
     
@@ -1751,14 +1775,12 @@ void Board::DrawOverlay0(Graphics* g)
 
 void Board::SpawnBubble(int theX, int theY)
 {
-	if (mBubbleMgr->mBubbleList.size() < 30)
-		mBubbleMgr->SpawnBubble(theX, theY);
+    mBubbleMgr->SpawnBubble(theX, theY);
 }
 
 void Sexy::Board::SpawnRandomBubble()
 {
-	if (mBubbleMgr->mBubbleList.size() < 50) 
-		mBubbleMgr->SpawnBubble(mApp->mSeed->Next() % 22 + 150, mApp->mSeed->Next() % 6 + 400);
+    mBubbleMgr->SpawnBubble(mApp->mSeed->Next() % 22 + 150, mApp->mSeed->Next() % 6 + 400);
 }
 
 void Board::AddGameObject(GameObject* theObject)
