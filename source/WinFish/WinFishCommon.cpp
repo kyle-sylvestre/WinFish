@@ -342,6 +342,13 @@ FishSongData* Sexy::GetSongData(int theSpecId)
 
         if (!unkbool && gUnkInt04 == 5)
         {
+            SexyString aPattern = "short";
+            size_t aPatternIndex = aPropVal.rfind(aPattern);
+            if (aPatternIndex != std::string::npos)
+            {
+                aPropVal.replace(aPatternIndex, aPattern.size(), "long");
+            }
+            
             std::map<SexyString, FishSongData*, Sexy::StringLessNoCase>::iterator it = gLongSongsMap.find(aPropVal);
             if (it != gLongSongsMap.end())
             {
