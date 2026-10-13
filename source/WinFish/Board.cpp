@@ -5445,8 +5445,8 @@ GameObject* Sexy::Board::SpawnPet(int thePetType, int theX, int theY, bool flag1
 		flag1 = true;
 	if (theX == -1)
 	{
-		theX = mApp->mSeed->Next() % 265 + 105;
-		theY = mApp->mSeed->Next() % 520 + 20;
+		theX = mApp->mSeed->Next() % 520 + 20;
+        theY = mApp->mSeed->Next() % 265 + 105;
 	}
 	GameObject* aPet = nullptr;
 	if (thePetType == PET_STINKY || thePetType == PET_NIKO ||
