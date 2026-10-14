@@ -28,6 +28,7 @@ Sexy::SimSetupScreen::SimSetupScreen(WinFishApp* theApp)
 
 	mSSButton = MakeDialogButton(8, this, "Screensaver...", FONT_JUNGLEFEVER10OUTLINE);
 	mSSButton->Resize(80, 320, 186, mSSButton->mHeight);
+    mSSButton->SetVisible(false); // !PORT: screensaver
 
 	mPrevButton = MakeDialogButton2(0, this, "Prev", IMAGE_LEFTBUTTON);
 	mPrevButton->Resize(m0x94 + 14, m0x98 + 134, 65, mPrevButton->mHeight);
@@ -182,17 +183,18 @@ void Sexy::SimSetupScreen::Draw(Graphics* g)
 		WriteWordWrapped(g, Rect(60,70 - aHght/2, 520, 0), aInfoStr, -1, 0);
 	}
 
-	g->SetColor(Color::White);
-	aStr = StrFormat("The Screensaver is %s", mApp->mScreenSaverEnabled ? "enabled" : "disabled");
-	int aStrX = mSSButton->mWidth / 2 + mSSButton->mX;
-	int aStrY = mSSButton->mHeight + 20 + mSSButton->mY;
-	g->DrawString(aStr, aStrX - g->GetFont()->StringWidth(aStr) / 2, aStrY);
+    // !PORT: screensaver
+	//g->SetColor(Color::White);
+	//aStr = StrFormat("The Screensaver is %s", mApp->mScreenSaverEnabled ? "enabled" : "disabled");
+	//int aStrX = mSSButton->mWidth / 2 + mSSButton->mX;
+	//int aStrY = mSSButton->mHeight + 20 + mSSButton->mY;
+	//g->DrawString(aStr, aStrX - g->GetFont()->StringWidth(aStr) / 2, aStrY);
 
-	if (mApp->mScreenSaverEnabled)
-	{
-		aStr = StrFormat("User: %s", mApp->mScreenSaverUserName.c_str());
-		g->DrawString(aStr, aStrX - g->GetFont()->StringWidth(aStr) / 2, aStrY + 15);
-	}
+	//if (mApp->mScreenSaverEnabled)
+	//{
+	//	aStr = StrFormat("User: %s", mApp->mScreenSaverUserName.c_str());
+	//	g->DrawString(aStr, aStrX - g->GetFont()->StringWidth(aStr) / 2, aStrY + 15);
+	//}
 }
 
 void Sexy::SimSetupScreen::ButtonPress(int theId)

@@ -1336,8 +1336,9 @@ void Sexy::WinFishApp::ReadSSFromRegistry()
 
 	if (!mScreenSaverEnabled)
 	{
-		if (aPathsAreTheSame)
-			mScreenSaverEnabled = true;
+        // !PORT: screensaver
+		//if (aPathsAreTheSame)
+		//	mScreenSaverEnabled = true;
 	}
 	else
 	{
