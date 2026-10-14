@@ -69,7 +69,7 @@ namespace Sexy
 	extern std::vector<FishSongData*> gSantaSongs;
 	extern std::map<SexyString, FishSongData*, Sexy::StringLessNoCase> gLongSongsMap;
 
-	extern int gUnkInt04;
+	extern int gMusicFishSongsPlayed;
 	extern int gLudwigSongId;
 	extern int gSantaSongId;
 	extern int gSongs2Id;

@@ -247,6 +247,9 @@ Board::Board(WinFishApp* theApp)
     mPrestoTooltip = true;
     if (gSexyApp->RegistryReadBoolean("PrestoTooltip", &aTemp))
         mPrestoTooltip = aTemp;
+    
+    gSexyApp->RegistryReadInteger("MusicFishSongsPlayed", &gMusicFishSongsPlayed);
+	gMusicFishSongsPlayed = std::clamp(gMusicFishSongsPlayed, 0, 5);
 }
 
 Board::~Board()

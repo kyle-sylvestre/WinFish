@@ -90,7 +90,7 @@ namespace Sexy
 	std::vector<FishSongData*> gLudwigSongs;
 	std::vector<FishSongData*> gSantaSongs;
 	std::map<SexyString, FishSongData*, Sexy::StringLessNoCase> gLongSongsMap;
-	int gUnkInt04 = 0;
+	int gMusicFishSongsPlayed = 0;
 	int gLudwigSongId = 0;
 	int gSantaSongId = 0;
 	int gSongs2Id = 0;
@@ -1307,6 +1307,7 @@ void Sexy::WinFishApp::WriteToRegistry()
 		SexyApp::WriteToRegistry();
 		RegistryWriteInteger("ldinfo", mDaysSinceFirstRun);
 		RegistryWriteInteger("ldaccum", mLDAccum);
+        RegistryWriteInteger("MusicFishSongsPlayed", gMusicFishSongsPlayed);
 	}
 }
 

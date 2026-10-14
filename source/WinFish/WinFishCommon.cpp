@@ -330,8 +330,8 @@ FishSongData* Sexy::GetSongData(int theSpecId)
 
     (*aListId)++;
 
-    if (gUnkInt04 < 5)
-        gUnkInt04++;
+    if (gMusicFishSongsPlayed < 5)
+        gMusicFishSongsPlayed++;
 
     SexyString aPropVal = "";
     if (aChosenSong->GetProperty("short", &aPropVal))
@@ -340,7 +340,7 @@ FishSongData* Sexy::GetSongData(int theSpecId)
         if (!aChosenSong->GetProperty("beethoven", nullptr) || theSpecId == 1)
             unkbool = false;
 
-        if (!unkbool && gUnkInt04 == 5)
+        if (!unkbool && gMusicFishSongsPlayed == 5)
         {
             SexyString aPattern = "short";
             size_t aPatternIndex = aPropVal.rfind(aPattern);
@@ -352,7 +352,7 @@ FishSongData* Sexy::GetSongData(int theSpecId)
             std::map<SexyString, FishSongData*, Sexy::StringLessNoCase>::iterator it = gLongSongsMap.find(aPropVal);
             if (it != gLongSongsMap.end())
             {
-                gUnkInt04 = 0;
+                gMusicFishSongsPlayed = 0;
                 return it->second;
             }
         }
