@@ -5135,7 +5135,18 @@ int Sexy::Board::PlayFishSong(int theObjType, int theSpecObjType)
 	int aSongId = aMgr->mCounter;
 	aMgr->mCounter++;
 
+    int aLastMusicFishSongsPlayed = gMusicFishSongsPlayed;
 	FishSongData* aSongData = GetSongData(theSpecObjType);
+    if (aLastMusicFishSongsPlayed == 4 && gMusicFishSongsPlayed == 5)
+    {
+        for (int aRetry = 0; aRetry < 10; aRetry++)
+        {
+            if (aSongData && gMusicFishSongsPlayed == 0)
+                break;
+            
+            aSongData = GetSongData(theSpecObjType);
+        }
+    }
 
 	if (aSongData == nullptr)
 		return -1;
