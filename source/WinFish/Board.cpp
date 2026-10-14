@@ -825,10 +825,19 @@ void Board::Update()
 		int aVal = Unk01();
 		int aLastMouseX = mWidgetManager->mLastMouseX;
 		int aLastMouseY = mWidgetManager->mLastMouseY;
+        bool aGusInTank = false;
+        for (int i = 0; i < mAlienList->size(); i++)
+        {
+            if (mAlienList->at(i)->mAlienType == ALIEN_GUS)
+            {
+                aGusInTank = true;
+                break;
+            }
+        }
 		if (!isLeftBtnDown)
 			mRepeatFood = false;
 		else if ((mGameUpdateCnt % (16 - gFoodLimit) == 0) && (m0x3c0 + 200 < aVal) && 
-			(aLastMouseX >= 31 && aLastMouseX <= 586) && (aLastMouseY >= 61 && aLastMouseY <= 399) && Buy(m0x4ac, false))
+			(aLastMouseX >= 31 && aLastMouseX <= 586) && (aLastMouseY >= 61 && aLastMouseY <= 399) && (aGusInTank || Buy(m0x4ac, false)))
 		{ // 301
 			DropFood(aLastMouseX - 10, aLastMouseY - 10, 0, false, 20, -1);
 		}
