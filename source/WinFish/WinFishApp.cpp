@@ -714,7 +714,15 @@ void Sexy::WinFishApp::ModalOpen()
 void WinFishApp::LostFocus()
 {
 	if (mBoard != NULL && mGameMode != GAMEMODE_VIRTUAL_TANK)
+	{
+		if (!IsScreenSaver())
+		{
+			mBoard->mShouldSave = true;
+			mBoard->SaveCurrentGame();
+			WriteToRegistry();
+		}
 		DoLostFocusDialog();
+	}
 }
 
 bool Sexy::WinFishApp::DebugKeyDown(int theKey)
@@ -1451,8 +1459,6 @@ void Sexy::WinFishApp::DoLostFocusDialog()
 	{
 		if (!IsScreenSaver() && !mBoard->mPause)
 		{
-            mBoard->mShouldSave = true;
-            mBoard->SaveCurrentGame();
 			mBoard->PauseGame(true);
 			CleanDialogs();
 			DoDialog(DIALOG_LOST_FOCUS, true, "GAME PAUSED", "Click to resume game", "Resume game", Dialog::BUTTONS_FOOTER);
