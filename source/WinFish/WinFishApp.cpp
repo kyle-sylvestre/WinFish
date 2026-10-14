@@ -142,11 +142,12 @@ void LoadFishSongs(bool flag)
 			size_t und = filename.rfind('_');
 			if (und != std::string::npos)
 			{
+                std::string song_name = filename.substr(0, und);
                 std::string len = filename.substr(und + 1);
 				if (stricmp(len.c_str(), "long.txt") == 0)
-					aNewSong->mProperties["long"] = filename;
+                    aNewSong->mProperties["long"] = song_name;
 				else if(stricmp(len.c_str(), "short.txt") == 0)
-					aNewSong->mProperties["short"] = filename;
+                    aNewSong->mProperties["short"] = song_name;
 			}
 		}
 
