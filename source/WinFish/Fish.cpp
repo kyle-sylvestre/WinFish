@@ -1423,7 +1423,7 @@ void Sexy::Fish::SetFishColors(int theRandIdx, bool rainbow)
         if (aRed > 255) aRed = 255;
         int aGreen = OSCAR_GREEN_TABLE1[aRandIndex] + 5;
         if (aGreen > 255) aGreen = 255;
-        int aBlue = OSCAR_GREEN_TABLE1[aRandIndex] + 5;
+        int aBlue = OSCAR_BLUE_TABLE1[aRandIndex] + 5;
         if (aBlue > 255) aBlue = 255;
         mColors[0] = Color(aRed, aGreen, aBlue);
 
@@ -1431,7 +1431,7 @@ void Sexy::Fish::SetFishColors(int theRandIdx, bool rainbow)
         if (aRed > 255) aRed = 255;
         aGreen = OSCAR_GREEN_TABLE2[aRandIndex] + 5;
         if (aGreen > 255) aGreen = 255;
-        aBlue = OSCAR_GREEN_TABLE2[aRandIndex] + 5;
+        aBlue = OSCAR_BLUE_TABLE2[aRandIndex] + 5;
         if (aBlue > 255) aBlue = 255;
         mColors[1] = Color(aRed, aGreen, aBlue);
 
@@ -1439,7 +1439,7 @@ void Sexy::Fish::SetFishColors(int theRandIdx, bool rainbow)
         if (aRed > 255) aRed = 255;
         aGreen = OSCAR_GREEN_TABLE3[aRandIndex] + 5;
         if (aGreen > 255) aGreen = 255;
-        aBlue = OSCAR_GREEN_TABLE3[aRandIndex] + 5;
+        aBlue = OSCAR_BLUE_TABLE3[aRandIndex] + 5;
         if (aBlue > 255) aBlue = 255;
         mColors[2] = Color(aRed, aGreen, aBlue);
     }
