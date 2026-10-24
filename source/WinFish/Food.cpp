@@ -105,15 +105,15 @@ void Sexy::Food::Update()
 		m0x184 = true;
 	else
 	{
-		if (mYD < 150.0)
-			mYD -= 2.5;
-		else if (mYD < 135.0)
-			mYD -= 1.5;
-		else if (mYD < 130.0)
-			mYD -= 1.0;
-		else if (mYD < 125.0)
+		if (mYD <= 125.0)
 			mYD -= 0.5;
-		else if (mYD >= 150.0)
+		else if (mYD <= 130.0)
+			mYD -= 1.0;
+		else if (mYD <= 135.0)
+			mYD -= 1.5;
+		else if (mYD <= 150.0)
+			mYD -= 2.5;
+		else
 			mYD -= 8.0;
 	}
 
