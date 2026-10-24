@@ -1263,6 +1263,8 @@ void Sexy::Alien::UpdateAnimations()
 		{
 			if (mIsPsychosquidHealing)
 				mAnimIndex = 10 - aFrame;
+            else
+                mAnimIndex = aFrame;
 		}
 	}
 
