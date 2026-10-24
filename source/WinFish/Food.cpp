@@ -28,6 +28,7 @@ Sexy::Food::Food(int theX, int theY, int unk1, bool unk2, int theExoFoodType)
 	mVY = -2;
 	mWidth = 40;
 	mHeight = 40;
+    m0x18c = unk1;
 	if (unk1 == 2)
 		mVX = 3.0;
 	else
@@ -120,7 +121,7 @@ void Sexy::Food::Update()
 	{
 		if (mVY < 0.0)
 		{
-			mVY += 0.5;
+			mVY += 0.05;
 			mYD += mVY;
 		}
 		if (m0x18c == 2)

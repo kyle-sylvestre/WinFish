@@ -4989,7 +4989,7 @@ void Sexy::Board::DropFood(int theX, int theY, int unk1, bool unk2, int theFoodC
 		int aCnt = 0;
 		for (int i = 0; i < mFoodList->size(); i++)
 		{
-			if (mFoodList->at(i)->m0x18c == 0 && mFoodList->at(i)->mExoticFoodType != 0)
+			if (mFoodList->at(i)->m0x18c != 0 || mFoodList->at(i)->mExoticFoodType != 0)
 				aCnt++;
 		}
 		if (gFoodLimit + aCnt <= mFoodList->size())
