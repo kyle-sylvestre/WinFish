@@ -670,11 +670,19 @@ void Sexy::Fish::SetPosition(double newX, double newY)
 
 void Sexy::Fish::OnFoodAte(GameObject* obj)
 {
+    int aFoodType = 1; // default to pellet
+    int aExoticFoodType = 0;
+    if (obj->mType == TYPE_FOOD)
+    {
+        Food *aFood = (Food *)obj;
+        aExoticFoodType = aFood->mExoticFoodType;
+        aFoodType = aFood->mFoodType;
+    }
+
     bool isHungry = IsHungryVisible();
 
     mApp->mBoard->PlaySlurpSound(mVoracious);
-    Food* aFood = (Food*)obj;
-    bool unkflag01 = aFood->mExoticFoodType == 2;
+    bool unkflag01 = aExoticFoodType == 2;
     Unk02(unkflag01);
 
     bool unkflag02 = true;
@@ -723,20 +731,20 @@ void Sexy::Fish::OnFoodAte(GameObject* obj)
 
     if (!doPart || !unkflag01) // from 91 to 188
     {
-        if (aFood->mFoodType == 0)
+        if (aFoodType == 0)
         {
             mHunger += 500;
             if (mBeginner) mHunger += 200;
             if (mHunger > 800) mHunger = 800;
             if (unkflag02) mFoodAte++;
         }
-        else if (aFood->mFoodType == 1)
+        else if (aFoodType == 1)
         {
             mHunger += 700;
             if (mHunger > 1000) mHunger = 1000;
             if (unkflag02) mFoodAte = mFoodAte + 1 + (mApp->mGameMode != GAMEMODE_VIRTUAL_TANK);
         }
-        else if (aFood->mFoodType == 3)
+        else if (aFoodType == 3)
         {
             if (mSize == 0 || mSize == 1)
             {
