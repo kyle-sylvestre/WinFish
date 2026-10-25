@@ -377,14 +377,14 @@ int GameObject::ExoticFoodCollision(int theCenterX, int theCenterY)
 			int aModifiedDeltaX = aDeltaX + 20;
 			int aModifiedDeltaY = aDeltaY + 20;
 
-			if (aModifiedDeltaX + 14 < 29 && aModifiedDeltaY > -20 && aModifiedDeltaY < 20)
+			if ((unsigned)(aModifiedDeltaX + 14) < 29 && aModifiedDeltaY > -20 && aModifiedDeltaY < 20)
 			{
 				OnFoodAte(aTargetFood);
 				aTargetFood->Remove();
 				return 1;
 			}
 
-			if (aModifiedDeltaX + 29 < 59 && aModifiedDeltaY + 24 < 49)
+			if ((unsigned)(aModifiedDeltaX + 29) < 59 && (unsigned)(aModifiedDeltaY + 24) < 49)
 				aReturnValue = 2;
 		}
 	}
