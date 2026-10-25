@@ -52,7 +52,7 @@ namespace Sexy
 		virtual int				GetShellPrice();								//[72]
 		virtual void			Remove();										//[75]
 		virtual void			SetPosition(double newX, double newY);			//[76]
-		virtual void			OnFoodAte(Food* theFood);						//[77]
+		virtual void			OnFoodAte(GameObject* obj);						//[77]
 		virtual void			UpdateStoreAnimation();							//[78]
 		virtual void			DrawStoreAnimation(Graphics* g, int justification);//[79]
 		virtual void			Sync(DataSync* theSync);						//[80]

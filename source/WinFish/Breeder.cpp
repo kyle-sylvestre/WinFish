@@ -528,8 +528,9 @@ void Sexy::Breeder::SetPosition(double newX, double newY)
 	mYD = newY;
 }
 
-void Sexy::Breeder::OnFoodAte(Food* theFood)
+void Sexy::Breeder::OnFoodAte(GameObject* obj)
 {
+    int aFoodType = (obj->mType == TYPE_FOOD) ? ((Food *)obj)->mFoodType : 0;
 	bool hungry = IsHungryVisible();
 	Unk02(false);
 	bool flag = true;
@@ -542,7 +543,7 @@ void Sexy::Breeder::OnFoodAte(Food* theFood)
 	}
 
 	mApp->mBoard->PlaySlurpSound(mVoracious);
-	if (theFood->mFoodType == 0)
+	if (aFoodType == 0)
 	{
 		mHunger += 500;
 		if (mHunger > 800)
@@ -550,7 +551,7 @@ void Sexy::Breeder::OnFoodAte(Food* theFood)
 		if (flag)
 			m0x1a4++;
 	}
-	else if (theFood->mFoodType == 1)
+	else if (aFoodType == 1)
 	{
 		mHunger += 700;
 		if (mHunger > 1000)
