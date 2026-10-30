@@ -153,6 +153,9 @@ bool Sexy::BallFish::Hungry()
 
 void Sexy::BallFish::DrawFish(Graphics* g, bool mirror)
 {
+	// mirrored while decrementing index displays as moving forward
+	mirror = false;
+
 	int aRow = 0;
 	if (mSize == SIZE_MEDIUM)
 		aRow = 2;
