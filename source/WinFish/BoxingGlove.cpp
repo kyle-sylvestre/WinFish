@@ -89,7 +89,7 @@ void Sexy::BoxingGlove::Update()
 							case PET_NOSTRADAMUS:
 								aVal = 10;
 							}
-							if (HandleFishHit(anObj, anXHitPos, anYHitPos, m0x160 * 2 - 1, 5))
+							if (HandleFishHit(anObj, anXHitPos, anYHitPos, m0x160 * 2 - 1, aVal))
 								hit = true;
 						}
 						break;
