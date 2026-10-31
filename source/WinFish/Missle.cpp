@@ -395,9 +395,8 @@ void Sexy::Missle::DrawHelper(Graphics* g, bool flag)
         int screenBaseX = (int)(clampedX - g->mTransX);
         int screenBaseY = (int)(clampedY - g->mTransY);
 
-        int screenX = screenBaseX - anOffX;
-        int screenY = screenBaseY;
-        // TODO This calculation is not entirely correct, in real game it looks different.
+        int screenX = (int)(anInterpolatedX - g->mTransX);
+        int screenY = (int)(anInterpolatedY - g->mTransY);
         g->DrawImageCel(IMAGE_BALLS, screenX - 25, screenY - 25, m0x1a8 % 10, m0x1a0);
     }
 }
